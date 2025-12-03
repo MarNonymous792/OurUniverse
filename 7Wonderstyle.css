@@ -112,7 +112,7 @@ body{
 .cards-grid{
   display:grid;
   grid-template-columns: repeat(4, 1fr); /* 4 cards on the first row, remaining wrap to next row */
-  gap:20px;
+  gap:18px;
   align-items:start;
 }
 
@@ -121,7 +121,7 @@ body{
    the markup. */
 .sections-side-by-side{
   display:grid;
-  grid-template-columns: 1fr 1fr; /* place Ancient and Modern side-by-side horizontally */
+  grid-template-columns: 1fr; /* stack Ancient and Modern vertically */
   gap:28px;
   align-items:start;
   position:relative;
@@ -241,15 +241,21 @@ img{
 /* Box wrapper for wonders to match the About section */
 .wonders-box{
   background: linear-gradient(135deg, rgba(248, 245, 239, 1), rgba(248, 245, 239, 0.95));
-  padding:20px;
+  padding:22px;
   border-radius:12px;
   border: none; /* remove visible border to avoid a separating line */
-  box-shadow: 0 8px 24px rgba(139, 107, 255, 0.04);
+  box-shadow: 0 8px 20px rgba(139, 107, 255, 0.035);
 }
 
 .wonders-box h2{
   margin:0 0 14px 0;
   font-size:18px;
+}
+
+/* Make card text fit better inside boxed groups */
+.wonders-box .card-body h3{
+  font-size:16px;
+  line-height:1.15;
 }
 
 /* Subtle horizontal divider between sections */
