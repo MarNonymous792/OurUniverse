@@ -28,13 +28,12 @@ header p {
     color: #666;
 }
 
-/* ---------- FIXED 2×3 GRID ---------- */
+/* ---------- RESPONSIVE GRID ---------- */
 .cards {
     width: 100%;
     max-width: 1300px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);  /* always 3 cards per row */
-    grid-template-rows: repeat(2, auto);    /* always 2 rows */
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* responsive columns */
     gap: 25px;
     padding: 10px;
 }
@@ -104,33 +103,31 @@ header p {
     }
 }
 
-/* Ensure linked cards look like cards (black text, not default blue) */
-a.card {
-    display: block;
-    color: inherit; /* use the card/body color instead of browser link color */
-    text-decoration: none;
-}
-
-a.card h2 {
-    color: inherit;
-}
-
-a.card:focus,
-a.card:hover {
-    color: inherit;
-    text-decoration: none;
-}
-
-/* Make sure visited/active states also match the card styling */
+/* Ensure linked cards look like cards (no default link styling) */
+/* Target link states explicitly and make them inherit visual styles from the card */
+a.card,
+a.card:link,
 a.card:visited,
 a.card:active {
-    color: inherit;
+    display: block;
+    color: inherit; /* inherit text color from surrounding card */
     text-decoration: none;
+    cursor: pointer;
 }
 
-/* Ensure card paragraph text keeps the same muted color */
+a.card h2,
+a.card p {
+    color: inherit;
+}
+
+/* Keep paragraph muted color consistent with other cards */
 a.card p {
     color: #555;
+}
+
+/* Hover/Focus affordance without changing color */
+a.card:hover {
+    text-decoration: none;
 }
 
 /* Accessible visible focus outline for keyboard users */
