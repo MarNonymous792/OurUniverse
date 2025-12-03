@@ -111,28 +111,20 @@ body{
 /* Cards grid */
 .cards-grid{
   display:grid;
-  grid-template-columns: repeat(2, 1fr); /* always two columns for the requested 2x2 arrangement */
+  grid-template-columns: repeat(4, 1fr); /* 4 cards on the first row, remaining wrap to next row */
   gap:20px;
   align-items:start;
 }
 
-/* Layout for placing both sections side-by-side */
+/* Layout for sections: stacked vertically (ancient then modern). The
+   vertical divider has been removed in favor of a horizontal divider in
+   the markup. */
 .sections-side-by-side{
   display:grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr; /* stack sections vertically */
   gap:28px;
   align-items:start;
   position:relative;
-}
-.sections-side-by-side::after{
-  content:'';
-  position:absolute;
-  left:50%;
-  top:0;
-  bottom:0;
-  width:2px;
-  background:linear-gradient(180deg, transparent, rgba(139, 107, 255, 0.4) 20%, rgba(139, 107, 255, 0.4) 80%, transparent);
-  transform:translateX(-50%);
 }
 
 /* Vertical square card: image (square) on top, body under */
@@ -244,6 +236,28 @@ img{
   .about-section{padding:28px 20px;margin:0 0 36px 0}
   .about-section h2{font-size:22px;margin-bottom:18px}
   .about-content p{font-size:15px}
+}
+
+/* Box wrapper for wonders to match the About section */
+.wonders-box{
+  background: linear-gradient(135deg, rgba(248, 245, 239, 1), rgba(248, 245, 239, 0.9));
+  padding:24px;
+  border-radius:14px;
+  border: 1px solid rgba(139, 107, 255, 0.12);
+  box-shadow: 0 10px 36px rgba(139, 107, 255, 0.06);
+}
+
+/* Subtle horizontal divider between sections */
+.wonders-divider{
+  border:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(139,107,255,0.18), transparent);
+  margin:6px 0 6px 0;
+}
+
+/* Make the 4-column layout responsive: drop to 2 columns on medium screens */
+@media (max-width:1000px){
+  .cards-grid{grid-template-columns:repeat(2,1fr)}
 }
 
 /* Accessibility: focus outlines */
