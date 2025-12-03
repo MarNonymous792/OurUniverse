@@ -107,16 +107,34 @@ header p {
 /* Ensure linked cards look like cards (black text, not default blue) */
 a.card {
     display: block;
-    color: #000;
+    color: inherit; /* use the card/body color instead of browser link color */
     text-decoration: none;
 }
 
 a.card h2 {
-    color: #000;
+    color: inherit;
 }
 
 a.card:focus,
 a.card:hover {
-    color: #000;
+    color: inherit;
     text-decoration: none;
+}
+
+/* Make sure visited/active states also match the card styling */
+a.card:visited,
+a.card:active {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Ensure card paragraph text keeps the same muted color */
+a.card p {
+    color: #555;
+}
+
+/* Accessible visible focus outline for keyboard users */
+a.card:focus {
+    outline: 3px solid rgba(21,156,228,0.25);
+    outline-offset: 4px;
 }
