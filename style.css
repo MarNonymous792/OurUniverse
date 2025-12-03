@@ -33,7 +33,7 @@ header p {
     width: 100%;
     max-width: 1300px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* responsive columns */
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row on desktop */
     gap: 25px;
     padding: 10px;
 }
@@ -79,6 +79,7 @@ header p {
 @media (max-width: 900px) {
     .cards {
         gap: 15px;
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
     }
     .card h2 {
         font-size: 1.15rem;
@@ -91,6 +92,7 @@ header p {
 @media (max-width: 600px) {
     .cards {
         gap: 10px;
+        grid-template-columns: repeat(1, 1fr); /* 1 column on small screens */
     }
     .card {
         min-height: 180px;

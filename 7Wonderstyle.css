@@ -121,7 +121,7 @@ body{
    the markup. */
 .sections-side-by-side{
   display:grid;
-  grid-template-columns: 1fr; /* stack sections vertically */
+  grid-template-columns: 1fr 1fr; /* place Ancient and Modern side-by-side horizontally */
   gap:28px;
   align-items:start;
   position:relative;
