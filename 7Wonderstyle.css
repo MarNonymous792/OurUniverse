@@ -240,11 +240,12 @@ img{
 
 /* Box wrapper for wonders to match the About section */
 .wonders-box{
-  background: linear-gradient(135deg, rgba(248, 245, 239, 1), rgba(248, 245, 239, 0.95));
-  padding:26px 24px;
-  border-radius:12px;
-  border: none; /* remove visible border to avoid a separating line */
-  box-shadow: 0 8px 20px rgba(139, 107, 255, 0.035);
+  /* Match About section visual style */
+  background: linear-gradient(135deg, rgba(248, 245, 239, 1), rgba(248, 245, 239, 0.8));
+  padding:42px 32px;
+  border-radius:16px;
+  border: 1px solid rgba(139, 107, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(139, 107, 255, 0.08);
   max-width: 980px; /* constrain width so the box centers in the container */
   margin: 0 auto; /* center the box horizontally */
 }
