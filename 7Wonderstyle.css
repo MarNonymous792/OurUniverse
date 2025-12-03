@@ -192,7 +192,7 @@ body{
 /* Card image + body layout (50/50 split) */
 /* Image occupies the top 50% and text the bottom 50% of each card. The
   text area includes internal padding so content doesn't touch edges. */
-.card{display:flex;flex-direction:column;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;background:transparent;border:1px solid rgba(0,0,0,0.04);box-shadow: 0 8px 28px rgba(20,20,20,0.06);transition: transform 220ms cubic-bezier(.2,.9,.3,1), box-shadow 220ms ease}
+.card{display:flex;flex-direction:column;aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;background:transparent;border:1px solid rgba(0,0,0,0.04);box-shadow: 0 8px 28px rgba(20,20,20,0.06);transition: transform 220ms cubic-bezier(.2,.9,.3,1), box-shadow 220ms ease}
 .card:hover,.card:focus{transform: translateY(-8px);box-shadow:0 26px 60px rgba(20,20,20,0.12)}
 .card-thumb{flex:0 0 50%;width:100%;min-height:0;overflow:hidden;background:#eee;border-radius:var(--radius) var(--radius) 0 0}
 .card-thumb img{width:100%;height:100%;object-fit:cover;display:block;transform-origin:center center;transition:transform 350ms ease}
@@ -241,21 +241,32 @@ img{
 /* Box wrapper for wonders to match the About section */
 .wonders-box{
   background: linear-gradient(135deg, rgba(248, 245, 239, 1), rgba(248, 245, 239, 0.95));
-  padding:22px;
+  padding:26px 24px;
   border-radius:12px;
   border: none; /* remove visible border to avoid a separating line */
   box-shadow: 0 8px 20px rgba(139, 107, 255, 0.035);
+  max-width: 980px; /* constrain width so the box centers in the container */
+  margin: 0 auto; /* center the box horizontally */
 }
 
 .wonders-box h2{
-  margin:0 0 14px 0;
-  font-size:18px;
+  margin:0 0 18px 0;
+  font-size:20px;
+  text-align:center; /* center the heading */
 }
 
 /* Make card text fit better inside boxed groups */
 .wonders-box .card-body h3{
-  font-size:16px;
+  font-size:15px;
   line-height:1.15;
+}
+
+/* Ensure long titles don't overflow on medium/small screens */
+@media (max-width:1000px){
+  .wonders-box .card-body h3{font-size:15px}
+}
+@media (max-width:720px){
+  .wonders-box .card-body h3{font-size:14px}
 }
 
 /* Subtle horizontal divider between sections */
