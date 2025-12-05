@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Dawn of History: Ancient Civilizations (Interactive Grid)</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load custom Google Fonts for thematic styling -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Literata:wght[400;700]&family=Playfair+Display:wght@700&family=Cormorant+Garamond:wght@700&family=Courier+Prime:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom Tailwind config for 'Inter' font and modern theme */
+        :root {
+            --primary-color: #92400e; /* Egypt: Darker Amber-700 */
+            --color-mesopotamia: #b45309; /* Mesopotamia: yellow-700 */
+            --color-greece: #2563eb; /* Greece: blue-600 */
+            --color-rome: #b91c1c; /* Rome: red-700 */
+            --color-indus: #047857; /* Indus: Emerald 700 */
+            --color-china: #991b1b; /* China: Darker Red 800 */
+            
+            /* NEW CIVILIZATIONS */
+            --color-maya: #4338ca; /* Maya: Indigo 700 */
+            --color-persia: #7c2d12; /* Persia: Dark Copper/Maroon 800 */
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, #fef3c7, #f5f5f4); 
+            background-attachment: fixed;
+        }
+        .text-primary { color: var(--primary-color); }
+        /* Define bg-primary using the variable for direct use in classes */
+        .bg-primary { background-color: var(--primary-color); }
+        
+        /* Custom Text Colors for sections for a stronger identity */
+        .text-mesopotamia { color: var(--color-mesopotamia); }
+        .text-greece { color: var(--color-greece); }
+        .text-rome { color: var(--color-rome); }
+        .text-indus { color: var(--color-indus); }
+        .text-china { color: var(--color-china); }
+        /* NEW TEXT COLORS */
+        .text-maya { color: var(--color-maya); }
+        .text-persia { color: var(--color-persia); }
+
+
+        /* Custom Thematic Fonts applied to civilization titles (h4) */
+        .font-egypt { font-family: 'Cinzel', serif; }
+        .font-mesopotamia { font-family: 'Literata', serif; }
+        .font-greece { font-family: 'Playfair Display', serif; }
+        .font-rome { font-family: 'Cormorant Garamond', serif; }
+        .font-indus { font-family: 'Literata', serif; }
+        .font-china { font-family: 'Cinzel', serif; }
+        /* NEW THEMATIC FONTS */
+        .font-maya { font-family: 'Playfair Display', serif; }
+        .font-persia { font-family: 'Cormorant Garamond', serif; }
+        
+        .font-details-mono { font-family: 'Courier Prime', monospace; }
+
+        /* Base Card Styling (Clickable) */
+        .civ-card {
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+        .civ-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Styles for the Collapsible Content */
+        .details-content {
+            /* Start hidden, but allow transition */
+            max-height: 0;
+            opacity: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-bottom: 0; 
+            transition: max-height 0.7s ease-in-out, opacity 0.5s ease-in-out, padding 0.5s ease-in-out;
+            will-change: max-height, opacity; /* Optimization for animation */
+        }
+        /* Style when 'expanded' class is added by JS */
+        .details-content.expanded {
+            /* Use a value large enough to hold the content */
+            max-height: 1000px; 
+            opacity: 1;
+            padding-top: 1.5rem; /* Add spacing at the top when expanded */
+            padding-bottom: 1.5rem;
+        }
+
+    </style>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+              },
+            }
+          }
+        }
+
+        /**
+         * Toggles the visibility of the detail content for a civilization card.
+         * Implements robust ACCORDION behavior by using explicit IDs for closure.
+         * @param {string} id The unique ID of the civilization (e.g., 'egypt', 'rome').
+         */
+        function toggleCivilization(id) {
+            const allCards = document.querySelectorAll('.civ-card');
+            const targetCard = document.getElementById(id);
+            const targetContent = document.getElementById(`details-${id}`);
+            
+            // 1. Check if the target is currently expanded (pre-click state)
+            const wasExpanded = targetContent.classList.contains('expanded');
+
+            // 2. Force close ALL cards (Accordion implementation)
+            allCards.forEach(card => {
+                const cardId = card.id;
+                
+                // Use explicit IDs for max robustness (e.g., #details-china, #chevron-china)
+                const content = document.getElementById(`details-${cardId}`);
+                const chevron = document.getElementById(`chevron-${cardId}`);
+                
+                // Clear state regardless of current expansion
+                if (content) content.classList.remove('expanded');
+                if (chevron) chevron.classList.remove('rotate-180');
+                
+                // Clear active card border styles from ALL
+                // IMPORTANT: The ring color must match the original setting on the element
+                card.classList.remove('ring-4', 'ring-opacity-50', 'ring-offset-2'); 
+            });
+            
+            // 3. If the target was not expanded before the collapse, expand it now.
+            if (!wasExpanded) {
+                // Find target chevron
+                const targetChevron = document.getElementById(`chevron-${id}`);
+
+                // Expand the target content
+                targetContent.classList.add('expanded');
+                
+                // Apply active border styles
+                // NOTE: The ring color is implicitly applied via the inline `ring-` class on the section tag
+                targetCard.classList.add('ring-4', 'ring-opacity-50', 'ring-offset-2');
+                
+                // Rotate the chevron icon
+                if (targetChevron) {
+                    targetChevron.classList.add('rotate-180');
+                }
+                
+                // Scroll to the card if it's expanding and partially off-screen
+                setTimeout(() => {
+                    targetCard.scrollIntoView({ behavior: 'smooth', block: 'start', });
+                }, 50);
+            }
+        }
+    </script>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold text-primary tracking-tight">Chronos</h1>
+            <nav class="hidden md:flex space-x-4 lg:space-x-6 text-sm">
+                <a href="#civilization-grid" class="text-gray-700 hover:text-primary transition duration-300 font-egypt">Explore Civilizations</a>
+            </nav>
+            <button class="md:hidden p-2 rounded-lg text-gray-700 hover:bg-amber-100 transition duration-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="min-h-screen flex items-center justify-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="order-2 md:order-1">
+                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-gray-900">
+                        Journey to the <span class="text-primary">Ancient World</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 mb-8">
+                        Click on any of the **eight** civilization boxes below to reveal a detailed description and core historical facts.
+                    </p>
+                    <a href="#civilization-grid" 
+                       class="inline-block bg-primary hover:bg-amber-800 text-white font-bold py-4 px-10 rounded-xl shadow-xl transition-all duration-300 transform hover:scale-[1.02] text-lg hover:shadow-2xl"
+                       style="background-color: var(--primary-color);">
+                        Start the Expedition ↓
+                    </a>
+                </div>
+
+                <!-- Image Placeholder -->
+                <div class="order-1 md:order-2">
+                    <img
+                        src="https://placehold.co/600x400/92400E/ffffff?text=Interactive+History"
+                        alt="An abstract mosaic representing ancient history."
+                        class="w-full h-auto rounded-3xl shadow-2xl transition duration-500"
+                        onerror="this.onerror=null;this.src='https://placehold.co/600x400/92400E/ffffff?text=Interactive+History';"
+                    />
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Main Content Sections Container -->
+    <div id="civilization-list" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        
+        <h3 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-gray-900 font-greece">
+            Click to Explore Foundations of History
+        </h3>
+        
+        <!-- GRID CONTAINER FOR CIVILIZATIONS (2 columns for large screens) -->
+        <div id="civilization-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 scroll-mt-24">
+
+            <!-- Civilization 1: Ancient Egypt -->
+            <section id="egypt" 
+                class="bg-white rounded-xl civ-card overflow-hidden shadow-lg ring-primary transition-all duration-300 group lg:self-start">
+                
+                <div onclick="toggleCivilization('egypt')" 
+                     class="relative h-48 overflow-hidden transition-all duration-300"
+                     style="background-color: var(--primary-color);"> 
+                    
+                    <!-- Image Tag -->
+                    <img 
+                        src="https://placehold.co/800x400/5C2E00/fef3c7?text=Image+Placeholder:+Pyramids" 
+                        alt="Image representing Ancient Egypt"
+                        class="absolute inset-0 w-full h-full object-cover opacity-70"
+                        onerror="this.style.display='none'; this.parentElement.style.backgroundColor = 'var(--primary-color)';"
+                    >
+
+                    <!-- Dark Gradient Overlay for Text Readability -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+
+                    <!-- Title Content (Always visible) -->
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                        <!-- Title and Subtitle -->
+                        <div>
+                            <span class="text-sm font-semibold uppercase tracking-wider text-amber-200">Nile Valley</span>
+                            <h4 class="text-3xl font-extrabold font-egypt drop-shadow-lg">Ancient Egypt</h4>
+                        </div>
+                        <!-- Chevron Icon for visual feedback -->
+                        <svg id="chevron-egypt" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+                
+                <!-- Collapsible Detail Content -->
+                <div id="details-egypt" class="details-content px-6">
+                    <hr class="border-gray-200">
+                    
+                    <!-- Core Facts -->
+                    <div class="space-y-3 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4">
+                        <p class="text-sm font-bold text-primary">Time: <span class="text-gray-700 font-details-mono font-normal">c. 3100 BCE – 30 BCE</span></p>
+                        <p class="text-sm font-bold text-primary">Location: <span class="text-gray-700 font-details-mono font-normal">Nile River Valley (Northeast Africa)</span></p>
+                        <p class="text-sm font-bold text-primary">Key Innovations: <span class="text-gray-700 font-details-mono font-normal">Divine Kingship (Pharaoh), Pyramids, Mummification, Hieroglyphics, Solar Calendar, Papyrus.</span></p>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-gray-700 text-base font-details-mono leading-relaxed mt-6">
+                        The civilization of Ancient Egypt flourished for millennia along the fertile Nile River, which provided the vital basis for their agricultural surplus and centralized society. Pharaonic rule, rooted in the belief that the ruler was a living god, directed monumental engineering projects such as the Pyramids and great temples, showcasing incredible architectural and labor organization skills. Their deep religious focus on the afterlife spurred advancements in mummification, medicine, and the development of the solar calendar.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Civilization 2: Mesopotamia -->
+            <section id="mesopotamia" 
+                class="bg-white rounded-xl civ-card overflow-hidden shadow-lg ring-mesopotamia transition-all duration-300 group lg:self-start">
+                
+                <div onclick="toggleCivilization('mesopotamia')" 
+                     class="relative h-48 overflow-hidden transition-all duration-300"
+                     style="background-color: var(--color-mesopotamia);">
+                    
+                    <!-- Image Tag -->
+                    <img 
+                        src="https://placehold.co/800x400/8B4000/fef3c7?text=Image+Placeholder:+Ziggurat" 
+                        alt="Image representing Mesopotamia"
+                        class="absolute inset-0 w-full h-full object-cover opacity-70"
+                        onerror="this.style.display='none'; this.parentElement.style.backgroundColor = 'var(--color-mesopotamia)';"
+                    >
+
+                    <!-- Dark Gradient Overlay for Text Readability -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+
+                    <!-- Title Content (Always visible) -->
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                        <!-- Title and Subtitle -->
+                        <div>
+                            <span class="text-sm font-semibold uppercase tracking-wider text-yellow-200">Fertile Crescent</span>
+                            <h4 class="text-3xl font-extrabold font-mesopotamia drop-shadow-lg">Mesopotamia</h4>
+                        </div>
+                        <!-- Chevron Icon for visual feedback -->
+                        <svg id="chevron-mesopotamia" class="w-8 h-8 text-yellow-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+                
+                <!-- Collapsible Detail Content -->
+                <div id="details-mesopotamia" class="details-content px-6">
+                    <hr class="border-gray-200">
+                    
+                    <!-- Core Facts -->
+                    <div class="space-y-3 p-4 bg-yellow-50/70 rounded-lg border border-yellow-200 border-l-4">
+                        <p class="text-sm font-bold text-mesopotamia">Time: <span class="text-gray-700 font-details-mono font-normal">c. 4000 BCE – 539 BCE</span></p>
+                        <p class="text-sm font-bold text-mesopotamia">Location: <span class="text-gray-700 font-details-mono font-normal">Between the Tigris and Euphrates Rivers.</span></p>
+                        <p class="text-sm font-bold text-mesopotamia">Key Innovations: <span class="text-gray-700 font-details-mono font-normal">First City-States (Sumer), Cuneiform writing, the Wheel, Hammurabi's Code, Base-60 Math, Ziggurats.</span></p>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-gray-700 text-base font-details-mono leading-relaxed mt-6">
+                        Situated between the Tigris and Euphrates rivers, Mesopotamia, the "Cradle of Civilization," gave rise to the first city-states, including Sumer, Akkad, Babylon, and Assyria. These societies pioneered innovations like the wheel, the sailboat, and cuneiform, the earliest known form of writing. Their greatest enduring contribution to governance was systematic, codified law, famously represented by Hammurabi's Code, which established judicial precedent and regulated societal interaction.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Civilization 3: Ancient Greece -->
+            <section id="greece" 
+                class="bg-white rounded-xl civ-card overflow-hidden shadow-lg ring-greece transition-all duration-300 group lg:self-start">
+                
+                <div onclick="toggleCivilization('greece')" 
+                     class="relative h-48 overflow-hidden transition-all duration-300"
+                     style="background-color: var(--color-greece);"> 
+                    
+                    <!-- Image Tag -->
+                    <img 
+                        src="https://placehold.co/800x400/1D4ED8/eff6ff?text=Image+Placeholder:+Parthenon" 
+                        alt="Image representing Ancient Greece"
+                        class="absolute inset-0 w-full h-full object-cover opacity-70"
+                        onerror="this.style.display='none'; this.parentElement.style.backgroundColor = 'var(--color-greece)';"
+                    >
+
+                    <!-- Dark Gradient Overlay for Text Readability -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+
+                    <!-- Title Content (Always visible) -->
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                        <!-- Title and Subtitle -->
+                        <div>
+                            <span class="text-sm font-semibold uppercase tracking-wider text-blue-200">The Aegean</span>
+                            <h4 class="text-3xl font-extrabold font-greece drop-shadow-lg">Ancient Greece</h4>
+                        </div>
+                        <!-- Chevron Icon for visual feedback -->
+                        <svg id="chevron-greece" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+                
+                <!-- Collapsible Detail Content -->
+                <div id="details-greece" class="details-content px-6">
+                    <hr class="border-gray-200">
+                    
+                    <!-- Core Facts -->
+                    <div class="space-y-3 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4">
+                        <p class="text-sm font-bold text-greece">Time: <span class="text-gray-700 font-details-mono font-normal">c. 800 BCE – 146 BCE (Classical)</span></p>
+                        <p class="text-sm font-bold text-greece">Location: <span class="text-gray-700 font-details-mono font-normal">Balkan Peninsula, Aegean Sea.</span></p>
+                        <p class="text-sm font-bold text-greece">Key Innovations: <span class="text-gray-700 font-details-mono font-normal">Independent City-States (Polis), Democracy, Philosophy (Socrates, Plato), Geometry, Drama.</span></p>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-gray-700 text-base font-details-mono leading-relaxed mt-6">
+                        Ancient Greece, comprised of independent city-states like Athens and Sparta, laid the intellectual groundwork for Western political thought and philosophy. Athens is renowned as the birthplace of direct democracy, where citizens actively participated in governance. Thinkers like Socrates, Plato, and Aristotle established formal philosophical inquiry, while Greek writers pioneered literary forms suchs as drama, history, and epic poetry, setting the standard for classical arts and sciences.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Civilization 4: Roman Empire -->
+            <section id="rome" 
+                class="bg-white rounded-xl civ-card overflow-hidden shadow-lg ring-rome transition-all duration-300 group lg:self-start">
+                
+                <div onclick="toggleCivilization('rome')" 
+                     class="relative h-48 overflow-hidden transition-all duration-300"
+                     style="background-color: var(--color-rome);">
+                    
+                    <!-- Image Tag -->
+                    <img 
+                        src="https://placehold.co/800x400/991B1B/fee2e2?text=Image+Placeholder:+Colosseum" 
+                        alt="Image representing the Roman Empire"
+                        class="absolute inset-0 w-full h-full object-cover opacity-70"
+                        onerror="this.style.display='none'; this.parentElement.style.backgroundColor = 'var(--color-rome)';"
+                    >
+
+                    <!-- Dark Gradient Overlay for Text Readability -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+
+                    <!-- Title Content (Always visible) -->
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                        <!-- Title and Subtitle -->
+                        <div>
+                            <span class="text-sm font-semibold uppercase tracking-wider text-red-200">The Mediterranean</span>
+                            <h4 class="text-3xl font-extrabold font-rome drop-shadow-lg">The Roman Empire</h4>
+                        </div>
+                        <!-- Chevron Icon for visual feedback -->
+                        <svg id="chevron-rome" class="w-8 h-8 text-red-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+                
+                <!-- Collapsible Detail Content -->
+                <div id="details-rome" class="details-content px-6">
+                    <hr class="border-gray-200">
+                    
+                    <!-- Core Facts -->
+                    <div class="space-y-3 p-4 bg-red-50/70 rounded-lg border border-red-200 border-l-4">
+                        <p class="text-sm font-bold text-rome">Time: <span class="text-gray-700 font-details-mono font-normal">c. 753 BCE – 476 CE (Western Empire)</span></p>
+                        <p class="text-sm font-bold text-rome">Location: <span class="text-gray-700 font-details-mono font-normal">Italian Peninsula, expanding to entire Mediterranean.</span></p>
+                        <p class="text-sm font-bold text-rome">Key Innovations: <span class="text-gray-700 font-details-mono font-normal">Roman Legions, Concrete, Aqueducts, Roman Law, Latin Language, Arches and Domes.</span></p>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-gray-700 text-base font-details-mono leading-relaxed mt-6">
+                        Originating as a small republic on the Italian Peninsula, Rome eventually transformed into a vast empire that dominated the Mediterranean world. Roman genius lay in their unparalleled military organization, efficient bureaucracy, and immense contributions to practical civil engineering, including concrete, aqueducts, and an extensive network of paved roads. The systematic implementation of Roman Law provided a comprehensive legal framework that influenced judicial systems across Europe for centuries.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Civilization 5: Indus Valley -->
+            <section id="indus" 
+                class="bg-white rounded-xl civ-card overflow-hidden shadow-lg ring-indus transition-all duration-300 group lg:self-start">
+                
+                <div onclick="toggleCivilization('indus')" 
+                     class="relative h-48 overflow-hidden transition-all duration-300"
+                     style="background-color: var(--color-indus);">
+                    
+                    <!-- Image Tag -->
+                    <img 
+                        src="https://placehold.co/800x400/065F46/ecfdf5?text=Image+Placeholder:+Mohenjo+Daro" 
+                        alt="Image representing the Indus Valley Civilization"
+                        class="absolute inset-0 w-full h-full object-cover opacity-70"
+                        onerror="this.style.display='none'; this.parentElement.style.backgroundColor = 'var(--color-indus)';"
+                    >
+
+                    <!-- Dark Gradient Overlay for Text Readability -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+
+                    <!-- Title Content (Always visible) -->
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                        <!-- Title and Subtitle -->
+                        <div>
+                            <span class="text-sm font-semibold uppercase tracking-wider text-emerald-200">South Asia</span>
+                            <h4 class="text-3xl font-extrabold font-indus drop-shadow-lg">Indus Valley</h4>
+                        </div>
+                        <!-- Chevron Icon for visual feedback -->
+                        <svg id="chevron-indus" class="w-8 h-8 text-emerald-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+                
+                <!-- Collapsible Detail Content -->
+                <div id="details-indus" class="details-content px-6">
+                    <hr class="border-gray-200">
+                    
+                    <!-- Core Facts -->
+                    <div class="space-y-3 p-4 bg-emerald-50/70 rounded-lg border border-emerald-200 border-l-4">
+                        <p class="text-sm font-bold text-indus">Time: <span class="text-gray-700 font-details-mono font-normal">c. 3300 BCE – 1300 BCE</span></p>
+                        <p class="text-sm font-bold text-indus">Location: <span class="text-gray-700 font-details-mono font-normal">Indus River Basin (Modern Pakistan/NW India)</span></p>
+                        <p class="text-sm font-bold text-indus">Key Innovations: <span class="text-gray-700 font-details-mono font-normal">Advanced Urban Planning (Grid Cities), Public Baths, Standardized Weights, Fired Brick Architecture.</span></p>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-gray-700 text-base font-details-mono leading-relaxed mt-6">
+                        The Indus Valley Civilization (or Harappan Civilization) was one of the three earliest widespread civilizations of the Old World. Unique among its contemporaries, it was characterized by remarkable urban planning, notably in cities like Mohenjo-daro and Harappa, which featured grid layouts, elaborate drainage systems, and non-monumental architecture. Despite their advanced engineering, much of their social and political structure remains mysterious as their written script has yet to be deciphered.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Civilization 6: Ancient China -->
+            <section id="china" 
+                class="bg-white rounded-xl civ-card overflow-hidden shadow-lg ring-china transition-all duration-300 group lg:self-start">
+                
+                <div onclick="toggleCivilization('china')" 
+                     class="relative h-48 overflow-hidden transition-all duration-300"
+                     style="background-color: var(--color-china);">
+                    
+                    <!-- Image Tag -->
+                    <img 
+                        src="https://placehold.co/800x400/7F1D1D/fef2f2?text=Image+Placeholder:+Great+Wall" 
+                        alt="Image representing Ancient China"
+                        class="absolute inset-0 w-full h-full object-cover opacity-70"
+                        onerror="this.style.display='none'; this.parentElement.style.backgroundColor = 'var(--color-china)';"
+                    >
+
+                    <!-- Dark Gradient Overlay for Text Readability -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+
+                    <!-- Title Content (Always visible) -->
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                        <!-- Title and Subtitle -->
+                        <div>
+                            <span class="text-sm font-semibold uppercase tracking-wider text-red-200">Yellow River</span>
+                            <h4 class="text-3xl font-extrabold font-china drop-shadow-lg">Ancient China</h4>
+                        </div>
+                        <!-- Chevron Icon for visual feedback -->
+                        <svg id="chevron-china" class="w-8 h-8 text-red-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+                
+                <!-- Collapsible Detail Content -->
+                <div id="details-china" class="details-content px-6">
+                    <hr class="border-gray-200">
+                    
+                    <!-- Core Facts -->
+                    <div class="space-y-3 p-4 bg-red-50/70 rounded-lg border border-red-200 border-l-4">
+                        <p class="text-sm font-bold text-china">Time: <span class="text-gray-700 font-details-mono font-normal">c. 1600 BCE – 256 BCE</span></p>
+                        <p class="text-sm font-bold text-china">Location: <span class="text-gray-700 font-details-mono font-normal">Yellow River Valley (East Asia)</span></p>
+                        <p class="text-sm font-bold text-china">Key Innovations: <span class="text-gray-700 font-details-mono font-normal">Mandate of Heaven, Oracle Bone Script, Bronze Casting, Silk Production, Dynastic Cycle.</span></p>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-gray-700 text-base font-details-mono leading-relaxed mt-6">
+                        Chinese civilization originated in the Yellow River valley, beginning with the Xia, Shang, and Zhou dynasties. The Shang Dynasty is the earliest for which we have archaeological evidence, known for its bronze casting and the earliest forms of Chinese writing found on oracle bones. The Zhou Dynasty introduced the Mandate of Heaven, a philosophical concept used to justify and legitimize imperial rule that would govern China's dynastic cycles for thousands of years.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Civilization 7: Maya Civilization (NEW) -->
+            <section id="maya" 
+                class="bg-white rounded-xl civ-card overflow-hidden shadow-lg ring-maya transition-all duration-300 group lg:self-start">
+                
+                <div onclick="toggleCivilization('maya')" 
+                     class="relative h-48 overflow-hidden transition-all duration-300"
+                     style="background-color: var(--color-maya);">
+                    
+                    <!-- Image Tag -->
+                    <img 
+                        src="https://placehold.co/800x400/3730A3/e0e7ff?text=Image+Placeholder:+Pyramid+Temple" 
+                        alt="Image representing the Maya Civilization"
+                        class="absolute inset-0 w-full h-full object-cover opacity-70"
+                        onerror="this.style.display='none'; this.parentElement.style.backgroundColor = 'var(--color-maya)';"
+                    >
+
+                    <!-- Dark Gradient Overlay for Text Readability -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+
+                    <!-- Title Content (Always visible) -->
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                        <!-- Title and Subtitle -->
+                        <div>
+                            <span class="text-sm font-semibold uppercase tracking-wider text-indigo-200">Mesoamerica</span>
+                            <h4 class="text-3xl font-extrabold font-maya drop-shadow-lg">Maya Civilization</h4>
+                        </div>
+                        <!-- Chevron Icon for visual feedback -->
+                        <svg id="chevron-maya" class="w-8 h-8 text-indigo-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+                
+                <!-- Collapsible Detail Content -->
+                <div id="details-maya" class="details-content px-6">
+                    <hr class="border-gray-200">
+                    
+                    <!-- Core Facts -->
+                    <div class="space-y-3 p-4 bg-indigo-50/70 rounded-lg border border-indigo-200 border-l-4">
+                        <p class="text-sm font-bold text-maya">Time: <span class="text-gray-700 font-details-mono font-normal">c. 2000 BCE – 1500 CE</span></p>
+                        <p class="text-sm font-bold text-maya">Location: <span class="text-gray-700 font-details-mono font-normal">Yucatán Peninsula, Central America.</span></p>
+                        <p class="text-sm font-bold text-maya">Key Innovations: <span class="text-gray-700 font-details-mono font-normal">Vigesimal Number System (including zero), Complex Calendars, Hieroglyphic Script, Step Pyramids, Advanced Astronomy.</span></p>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-gray-700 text-base font-details-mono leading-relaxed mt-6">
+                        The Maya were known for their sophisticated written language, complex calendar systems (such as the Long Count), and incredible advancements in mathematics, notably their independent development of the concept of zero. They were not a single unified empire but a collection of city-states (like Tikal and Chichén Itzá) linked by culture and trade. Their monumental architecture, including massive stepped pyramids and ball courts, still dominates the landscape of Mesoamerica.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Civilization 8: Persian Empire (NEW) -->
+            <section id="persia" 
+                class="bg-white rounded-xl civ-card overflow-hidden shadow-lg ring-persia transition-all duration-300 group lg:self-start">
+                
+                <div onclick="toggleCivilization('persia')" 
+                     class="relative h-48 overflow-hidden transition-all duration-300"
+                     style="background-color: var(--color-persia);">
+                    
+                    <!-- Image Tag -->
+                    <img 
+                        src="https://placehold.co/800x400/5E1D0E/fefcfa?text=Image+Placeholder:+Persepolis" 
+                        alt="Image representing the Persian Empire"
+                        class="absolute inset-0 w-full h-full object-cover opacity-70"
+                        onerror="this.style.display='none'; this.parentElement.style.backgroundColor = 'var(--color-persia)';"
+                    >
+
+                    <!-- Dark Gradient Overlay for Text Readability -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+
+                    <!-- Title Content (Always visible) -->
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                        <!-- Title and Subtitle -->
+                        <div>
+                            <span class="text-sm font-semibold uppercase tracking-wider text-orange-200">Western Asia</span>
+                            <h4 class="text-3xl font-extrabold font-persia drop-shadow-lg">Persian Empire</h4>
+                        </div>
+                        <!-- Chevron Icon for visual feedback -->
+                        <svg id="chevron-persia" class="w-8 h-8 text-orange-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+                
+                <!-- Collapsible Detail Content -->
+                <div id="details-persia" class="details-content px-6">
+                    <hr class="border-gray-200">
+                    
+                    <!-- Core Facts -->
+                    <div class="space-y-3 p-4 bg-orange-50/70 rounded-lg border border-orange-200 border-l-4">
+                        <p class="text-sm font-bold text-persia">Time: <span class="text-gray-700 font-details-mono font-normal">c. 550 BCE – 330 BCE (Achaemenid)</span></p>
+                        <p class="text-sm font-bold text-persia">Location: <span class="text-gray-700 font-details-mono font-normal">Iran, spanning three continents.</span></p>
+                        <p class="text-sm font-bold text-persia">Key Innovations: <span class="text-gray-700 font-details-mono font-normal">Royal Road Network, Satrapies (Governors), Universal Coinage, Zoroastrianism, Canal Systems (Qanats).</span></p>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-gray-700 text-base font-details-mono leading-relaxed mt-6">
+                        Established by Cyrus the Great, the Achaemenid Persian Empire was the largest the world had yet seen, stretching from the Balkans to the Indus Valley. Unlike previous conquerors, the Persians managed this vast territory through tolerance, implementing a sophisticated administrative system featuring local governors (Satraps), a swift postal service via the Royal Road, and standardized currency. Their primary religion, Zoroastrianism, heavily influenced later monotheistic faiths.
+                    </p>
+                </div>
+            </section>
+
+        </div>
+        <!-- END GRID CONTAINER -->
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 Chronos - An Ancient History Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
