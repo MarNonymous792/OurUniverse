@@ -1,118 +1,468 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seven Wonders of the World</title>
-    <meta name="description" content="Explore the Ancient Seven Wonders and the Modern Seven Wonders of the World" />
-    <link rel="stylesheet" href="7Wonderstyle.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-ancient: #92400e;
+            --color-modern: #1e40af;
+        }
+        
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: Arial, Helvetica, 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, #fef3c7, #f5f5f4);
+            background-attachment: fixed;
+        }
+        
+        section { scroll-margin-top: 6rem; }
+        
+        .wonder-card {
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+        .wonder-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .details-content {
+            max-height: 0;
+            opacity: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-bottom: 0;
+            transition: max-height 0.7s ease-in-out, opacity 0.5s ease-in-out, padding 0.5s ease-in-out;
+            will-change: max-height, opacity;
+        }
+        .details-content.expanded {
+            max-height: 1500px;
+            opacity: 1;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+    </style>
+    <script>
+        function toggleWonder(id) {
+            const detailsElement = document.getElementById('details-' + id);
+            const chevronElement = document.getElementById('chevron-' + id);
+            
+            if (detailsElement) {
+                detailsElement.classList.toggle('expanded');
+                if (chevronElement) {
+                    chevronElement.style.transform = detailsElement.classList.contains('expanded') 
+                        ? 'rotate(180deg)' 
+                        : 'rotate(0deg)';
+                }
+                
+                setTimeout(() => {
+                    const targetCard = document.getElementById(id);
+                    if (targetCard) {
+                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 50);
+            }
+        }
+    </script>
 </head>
-<body>
-    <header class="site-header">
-      <div class="container">
-        <h1 class="site-title">Seven Wonders of the World</h1>
-        <p class="site-subtitle">Ancient & Modern Wonders</p>
-        <nav class="main-nav">
-          <a href="index.html">Home</a>
-          <a href="#">About</a>
-          <a href="#ancient">Ancient Wonders</a>
-          <a href="#new">Modern Wonders</a>
-          <a href="#contact">Contact</a>
+<body class="antialiased">
+
+    <div id="wonders-list" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <h1 class="text-5xl sm:text-6xl font-extrabold text-center mb-4 text-gray-900 font-serif tracking-tight" style="font-family: 'Playfair Display', serif;">
+            Seven Wonders of the World
+        </h1>
+        <p class="text-center text-gray-600 text-lg mb-12 max-w-2xl mx-auto">
+            Explore the greatest architectural and engineering achievements of ancient and modern times
+        </p>
+        
+        <!-- ANCIENT WONDERS -->
+        <div class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">Ancient Wonders</h2>
+            <div class="flex flex-col space-y-6">
+                <!-- Great Pyramid of Giza -->
+                <section id="pyramid" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('pyramid')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="7WonderIMG/Great-Pyramid-of-Giza.jpg" alt="Great Pyramid" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Egypt</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Great Pyramid of Giza</h3>
+                            </div>
+                            <svg id="chevron-pyramid" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-pyramid" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Giza, Egypt</p>
+                            <p><span class="font-bold text-amber-900">Built:</span> c. 2589–2566 BCE</p>
+                            <p><span class="font-bold text-amber-900">Built For:</span> Pharaoh Khufu</p>
+                            <p><span class="font-bold text-amber-900">Original Height:</span> 146.5 meters</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> The only surviving wonder of the ancient world constructed with 2.3 million limestone blocks.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Built as an elaborate tomb for Pharaoh Khufu of the Fourth Dynasty, the Great Pyramid represents one of humanity's greatest architectural achievements. Originally standing at 146.5 meters tall and covered in smooth white limestone, it reflects the remarkable precision and engineering capabilities of ancient Egypt. It remains the only surviving wonder of the ancient world.</p>
+                    </div>
+                </section>
+
+                <!-- Hanging Gardens of Babylon -->
+                <section id="gardens" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('gardens')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="7WonderIMG/Hanging-Gardens-of-Babylon.jpg" alt="Hanging Gardens" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Babylon</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Hanging Gardens</h3>
+                            </div>
+                            <svg id="chevron-gardens" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-gardens" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Babylon, Iraq</p>
+                            <p><span class="font-bold text-amber-900">Built:</span> c. 610–562 BCE</p>
+                            <p><span class="font-bold text-amber-900">Built By:</span> King Nebuchadnezzar II</p>
+                            <p><span class="font-bold text-amber-900">Status:</span> Legendary; no conclusive archaeological evidence</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> Terraced gardens with exotic plants and innovative irrigation systems.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Hanging Gardens of Babylon are renowned in ancient literature as a marvel of engineering and horticulture. According to legend, they were built by King Nebuchadnezzar II to comfort his wife, Amytis, who missed the green hills of her homeland. The gardens featured multiple terraced levels filled with exotic plants, connected by vaulted arches.</p>
+                    </div>
+                </section>
+
+                <!-- Temple of Artemis -->
+                <section id="artemis" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('artemis')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="7WonderIMG/Temple-of-Artemis.jpg" alt="Temple of Artemis" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Greece</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Temple of Artemis</h3>
+                            </div>
+                            <svg id="chevron-artemis" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-artemis" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Ephesus, Turkey</p>
+                            <p><span class="font-bold text-amber-900">Built:</span> c. 550 BCE</p>
+                            <p><span class="font-bold text-amber-900">Architect:</span> Chersiphron and Metagenes</p>
+                            <p><span class="font-bold text-amber-900">Dimensions:</span> 115 meters long, 55 meters wide</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> Magnificent Ionic temple with 127 marble columns and sculptural decorations.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Temple of Artemis in Ephesus was one of the largest structures of the ancient world. Dedicated to the Greek goddess of the hunt, this magnificent temple featured 127 marble columns arranged in a double row. The temple was renowned for its intricate sculptures and artistic decorations.</p>
+                    </div>
+                </section>
+
+                <!-- Statue of Zeus -->
+                <section id="zeus" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('zeus')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="7WonderIMG/Statue-of-Zeus.jpg" alt="Statue of Zeus" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Greece</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Statue of Zeus</h3>
+                            </div>
+                            <svg id="chevron-zeus" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-zeus" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Olympia, Greece</p>
+                            <p><span class="font-bold text-amber-900">Created:</span> c. 435 BCE</p>
+                            <p><span class="font-bold text-amber-900">Sculptor:</span> Phidias</p>
+                            <p><span class="font-bold text-amber-900">Height:</span> 12 meters (40 feet)</p>
+                            <p><span class="font-bold text-amber-900">Materials:</span> Ivory, gold, ebony, and precious stones</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Statue of Zeus at Olympia was a monumental chryselephantine (gold and ivory) sculpture created by the renowned sculptor Phidias around 435 BCE. Standing approximately 12 meters tall, the statue was one of the most celebrated works of art in the ancient world. It depicted the king of the gods seated on a magnificent throne adorned with jewels and carvings.</p>
+                    </div>
+                </section>
+
+                <!-- Mausoleum at Halicarnassus -->
+                <section id="mausoleum" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('mausoleum')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="7WonderIMG/Mausoleum-at-Halicarnassus.jpg" alt="Mausoleum" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Turkey</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Mausoleum</h3>
+                            </div>
+                            <svg id="chevron-mausoleum" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-mausoleum" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Halicarnassus, Turkey</p>
+                            <p><span class="font-bold text-amber-900">Built:</span> c. 353 BCE</p>
+                            <p><span class="font-bold text-amber-900">Built For:</span> Mausolus, governor of Caria</p>
+                            <p><span class="font-bold text-amber-900">Height:</span> Approximately 45 meters</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> Ornate marble tomb that gave the world the term "mausoleum".</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Mausoleum at Halicarnassus was an elaborate marble tomb built around 353 BCE to honor Mausolus, the governor of Caria. Designed by the Greek architects Satyros and Pythius, this monumental structure stood approximately 45 meters tall and featured intricate sculptural decorations. The term "mausoleum" itself derives from this magnificent tomb.</p>
+                    </div>
+                </section>
+
+                <!-- Colossus of Rhodes -->
+                <section id="colossus" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('colossus')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="7WonderIMG/Colossus-of-Rhodes.jpg" alt="Colossus" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Greece</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Colossus of Rhodes</h3>
+                            </div>
+                            <svg id="chevron-colossus" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-colossus" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Rhodes, Greece</p>
+                            <p><span class="font-bold text-amber-900">Built:</span> c. 292–280 BCE</p>
+                            <p><span class="font-bold text-amber-900">Sculptor:</span> Chares of Lindos</p>
+                            <p><span class="font-bold text-amber-900">Height:</span> Approximately 33 meters (108 feet)</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> Massive bronze statue of sun god Helios, symbol of freedom and protection.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Colossus of Rhodes was a towering bronze statue of the sun god Helios, erected around 280 BCE to celebrate Rhodes' victory over a besieging army. Created by sculptor Chares of Lindos, this monumental statue stood approximately 33 meters tall and was crafted from bronze plates riveted together. It was one of the tallest statues of the ancient world.</p>
+                    </div>
+                </section>
+
+                <!-- Lighthouse of Alexandria -->
+                <section id="lighthouse" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('lighthouse')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="7WonderIMG/Lighthouse-of-Alexandria.jpg" alt="Lighthouse" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Egypt</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Lighthouse of Alexandria</h3>
+                            </div>
+                            <svg id="chevron-lighthouse" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-lighthouse" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Alexandria, Egypt</p>
+                            <p><span class="font-bold text-amber-900">Built:</span> c. 280 BCE</p>
+                            <p><span class="font-bold text-amber-900">Built For:</span> Ptolemy II</p>
+                            <p><span class="font-bold text-amber-900">Height:</span> Approximately 100 meters (330 feet)</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> Ancient lighthouse (Pharos) that guided ships and was visible up to 50 kilometers away.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Lighthouse of Alexandria, also known as the Pharos, was one of the tallest man-made structures of the ancient world. Built around 280 BCE during the reign of Ptolemy II, this magnificent lighthouse stood on the island of Pharos and used mirrors and fire to guide ships safely into the harbor. It remained operational for nearly 1,500 years.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- MODERN WONDERS -->
+        <div>
+            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">Modern Wonders</h2>
+            
+            <div class="flex flex-col space-y-6">
+                <!-- Great Wall of China -->
+                <section id="wall" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('wall')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Great-Wall-of-China.jpg" alt="Great Wall" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern China</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Great Wall of China</h3>
+                            </div>
+                            <svg id="chevron-wall" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-wall" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> China</p>
+                            <p><span class="font-bold text-blue-900">Length:</span> Approximately 21,196 kilometers</p>
+                            <p><span class="font-bold text-blue-900">Built Over:</span> More than 2,000 years (multiple dynasties)</p>
+                            <p><span class="font-bold text-blue-900">Purpose:</span> Military defense and border control</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> One of the most impressive architectural feats, visible from space.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Great Wall of China is one of the most iconic structures in the world, stretching across northern China. Built over more than 2,000 years by multiple dynasties, it served as a military defense system and border control mechanism. The wall was constructed to protect against invasions from northern tribes and to control trade along the Silk Road.</p>
+                    </div>
+                </section>
+
+                <!-- Taj Mahal -->
+                <section id="taj" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('taj')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Taj-Mahal.jpg" alt="Taj Mahal" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern India</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Taj Mahal</h3>
+                            </div>
+                            <svg id="chevron-taj" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-taj" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Agra, India</p>
+                            <p><span class="font-bold text-blue-900">Built:</span> 1632–1653</p>
+                            <p><span class="font-bold text-blue-900">Built By:</span> Emperor Shah Jahan</p>
+                            <p><span class="font-bold text-blue-900">Built For:</span> His wife Mumtaz Mahal</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Monument to eternal love, featuring exquisite white marble and intricate inlay work.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Taj Mahal is widely regarded as one of the most beautiful buildings in the world. Built between 1632 and 1653 by Emperor Shah Jahan as a mausoleum for his beloved wife, Mumtaz Mahal, this magnificent structure is a masterpiece of Mughal architecture. The Taj Mahal features exquisite white marble inlaid with semi-precious stones.</p>
+                    </div>
+                </section>
+
+                <!-- Christ the Redeemer -->
+                <section id="christ" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('christ')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Christ-the-Redeemer.jpg" alt="Christ the Redeemer" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Brazil</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Christ the Redeemer</h3>
+                            </div>
+                            <svg id="chevron-christ" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-christ" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Rio de Janeiro, Brazil</p>
+                            <p><span class="font-bold text-blue-900">Built:</span> 1922–1931</p>
+                            <p><span class="font-bold text-blue-900">Height:</span> 38 meters (125 feet)</p>
+                            <p><span class="font-bold text-blue-900">Design:</span> Art Deco style</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Iconic symbol of Rio, overlooking from atop Corcovado Mountain.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Christ the Redeemer is a colossal Art Deco statue overlooking Rio de Janeiro from Corcovado Mountain. Built between 1922 and 1931, this iconic monument stands 38 meters tall and has become a symbol of Brazilian culture. The statue depicts Jesus Christ with arms outstretched in blessing and protection over the city.</p>
+                    </div>
+                </section>
+
+                <!-- Machu Picchu -->
+                <section id="machu" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('machu')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Machu-Picchu.jpg" alt="Machu Picchu" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Peru</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Machu Picchu</h3>
+                            </div>
+                            <svg id="chevron-machu" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-machu" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Cusco Region, Peru</p>
+                            <p><span class="font-bold text-blue-900">Built:</span> c. 1450</p>
+                            <p><span class="font-bold text-blue-900">Built By:</span> Inca Empire</p>
+                            <p><span class="font-bold text-blue-900">Altitude:</span> 2,430 meters above sea level</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Ancient Incan citadel showcasing remarkable engineering and stone masonry.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Machu Picchu is an ancient Incan citadel situated on a mountain ridge high in the Andes. Built around 1450, this remarkable site showcases incredible engineering and architectural prowess. The structures were built without mortar, using precisely cut stones that fit together perfectly.</p>
+                    </div>
+                </section>
+
+                <!-- Chichen Itza -->
+                <section id="chichen" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('chichen')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Chichen-Itza.jpg" alt="Chichen Itza" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Mexico</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Chichen Itza</h3>
+                            </div>
+                            <svg id="chevron-chichen" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-chichen" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Yucatan, Mexico</p>
+                            <p><span class="font-bold text-blue-900">Founded:</span> c. 600 CE</p>
+                            <p><span class="font-bold text-blue-900">Period:</span> Mayan and Toltec</p>
+                            <p><span class="font-bold text-blue-900">Famous Structure:</span> El Castillo (The Castle pyramid)</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Blending Mayan and Toltec architectural styles.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Chichen Itza is one of the largest pre-Columbian archaeological sites in Mexico. Founded around 600 CE, this site represents a fascinating blend of Mayan and Toltec architectural styles. The most iconic structure is El Castillo (The Castle), a large pyramid that serves as the centerpiece of the complex.</p>
+                    </div>
+                </section>
+
+                <!-- Roman Colosseum -->
+                <section id="colosseum" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('colosseum')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Roman-Colosseum.jpg" alt="Roman Colosseum" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Italy</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Roman Colosseum</h3>
+                            </div>
+                            <svg id="chevron-colosseum" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-colosseum" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Rome, Italy</p>
+                            <p><span class="font-bold text-blue-900">Built:</span> 72–80 CE</p>
+                            <p><span class="font-bold text-blue-900">Built By:</span> Roman Emperors Vespasian and Titus</p>
+                            <p><span class="font-bold text-blue-900">Capacity:</span> Approximately 50,000–80,000 spectators</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Ancient amphitheater hosting gladiatorial contests and public spectacles.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Roman Colosseum is an iconic symbol of Imperial Rome and one of the most impressive surviving structures from the ancient world. Built between 72 and 80 CE, this massive amphitheater could hold up to 80,000 spectators. It was used for gladiatorial contests, animal hunts, and public spectacles.</p>
+                    </div>
+                </section>
+
+                <!-- Petra -->
+                <section id="petra" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('petra')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Petra.jpg" alt="Petra" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Jordan</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Petra</h3>
+                            </div>
+                            <svg id="chevron-petra" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-petra" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Ma'an Governorate, Jordan</p>
+                            <p><span class="font-bold text-blue-900">Carved:</span> c. 100 BCE – 100 CE</p>
+                            <p><span class="font-bold text-blue-900">Built By:</span> Nabataean Kingdom</p>
+                            <p><span class="font-bold text-blue-900">Stone:</span> Rose-red sandstone</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Ancient city carved into rock cliffs, major trading hub.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Petra is a magnificent ancient city carved into rose-red sandstone cliffs in Jordan. Established by the Nabataean Kingdom around 100 BCE, it served as a major trading hub. The city is famous for its intricate rock-cut architecture and sophisticated water management system.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <nav class="mt-16 pt-8 border-t border-gray-300 text-center">
+            <a href="index.html" class="inline-block px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors">
+                ← Back to Home
+            </a>
         </nav>
-      </div>
-    </header>
-
-    <main class="container main-content" id="about" >
-      <section class="about-section">
-        <h2>About the Seven Wonders of the World</h2>
-        <div class="about-content">
-          <p>The Seven Wonders of the World represent humanity's greatest architectural and artistic achievements across different eras. These magnificent structures showcase the ingenuity, craftsmanship, and vision of ancient civilizations.</p>
-          <p><strong>The Ancient Seven Wonders</strong> are iconic monuments from antiquity that stood as testaments to classical engineering and artistry. Built between the 7th and 3rd centuries BCE, they include the Great Pyramid of Giza (the only surviving wonder), the Hanging Gardens of Babylon, the Temple of Artemis, the Statue of Zeus, the Mausoleum at Halicarnassus, the Colossus of Rhodes, and the Lighthouse of Alexandria. These wonders were documented by ancient Greek and Roman writers and have inspired awe for over two millennia.</p>
-          <p><strong>The Modern Seven Wonders</strong> were selected in 2007 through a global voting initiative, celebrating contemporary and recent monuments that continue to inspire wonder. These include the Great Wall of China, Christ the Redeemer in Brazil, Machu Picchu in Peru, the Colosseum in Rome, the Taj Mahal in India, Chichen Itza in Mexico, and Petra in Jordan. Each represents a unique blend of history, culture, and architectural brilliance.</p>
-          <p>Together, both sets of wonders tell the story of human civilization and our eternal desire to create beauty and leave lasting legacies for future generations.</p>
-        </div>
-      </section>
-
-      <div class="sections-side-by-side" id="ancient">
-      <section class="wonders-section">
-        <div class="wonders-box">
-          <h2>Ancient Seven Wonders</h2>
-          <div class="cards-grid">
-          <a class="card" href="great-pyramid-giza.html">
-            <div class="card-thumb"><img src="7WonderIMG/Great-Pyramid-of-Giza.jpg" alt="Great Pyramid of Giza"></div>
-            <div class="card-body"><h3>Great Pyramid of Giza</h3><p class="muted">Egypt</p></div>
-          </a>
-          <a class="card" href="hanging-gardens-babylon.html">
-            <div class="card-thumb"><img src="7WonderIMG/Hanging-Gardens-of-Babylon.jpg" alt="Hanging Gardens of Babylon"></div>
-            <div class="card-body"><h3>Hanging Gardens of Babylon</h3><p class="muted">Iraq</p></div>
-          </a>
-          <a class="card" href="temple-artemis.html">
-            <div class="card-thumb"><img src="7WonderIMG/Temple-of-Artemis.jpg" alt="Temple of Artemis"></div>
-            <div class="card-body"><h3>Temple of Artemis</h3><p class="muted">Turkey</p></div>
-          </a>
-          <a class="card" href="statue-zeus.html">
-            <div class="card-thumb"><img src="7WonderIMG/Statue-of-Zeus.jpg" alt="Statue of Zeus"></div>
-            <div class="card-body"><h3>Statue of Zeus</h3><p class="muted">Greece</p></div>
-          </a>
-          <a class="card" href="mausoleum-halicarnassus.html">
-            <div class="card-thumb"><img src="7WonderIMG/Mausoleum-of-Maussollos.jpg" alt="Mausoleum at Halicarnassus"></div>
-            <div class="card-body"><h3>Mausoleum at Halicarnassus</h3><p class="muted">Turkey</p></div>
-          </a>
-          <a class="card" href="colossus-rhodes.html">
-            <div class="card-thumb"><img src="7WonderIMG/The-Colossus-of-Rhodes.jpg" alt="Colossus of Rhodes"></div>
-            <div class="card-body"><h3>Colossus of Rhodes</h3><p class="muted">Greece</p></div>
-          </a>
-          <a class="card" href="lighthouse-alexandria.html">
-            <div class="card-thumb"><img src="7WonderIMG/Lighthouse-of-Alexandria.jpg" alt="Lighthouse of Alexandria"></div>
-            <div class="card-body"><h3>Lighthouse of Alexandria</h3><p class="muted">Egypt</p></div>
-          </a>
-          </div>
-        </div>
-      </section>
-
-      <section id="new" class="wonders-section">
-        <div class="wonders-box">
-          <h2>Modern / Current Seven Wonders</h2>
-          <div class="cards-grid">
-          <a class="card" href="great-wall-china.html">
-            <div class="card-thumb"><img src="7WonderIMG/Great-Wall-of-China.jpg" alt="Great Wall of China"></div>
-            <div class="card-body"><h3>Great Wall of China</h3><p class="muted">China</p></div>
-          </a>
-          <a class="card" href="taj-mahal.html">
-            <div class="card-thumb"><img src="7WonderIMG/Taj-Mahal.jpg" alt="Taj Mahal"></div>
-            <div class="card-body"><h3>Taj Mahal</h3><p class="muted">India</p></div>
-          </a>
-          <a class="card" href="christ-redeemer.html">
-            <div class="card-thumb"><img src="7WonderIMG/Christ-the-Redeemer.jpg" alt="Christ the Redeemer"></div>
-            <div class="card-body"><h3>Christ the Redeemer</h3><p class="muted">Brazil</p></div>
-          </a>
-          <a class="card" href="machu-picchu.html">
-            <div class="card-thumb"><img src="7WonderIMG/Machu-Picchu.jpg" alt="Machu Picchu"></div>
-            <div class="card-body"><h3>Machu Picchu</h3><p class="muted">Peru</p></div>
-          </a>
-          <a class="card" href="chichen-itza.html">
-            <div class="card-thumb"><img src="7WonderIMG/Chichen-Itza.jpg" alt="Chichen Itza"></div>
-            <div class="card-body"><h3>Chichen Itza</h3><p class="muted">Mexico</p></div>
-          </a>
-          <a class="card" href="roman-colosseum.html">
-            <div class="card-thumb"><img src="7WonderIMG/Roman-Colosseum.jpg" alt="Roman Colosseum"></div>
-            <div class="card-body"><h3>Roman Colosseum</h3><p class="muted">Italy</p></div>
-          </a>
-          <a class="card" href="petra.html">
-            <div class="card-thumb"><img src="7WonderIMG/Petra.jpg" alt="Petra"></div>
-            <div class="card-body"><h3>Petra</h3><p class="muted">Jordan</p></div>
-          </a>
-          </div>
-        </div>
-      </section>
-      </div>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container">
-        <p>&copy; Seven Wonders — STS Web</p>
-      </div>
-    </footer>
-
-  </body>
- </html>
+    </div>
+</body>
+</html>
