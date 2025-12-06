@@ -10,13 +10,13 @@
         :root {
             --color-ancient: #92400e;
             --color-modern: #1e40af;
+            --page-bg: #f7f7f7; /* match index palette */
         }
         
         html { scroll-behavior: smooth; }
         body { 
             font-family: Arial, Helvetica, 'Inter', sans-serif;
-            background: linear-gradient(to bottom right, #fef3c7, #f5f5f4);
-            background-attachment: fixed;
+            background: var(--page-bg);
         }
         
         section { scroll-margin-top: 6rem; }
@@ -70,19 +70,33 @@
         }
     </script>
 </head>
-<body class="antialiased">
+ <body class="antialiased">
+
+    <header class="bg-white shadow-sm sticky top-0 z-30">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <a href="index.html" class="text-lg font-semibold text-gray-800">Home</a>
+            <nav class="space-x-3">
+                <a href="#about" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">About</a>
+                <a href="#ancient" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">Ancient</a>
+                <a href="#modern" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">Modern</a>
+            </nav>
+        </div>
+    </header>
 
     <div id="wonders-list" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
         <h1 class="text-5xl sm:text-6xl font-extrabold text-center mb-4 text-gray-900 font-serif tracking-tight" style="font-family: 'Playfair Display', serif;">
             Seven Wonders of the World
         </h1>
-        <p class="text-center text-gray-600 text-lg mb-12 max-w-2xl mx-auto">
+        <p class="text-center text-gray-600 text-lg mb-6 max-w-2xl mx-auto">
             Explore the greatest architectural and engineering achievements of ancient and modern times
         </p>
+        <div id="about" class="mb-8 max-w-2xl mx-auto text-center text-gray-700">
+            <p class="text-sm">This page consolidates the Seven Wonders of the World into one place. Click a card to expand details, or use the navigation above to jump between sections.</p>
+        </div>
         
         <!-- ANCIENT WONDERS -->
-        <div class="mb-16">
+        <div id="ancient" class="mb-16">
             <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">Ancient Wonders</h2>
             <div class="flex flex-col space-y-6">
                 <!-- Great Pyramid of Giza -->
@@ -192,7 +206,7 @@
                 <!-- Mausoleum at Halicarnassus -->
                 <section id="mausoleum" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
                     <div onclick="toggleWonder('mausoleum')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
-                        <img src="7WonderIMG/Mausoleum-at-Halicarnassus.jpg" alt="Mausoleum" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <img src="7WonderIMG/Mausoleum-of-Maussollos.jpg" alt="Mausoleum" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
                             <div>
@@ -218,7 +232,7 @@
                 <!-- Colossus of Rhodes -->
                 <section id="colossus" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
                     <div onclick="toggleWonder('colossus')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
-                        <img src="7WonderIMG/Colossus-of-Rhodes.jpg" alt="Colossus" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <img src="7WonderIMG/The-Colossus-of-Rhodes.jpg" alt="Colossus" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
                             <div>
