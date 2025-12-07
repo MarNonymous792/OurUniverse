@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7 Continents & 5 Oceans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-land: #92400e; /* Previously ancient/brown */
+            --color-sea: #1e40af;   /* Previously modern/blue */
+            --page-bg: #f7f7f7;
+        }
+        
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: Arial, Helvetica, 'Inter', sans-serif;
+            background: var(--page-bg);
+        }
+        
+        section { scroll-margin-top: 6rem; }
+        
+        .card-shadow {
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+        .card-shadow:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .details-content {
+            max-height: 0;
+            opacity: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-bottom: 0;
+            transition: max-height 0.7s ease-in-out, opacity 0.5s ease-in-out, padding 0.5s ease-in-out;
+            will-change: max-height, opacity;
+        }
+        .details-content.expanded {
+            max-height: 1500px;
+            opacity: 1;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+    </style>
+    <script>
+        function toggleCard(id) {
+            const detailsElement = document.getElementById('details-' + id);
+            const chevronElement = document.getElementById('chevron-' + id);
+            
+            if (detailsElement) {
+                detailsElement.classList.toggle('expanded');
+                if (chevronElement) {
+                    chevronElement.style.transform = detailsElement.classList.contains('expanded') 
+                        ? 'rotate(180deg)' 
+                        : 'rotate(0deg)';
+                }
+                
+                setTimeout(() => {
+                    const targetCard = document.getElementById(id);
+                    if (targetCard) {
+                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 50);
+            }
+        }
+    </script>
+</head>
+ <body class="antialiased">
+
+<header class="bg-white shadow-sm sticky top-0 z-30">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <a href="#" class="text-lg font-semibold text-gray-800">GeoWorld</a>
+        <nav class="space-x-3">
+            <a href="#main-list" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">Home</a>
+            <a href="#about" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">About</a>
+            <a href="#continents" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">Continents</a>
+            <a href="#oceans" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">Oceans</a>
+        </nav>
+    </div>
+</header>
+
+    <div id="main-list" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <h1 class="text-5xl sm:text-6xl font-extrabold text-center mb-4 text-gray-900 font-serif tracking-tight" style="font-family: 'Playfair Display', serif;">
+            7 Continents & 5 Oceans
+        </h1>
+        <p class="text-center text-gray-600 text-lg mb-6 max-w-2xl mx-auto">
+            Explore the Earth's massive landmasses and vast waters
+        </p>
+        <div id="about" class="mb-8 max-w-2xl mx-auto text-center text-gray-700">
+            <h2 class="text-xl font-bold mb-2 text-gray-800">The World at a Glance</h2>
+            <p class="text-sm mb-2">The Earth is divided into seven large landmasses known as "Continents" and five major bodies of saltwater known as "Oceans". These divisions help us understand the geography, climate, and biodiversity of our planet.</p>
+            <p class="text-sm">Click on any card below to expand it and learn facts about population, size, and unique features.</p>
+        </div>
+        
+        <div id="continents" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">The 7 Continents</h2>
+            <div class="flex flex-col space-y-6">
+                
+                <section id="asia" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('asia')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-land);">
+                        <img src="7IMGCO/Asia.jpg" alt="Asia" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Largest Continent</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Asia</h3>
+                            </div>
+                            <svg id="chevron-asia" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-asia" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Area:</span> ~44.5 million km²</p>
+                            <p><span class="font-bold text-amber-900">Population:</span> ~4.7 billion (Most populous)</p>
+                            <p><span class="font-bold text-amber-900">Major Countries:</span> China, India, Japan, Russia</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> Mount Everest (highest point) and the Dead Sea (lowest point).</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Asia is the largest and most populous continent, covering about 30% of Earth's total land area. It shares the landmass of Eurasia with Europe but is culturally and geographically distinct.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">It is the birthplace of many major religions, including Buddhism, Christianity, Hinduism, Islam, and Judaism. Its geography varies wildly from the frozen tundra of Siberia to the tropical jungles of Indonesia.</p>
+                    </div>
+                </section>
+
+                <section id="africa" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('africa')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-land);">
+                        <img src="7IMGCO/Africa.png" alt="Africa" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">The Mother Continent</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Africa</h3>
+                            </div>
+                            <svg id="chevron-africa" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-africa" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Area:</span> ~30.3 million km²</p>
+                            <p><span class="font-bold text-amber-900">Population:</span> ~1.4 billion</p>
+                            <p><span class="font-bold text-amber-900">Countries:</span> 54 (Most of any continent)</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> The Nile River, Sahara Desert, and diverse wildlife.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Africa is the second-largest and second-most-populous continent. It is widely regarded as the "cradle of humankind," where the earliest humans evolved.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">It is the only continent to stretch from the northern temperate to southern temperate zones. It houses the world's longest river (the Nile) and the world's largest hot desert (the Sahara).</p>
+                    </div>
+                </section>
+
+                <section id="namerica" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('namerica')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-land);">
+                        <img src="7IMGCO/NorthA.png" alt="North America" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">The New World</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">North America</h3>
+                            </div>
+                            <svg id="chevron-namerica" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-namerica" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Area:</span> ~24.7 million km²</p>
+                            <p><span class="font-bold text-amber-900">Population:</span> ~592 million</p>
+                            <p><span class="font-bold text-amber-900">Major Countries:</span> USA, Canada, Mexico</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> The Great Lakes, Grand Canyon, and Greenland.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">North America is the third-largest continent. It contains every major biome, from the frozen Arctic in the north to the tropical rainforests of Central America.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">It is home to the largest island in the world (Greenland) and the largest freshwater lake system (the Great Lakes).</p>
+                    </div>
+                </section>
+
+                <section id="samerica" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('samerica')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-land);">
+                        <img src="7IMGCO/SouthA.jpg" alt="South America" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Home of the Amazon</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">South America</h3>
+                            </div>
+                            <svg id="chevron-samerica" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-samerica" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Area:</span> ~17.8 million km²</p>
+                            <p><span class="font-bold text-amber-900">Population:</span> ~430 million</p>
+                            <p><span class="font-bold text-amber-900">Major Countries:</span> Brazil, Argentina, Colombia</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> Amazon Rainforest, Andes Mountains, Angel Falls.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">South America is the fourth-largest continent. It is dominated by the Amazon Rainforest, often called the "Lungs of the Earth," and the Andes, the world's longest continental mountain range.</p>
+                    </div>
+                </section>
+
+                <section id="antarctica" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('antarctica')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-land);">
+                        <img src="7IMGCO/Antartica.png" Antarctica" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">The Frozen Continent</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Antarctica</h3>
+                            </div>
+                            <svg id="chevron-antarctica" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-antarctica" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Area:</span> ~14.2 million km²</p>
+                            <p><span class="font-bold text-amber-900">Population:</span> ~1,000–5,000 (Scientists only)</p>
+                            <p><span class="font-bold text-amber-900">Climate:</span> Coldest, driest, and windiest continent</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> Penguins and holding 90% of Earth's ice.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Antarctica is the fifth-largest continent and is almost entirely covered in ice. It has no permanent residents, only visiting researchers.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Because it receives very little precipitation, it is technically the largest desert in the world.</p>
+                    </div>
+                </section>
+
+                <section id="europe" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('europe')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-land);">
+                        <img src="7IMGCO/Europe.png" alt="Europe" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">The Peninsula of Peninsulas</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Europe</h3>
+                            </div>
+                            <svg id="chevron-europe" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-europe" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Area:</span> ~10.2 million km²</p>
+                            <p><span class="font-bold text-amber-900">Population:</span> ~746 million</p>
+                            <p><span class="font-bold text-amber-900">Major Countries:</span> Germany, UK, France, Italy</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> Rich history, the Vatican (smallest country), and diverse cultures.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Europe is the second-smallest continent by surface area. It is separated from Asia by the Ural Mountains.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Despite its small size, it has had a profound influence on global history, art, and science.</p>
+                    </div>
+                </section>
+
+                <section id="australia" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('australia')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-land);">
+                        <img src="7IMGCO/Australia.jpg" Australia" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">The Island Continent</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Australia</h3>
+                            </div>
+                            <svg id="chevron-australia" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-australia" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Area:</span> ~8.6 million km²</p>
+                            <p><span class="font-bold text-amber-900">Population:</span> ~43 million</p>
+                            <p><span class="font-bold text-amber-900">Composition:</span> Mainland Australia, New Zealand, Pacific Islands</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> Great Barrier Reef, Kangaroos, and Koalas.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Australia (often grouped with Oceania) is the smallest continent. It is the lowest, flattest, and oldest landmass on Earth.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Because of its isolation, it has developed unique wildlife found nowhere else on the planet.</p>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+        <div id="oceans">
+            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">The 5 Oceans</h2>
+            
+            <div class="flex flex-col space-y-6">
+                <section id="pacific" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('pacific')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-sea);">
+                        <img src="https://placehold.co/800x400/1e40af/FFFFFF?text=Pacific+Ocean" alt="Pacific Ocean" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">The Largest Ocean</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Pacific Ocean</h3>
+                            </div>
+                            <svg id="chevron-pacific" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-pacific" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Size:</span> 165.2 million km²</p>
+                            <p><span class="font-bold text-blue-900">Depth:</span> Deepest ocean (Mariana Trench)</p>
+                            <p><span class="font-bold text-blue-900">Coverage:</span> ~30% of Earth's surface</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Ring of Fire (volcanoes) and immense size.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Pacific Ocean is the largest and deepest of Earth's oceanic divisions. It is larger than all of Earth's landmasses combined.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Its name was coined by explorer Ferdinand Magellan, meaning "peaceful sea," though it is home to frequent typhoons and volcanic activity.</p>
+                    </div>
+                </section>
+
+                <section id="atlantic" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('atlantic')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-sea);">
+                        <img src="https://placehold.co/800x400/1e40af/FFFFFF?text=Atlantic+Ocean" alt="Atlantic Ocean" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">The S-Shaped Ocean</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Atlantic Ocean</h3>
+                            </div>
+                            <svg id="chevron-atlantic" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-atlantic" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Size:</span> 106.5 million km²</p>
+                            <p><span class="font-bold text-blue-900">Rank:</span> 2nd Largest</p>
+                            <p><span class="font-bold text-blue-900">Salinity:</span> Saltiest major ocean</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Separating the "Old World" from the "New World".</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Atlantic Ocean separates the Americas from Europe and Africa. It is known for its distinct "S" shape.</p>
+                    </div>
+                </section>
+
+                <section id="indian" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('indian')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-sea);">
+                        <img src="https://placehold.co/800x400/1e40af/FFFFFF?text=Indian+Ocean" alt="Indian Ocean" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">The Warmest Ocean</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Indian Ocean</h3>
+                            </div>
+                            <svg id="chevron-indian" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-indian" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Size:</span> 70.6 million km²</p>
+                            <p><span class="font-bold text-blue-900">Rank:</span> 3rd Largest</p>
+                            <p><span class="font-bold text-blue-900">Location:</span> Between Africa, Asia, and Australia</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Historic spice trade routes.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Indian Ocean is the warmest ocean in the world. It has played a crucial role in history as a major trade route connecting East and West.</p>
+                    </div>
+                </section>
+
+                <section id="southern" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('southern')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-sea);">
+                        <img src="https://placehold.co/800x400/1e40af/FFFFFF?text=Southern+Ocean" alt="Southern Ocean" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">The Newest Ocean</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Southern Ocean</h3>
+                            </div>
+                            <svg id="chevron-southern" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-southern" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Size:</span> 20.3 million km²</p>
+                            <p><span class="font-bold text-blue-900">Status:</span> Officially recognized in 2000</p>
+                            <p><span class="font-bold text-blue-900">Location:</span> Surrounds Antarctica</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Circumpolar current and extreme storms.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Southern Ocean (also known as the Antarctic Ocean) is the newest named ocean. It completely encircles Antarctica and is defined by currents rather than land borders.</p>
+                    </div>
+                </section>
+
+                <section id="arctic" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('arctic')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-sea);">
+                        <img src="https://placehold.co/800x400/1e40af/FFFFFF?text=Arctic+Ocean" alt="Arctic Ocean" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">The Shallowest Ocean</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Arctic Ocean</h3>
+                            </div>
+                            <svg id="chevron-arctic" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-arctic" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Size:</span> 14.06 million km²</p>
+                            <p><span class="font-bold text-blue-900">Rank:</span> Smallest Ocean</p>
+                            <p><span class="font-bold text-blue-900">Location:</span> North Polar Region</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Polar bears and sea ice.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Arctic Ocean is the smallest and shallowest of the world's five major oceans. It is mostly covered by sea ice throughout the year.</p>
+                    </div>
+                </section>
+                
+            </div>
+        </div>
+
+        <nav class="mt-16 pt-8 border-t border-gray-300 text-center">
+            <a href="#" class="inline-block px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors">
+                ← Back to Top
+            </a>
+        </nav>
+    </div>
+</body>
+</html>
