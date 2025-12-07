@@ -3,661 +3,510 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Dawn of History: Ancient Civilizations</title>
-    <!-- Load Tailwind CSS -->
+    <title>Seven Wonders of the World</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Load custom Google Fonts for thematic styling -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Literata:wght[400;700]&family=Playfair+Display:wght@700&family=Cormorant+Garamond:wght@700&family=Inter:wght@400;600;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Custom Tailwind config for 'Inter' font and modern theme */
         :root {
-            --primary-color: #92400e; /* Egypt: Darker Amber-700 */
-            --color-mesopotamia: #b45309; /* Mesopotamia: yellow-700 */
-            --color-greece: #2563eb; /* Greece: blue-600 */
-            --color-rome: #b91c1c; /* Rome: red-700 */
-            --color-indus: #047857; /* Indus: Emerald 700 */
-            --color-china: #991b1b; /* China: Darker Red 800 */
-            --color-persia: #7c2d12; /* Persia: Dark Copper/Maroon 800 */
-          
-            
-            /* NEW WORLD COLORS */
-            --color-maya: #4338ca; /* Maya: Indigo 700 */
-            --color-inca: #d97706; /* Inca: Amber 600 (Gold) */
+            --color-ancient: #92400e;
+            --color-modern: #1e40af;
+            --page-bg: #f7f7f7; /* match index palette */
         }
         
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            /* Updated font stack: Arial is now prioritized */
+        html { scroll-behavior: smooth; }
+        body { 
             font-family: Arial, Helvetica, 'Inter', sans-serif;
-            background: linear-gradient(to bottom right, #fef3c7, #f5f5f4); 
-            background-attachment: fixed;
+            background: var(--page-bg);
         }
-        .text-primary { color: var(--primary-color); }
-        .bg-primary { background-color: var(--primary-color); }
         
-        /* Custom Text Colors */
-        .text-mesopotamia { color: var(--color-mesopotamia); }
-        .text-greece { color: var(--color-greece); }
-        .text-rome { color: var(--color-rome); }
-        .text-indus { color: var(--color-indus); }
-        .text-china { color: var(--color-china); }
-        .text-persia { color: var(--color-persia); }
-        .text-maya { color: var(--color-maya); }
-        .text-inca { color: var(--color-inca); }
-
-        /* Custom Thematic Fonts - Applied to Civilization Titles */
-        .font-egypt { font-family: 'Cinzel', serif; }
-        .font-mesopotamia { font-family: 'Literata', serif; }
-        .font-greece { font-family: 'Playfair Display', serif; }
-        .font-rome { font-family: 'Cormorant Garamond', serif; }
-        .font-indus { font-family: 'Literata', serif; }
-        .font-china { font-family: 'Cinzel', serif; }
-        .font-persia { font-family: 'Cormorant Garamond', serif; }
-        .font-maya { font-family: 'Playfair Display', serif; }
-        .font-inca { font-family: 'Cinzel', serif; }
-
+        section { scroll-margin-top: 6rem; }
         
-        /* Unified Description Font (Courier) - This remains for the detail text */
-        .font-courier { 
-            font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace; 
-        }
-
-        section {
-            scroll-margin-top: 6rem; 
-        }
-
-        /* Base Card Styling (Clickable) */
-        .civ-card {
+        .wonder-card {
             cursor: pointer;
             transition: all 0.3s ease-in-out;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
         }
-        .civ-card:hover {
+        .wonder-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
         
-        /* Collapsible Content Styles */
         .details-content {
             max-height: 0;
             opacity: 0;
             padding-top: 0;
             padding-bottom: 0;
-            margin-bottom: 0; 
+            margin-bottom: 0;
             transition: max-height 0.7s ease-in-out, opacity 0.5s ease-in-out, padding 0.5s ease-in-out;
-            will-change: max-height, opacity; 
+            will-change: max-height, opacity;
         }
         .details-content.expanded {
-            max-height: 2500px; /* Increased Max-Height to accommodate all new structured text */
+            max-height: 1500px;
             opacity: 1;
-            padding-top: 1.5rem; 
+            padding-top: 1.5rem;
             padding-bottom: 1.5rem;
-        }
-
-        .DescIMG{
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
         }
     </style>
     <script>
-        tailwind.config = {
-          theme: {
-            extend: {
-              fontFamily: {
-                // Ensure Tailwind recognizes the font stack defined in CSS body tag
-                sans: ['Arial', 'Helvetica', 'Inter', 'sans-serif'],
-              },
-            }
-          }
-        }
-
-        /**
-         * Toggles the visibility of the detail content for a civilization card.
-         * Implements robust ACCORDION behavior.
-         * @param {string} id The unique ID of the civilization (e.g., 'egypt', 'rome').
-         */
-        function toggleCivilization(id) {
-            const allCards = document.querySelectorAll('.civ-card');
-            const targetCard = document.getElementById(id);
-            const targetContent = document.getElementById(`details-${id}`);
-            const wasExpanded = targetContent.classList.contains('expanded');
-
-            // 1. Force close ALL cards first (Accordion behavior)
-            allCards.forEach(card => {
-                const cardId = card.id;
-                const content = document.getElementById(`details-${cardId}`);
-                const chevron = document.getElementById(`chevron-${cardId}`);
-                
-                if (content) content.classList.remove('expanded');
-                if (chevron) chevron.classList.remove('rotate-180');
-                card.classList.remove('ring-4', 'ring-opacity-50', 'ring-offset-2'); 
-            });
+        function toggleWonder(id) {
+            const detailsElement = document.getElementById('details-' + id);
+            const chevronElement = document.getElementById('chevron-' + id);
             
-            // 2. Expand target if it wasn't already open
-            if (!wasExpanded) {
-                const targetChevron = document.getElementById(`chevron-${id}`);
+            if (detailsElement) {
+                detailsElement.classList.toggle('expanded');
+                if (chevronElement) {
+                    chevronElement.style.transform = detailsElement.classList.contains('expanded') 
+                        ? 'rotate(180deg)' 
+                        : 'rotate(0deg)';
+                }
                 
-                targetContent.classList.add('expanded');
-                targetCard.classList.add('ring-4', 'ring-opacity-50', 'ring-offset-2');
-                
-                if (targetChevron) targetChevron.classList.add('rotate-180');
-                
-                // Smooth scroll to the card
                 setTimeout(() => {
-                    targetCard.scrollIntoView({ behavior: 'smooth', block: 'start', });
+                    const targetCard = document.getElementById(id);
+                    if (targetCard) {
+                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
                 }, 50);
             }
         }
     </script>
 </head>
-<body class="antialiased">
+ <body class="antialiased">
 
-    <!-- Main Content Container (Max width 4xl for column focus) -->
-    <div id="civilization-list" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <header class="bg-white shadow-sm sticky top-0 z-30">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <a href="index.html" class="text-lg font-semibold text-gray-800">Home</a>
+            <nav class="space-x-3">
+                <a href="#about" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">About</a>
+                <a href="#ancient" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">Ancient</a>
+                <a href="#modern" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">Modern</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="wonders-list" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
-        <!-- Main title remains thematic (Playfair Display, via .font-greece) -->
-        <h3 class="text-4xl sm:text-5xl font-extrabold text-center mb-16 text-gray-900 font-greece tracking-tight">
-            The Dawn of History
-        </h3>
-        
-        <!-- SECTION 1: OLD WORLD CIVILIZATIONS -->
-        <div class="mb-16">
-            <!-- H4 using standard Inter/Arial font -->
-            <h4 class="text-2xl font-bold text-gray-700 border-b-2 border-gray-300 pb-2 mb-8 uppercase tracking-widest font-sans">
-                Old World Civilizations
-            </h4>
-            
-            <!-- STACKED COLUMN LAYOUT -->
-            <div class="flex flex-col space-y-8">
-
-                <!-- 1. Ancient Egypt (CONTEXT UPDATED IN PREVIOUS STEP) -->
-                <section id="egpyt" class="bg-white rounded-xl civ-card overflow-hidden shadow-lg ring-primary transition-all duration-300 group">
-                    <div onclick="toggleCivilization('egpyt')" class="relative h-48 overflow-hidden transition-all duration-300" style="background-color: var(--primary-color);"> 
-                        <img src="CivilizationIMG/PyramidOfGiza.jpg" alt="Ancient Egypt" class="absolute inset-0 w-full h-full object-cover opacity-70" onerror="this.style.display='none';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
-                            <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Nile Valley</span>
-                                <h4 class="text-3xl font-extrabold font-egypt drop-shadow-md">Ancient Egypt</h4>
-                            </div>
-                            <svg id="chevron-egpyt" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </div>
-                    </div>
-                    <div id="details-egpyt" class="details-content px-6">
-                        <hr class="border-gray-200">
-                        <div class="space-y-3 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6">
-                            <!-- Expanded Detail Description (Courier) - Key Facts Block -->
-                            <p class="text-sm font-bold text-primary font-courier">Time: <span class="text-gray-700 font-normal">c. 3100 BCE – 30 BCE</span></p>
-                            <p class="text-sm font-bold text-primary font-courier">Location: <span class="text-gray-700 font-normal">Nile River Valley (Northeast Africa)</span></p>
-                            <p class="text-sm font-bold text-primary font-courier">Capital City: <span class="text-gray-700 font-normal">Memphis, Thebes, Akhetaten (varied by period)</span></p>
-                            <p class="text-sm font-bold text-primary font-courier">Key Figures: <span class="text-gray-700 font-normal">Narmer, Khufu, Hatshepsut, Tutankhamun, Ramesses II</span></p>
-                            <p class="text-sm font-bold text-primary font-courier">Known For: <span class="text-gray-700 font-normal">Pyramids, Mummification, Hieroglyphics, Solar Calendar, Papyrus.</span></p>
-                        </div>
-                        
-                        <!-- NEW DETAILED CONTEXT CONTENT STARTS HERE (RETAINED FROM PREVIOUS TURN) -->
-                        
-                        <!-- Geography Section -->
-                        <h5 class="text-base font-bold text-primary mt-6 mb-2">I. Geography: The Gift of the Nile</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">The civilization's existence was inextricably linked to the Nile River, divided into **Upper Egypt (South)** (the narrow river valley) and **Lower Egypt (North)** (the fertile delta). The annual **Inundation (flooding)**, which occurred from July to October, deposited nutrient-rich black silt (**kemet**), allowing for highly successful agriculture (wheat and barley) which supported a vast population. The surrounding arid desert (**deshret**) provided natural isolation and defense.</p>
-                            <img src="CivilizationIMG/AncientEgyptMap.jpg" class="DescIMG" width="300">
-                        <!-- Chronological Overview (Summarized) -->
-                        <h5 class="text-base font-bold text-primary mt-6 mb-2">II. Chronological Overview Highlights</h5>
-                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 font-courier ml-4">
-                            <li>**Old Kingdom (c. 2686–2181 BCE):** The "Age of the Pyramids," marked by strong centralized government and the peak of monumental construction (Pyramids of Giza).</li>
-                            <li>**Middle Kingdom (c. 2055–1650 BCE):** A cultural high point after reunification, featuring flourishing literature, art, and irrigation systems.</li>
-                            <li>**New Kingdom (c. 1550–1070 BCE):** The "Golden Age" of imperial expansion, featuring famous Pharaohs like Hatshepsut, Thutmose III, and Ramesses II.</li>
-                            <li>**Ptolemaic Period (332–30 BCE):** Established after Alexander the Great's conquest and ruled by a Greek dynasty, ending with the death of Cleopatra VII and the Roman takeover.</li>
-                        </ul>
-
-                        <!-- Society, Governance, and Administration -->
-                        <h5 class="text-base font-bold text-primary mt-6 mb-2">III. Society, Governance, and Ma'at</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">The Pharaoh was not just a king but a living god, seen as the intermediary between the gods and the people. His primary duty was to uphold **Ma'at**, the divine concept of cosmic order, truth, and balance. This absolute power was supported by a vast bureaucracy led by the **Vizier**. Society was rigidly structured, with **Scribes** (highly respected and educated) and **Peasants (Farmers)** (the largest class, essential for state labor) forming the core workforce.</p>
-
-                        <!-- Religion and the Afterlife -->
-                        <h5 class="text-base font-bold text-primary mt-6 mb-2">IV. Religion and the Afterlife</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">Egyptian religion was polytheistic and deeply interwoven with the pursuit of eternal life. Key deities include **Ra** (Sun/Creator), **Osiris** (Underworld), **Isis** (Magic), and **Horus** (God of the Pharaoh). The belief necessitated **mummification** to preserve the body, allowing the spiritual components (**Ka** - life force, and **Ba** - personality/soul) to reunite. The deceased faced the **Weighing of the Heart** ceremony against the Feather of Ma'at to determine their fate.</p>
-                            <img src="CivilizationIMG/AncientEgyptGods.jpg" alt="">
-                        <!-- Achievements and Legacy -->
-                        <h5 class="text-base font-bold text-primary mt-6 mb-2">V. Major Achievements and Legacy</h5>
-                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 font-courier ml-4">
-                            <li>**Architecture:** Masterful engineering seen in the **Pyramids** (tombs) and colossal **Temples** (Karnak, Abu Simbel), along with the iconic **Sphinx**. [Image of Great Pyramid of Giza]</li>
-                            <li>**Writing:** Developed **Hieroglyphs** (sacred inscriptions), which evolved into the cursive **Hieratic** and later **Demotic** scripts used by the Scribes.</li>
-                            <li>**Science:** Practical mastery of **Mathematics** (geometry for surveying and construction), advanced **Medicine** (detailed medical texts), and the accurate 365-day **Solar Calendar**.</li>
-                        </ul>
-                        
-                        <!-- NEW KEY FIGURES SECTION (Retained from previous turn) -->
-                        <div class="mt-6 pt-4 border-t border-gray-300">
-                            <h5 class="text-lg font-bold text-primary mb-3">Key Figures & Contributions</h5>
-                            <ul class="list-disc list-inside space-y-2 text-sm text-gray-700 font-courier">
-                                <li>**Narmer:** The Pharaoh traditionally credited with uniting Upper and Lower Egypt (c. 3100 BCE), marking the beginning of the Dynastic period.</li>
-                                <li>**Khufu:** Pharaoh of the Fourth Dynasty who commissioned the Great Pyramid of Giza, the largest of the Egyptian pyramids.</li>
-                                <li>**Hatshepsut:** One of the few female Pharaohs, renowned for her peaceful reign, prolific construction projects, and trade expeditions.</li>
-                                <li>**Ramesses II:** Known as Ramesses the Great, famous for his long reign (66 years), military campaigns, and vast building projects like the temples at Abu Simbel.</li>
-                            </ul>
-                        </div>
-                        <!-- NEW KEY FIGURES SECTION END -->
-                    </div>
-                </section>
-
-                <!-- 2. Mesopotamia (CONTEXT EXPANDED HERE) -->
-                <section id="mesopotamia" class="bg-white rounded-xl civ-card overflow-hidden shadow-lg ring-mesopotamia transition-all duration-300 group">
-                    <div onclick="toggleCivilization('mesopotamia')" class="relative h-48 overflow-hidden transition-all duration-300" style="background-color: var(--color-mesopotamia);">
-                        <img src="CivilizationIMG/Ziggurat.jpg" alt="Mesopotamia" class="absolute inset-0 w-full h-full object-cover opacity-70" onerror="this.style.display='none';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
-                            <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-yellow-200">Fertile Crescent</span>
-                                <h4 class="text-3xl font-extrabold font-mesopotamia drop-shadow-md">Mesopotamia</h4>
-                            </div>
-                            <svg id="chevron-mesopotamia" class="w-8 h-8 text-yellow-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </div>
-                    </div>
-                    <div id="details-mesopotamia" class="details-content px-6">
-                        <hr class="border-gray-200">
-                        <div class="space-y-3 p-4 bg-yellow-50/70 rounded-lg border border-yellow-200 border-l-4 mt-6">
-                            <!-- Expanded Detail Description (Courier) -->
-                            <p class="text-sm font-bold text-mesopotamia font-courier">Time: <span class="text-gray-700 font-normal">c. 4000 BCE – 539 BCE</span></p>
-                            <p class="text-sm font-bold text-mesopotamia font-courier">Location: <span class="text-gray-700 font-normal">Between Tigris & Euphrates Rivers (Modern Iraq)</span></p>
-                            <p class="text-sm font-bold text-mesopotamia font-courier">Capital City: <span class="text-gray-700 font-normal">Ur, Babylon, Nineveh (varied by dominant state)</span></p>
-                            <p class="text-sm font-bold text-mesopotamia font-courier">Key Figures: <span class="text-gray-700 font-normal">Sargon of Akkad, Hammurabi, Nebuchadnezzar II</span></p>
-                            <p class="text-sm font-bold text-mesopotamia font-courier">Known For: <span class="text-gray-700 font-normal">Cuneiform, The Wheel, Hammurabi's Code, Ziggurats, Base-60 Mathematics.</span></p>
-                        </div>
-
-                        <!-- NEW DETAILED CONTEXT CONTENT STARTS HERE -->
-                        <h5 class="text-base font-bold text-mesopotamia mt-6 mb-2">I. The Cradle of Civilization</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">Mesopotamia, meaning "land between the rivers," refers to the region between the Tigris and Euphrates. It was a region of great agricultural fertility (the Fertile Crescent) but lacked natural defenses, leading to a constant cycle of cultural succession and warfare among different groups (Sumerians, Akkadians, Babylonians, Assyrians). This environment fostered innovation in city-building and military strategy.</p>
-                            <img src="CivilizationIMG/FertileCrescentMap.jpg" alt="" width="450" class="DescIMG">
-                        <h5 class="text-base font-bold text-mesopotamia mt-6 mb-2">II. Political Structure and Law</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">The political landscape was initially dominated by independent **Sumerian city-states** (like Ur, Uruk, Kish), centered around temple complexes (**Ziggurats**). Power later centralized under empires. The most famous codified legal system was **Hammurabi's Code** (Babylonian, c. 1754 BCE), which established specific punishments based on social rank ("An eye for an eye"). The Ziggurats served as religious and administrative hubs, symbolizing the connection between heaven and earth.</p>
-
-                        <h5 class="text-base font-bold text-mesopotamia mt-6 mb-2">III. Technological and Cultural Innovations</h5>
-                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 font-courier ml-4">
-                            <li>**Writing:** Developed **Cuneiform**, the world's earliest known writing system, consisting of wedge-shaped marks pressed into clay tablets, essential for record-keeping and literature (e.g., *The Epic of Gilgamesh*). </li>
-                            <li>**Mathematics/Astronomy:** Used a **sexagesimal (base-60)** number system, which influences modern timekeeping (60 seconds, 60 minutes) and geometry (360 degrees). They were skilled astronomers, creating accurate calendars and predicting eclipses.</li>
-                            <li>**Inventions:** Credited with the invention of the **wheel** (for transport and pottery), irrigation systems, and standardized brick-making.</li>
-                        </ul>
-                        
-                        <!-- KEY FIGURES SECTION (Richer Detail) -->
-                        <div class="mt-6 pt-4 border-t border-gray-300">
-                            <h5 class="text-lg font-bold text-mesopotamia mb-3">Key Figures & Contributions</h5>
-                            <ul class="list-disc list-inside space-y-2 text-sm text-gray-700 font-courier">
-                                <li>**Sargon of Akkad:** Founder of the Akkadian Empire, the first empire in recorded history, uniting Sumerian city-states under a single ruler (c. 2334 BCE).</li>
-                                <li>**Hammurabi:** King of Babylon famous for enacting the Code of Hammurabi, one of the earliest and most complete written legal codes.</li>
-                                <li>**Nebuchadnezzar II:** King of the Neo-Babylonian Empire who ordered the construction of the Hanging Gardens of Babylon (one of the Seven Wonders) and conquered Jerusalem.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- 3. Ancient Greece (CONTEXT EXPANDED HERE) -->
-                <section id="greece" class="bg-white rounded-xl civ-card overflow-hidden shadow-lg ring-greece transition-all duration-300 group">
-                    <div onclick="toggleCivilization('greece')" class="relative h-48 overflow-hidden transition-all duration-300" style="background-color: var(--color-greece);"> 
-                        <img src="CivilizationIMG/Acropolis.jpg" alt="Ancient Greece" class="absolute inset-0 w-full h-full object-cover opacity-70" onerror="this.style.display='none';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
-                            <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">The Aegean</span>
-                                <h4 class="text-3xl font-extrabold font-greece drop-shadow-md">Ancient Greece</h4>
-                            </div>
-                            <svg id="chevron-greece" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </div>
-                    </div>
-                    <div id="details-greece" class="details-content px-6">
-                        <hr class="border-gray-200">
-                        <div class="space-y-3 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6">
-                            <!-- Expanded Detail Description (Courier) -->
-                            <p class="text-sm font-bold text-greece font-courier">Time: <span class="text-gray-700 font-normal">c. 800 BCE – 146 BCE (Classical Age c. 510–323 BCE)</span></p>
-                            <p class="text-sm font-bold text-greece font-courier">Location: <span class="text-gray-700 font-normal">Balkan Peninsula & Aegean Sea</span></p>
-                            <p class="text-sm font-bold text-greece font-courier">Capital City: <span class="text-gray-700 font-normal">Athens (Prominent City-State)</span></p>
-                            <p class="text-sm font-bold text-greece font-courier">Key Figures: <span class="text-gray-700 font-normal">Socrates, Plato, Aristotle, Pericles, Alexander the Great</span></p>
-                            <p class="text-sm font-bold text-greece font-courier">Known For: <span class="text-gray-700 font-normal">Democracy, Philosophy, Geometry, Olympics, Classical Architecture.</span></p>
-                        </div>
-                        
-                        <!-- NEW DETAILED CONTEXT CONTENT STARTS HERE -->
-                        <h5 class="text-base font-bold text-greece mt-6 mb-2">I. Political Structure: City-States and Democracy</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">Ancient Greece was geographically fragmented, leading to the development of independent city-states (*poleis*). **Athens** pioneered **direct democracy** (where eligible citizens voted directly on laws), while **Sparta** was a highly disciplined, military oligarchy. The conflicts between these city-states (most notably the Peloponnesian War) defined the Classical Age.</p>
-
-                        <h5 class="text-base font-bold text-greece mt-6 mb-2">II. The Philosophical Revolution</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">Greek philosophy moved beyond mythological explanations to seek rational understanding of the world. The triumvirate of **Socrates** (known for his question-based method), **Plato** (founder of the Academy, focusing on ideal forms), and **Aristotle** (pioneer of logic, empirical study, and scientific classification) laid the intellectual bedrock of Western thought and modern scientific method. </p>
-
-                        <h5 class="text-base font-bold text-greece mt-6 mb-2">III. Legacy in Arts, Science, and Empire</h5>
-                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 font-courier ml-4">
-                            <li>**Architecture:** Defined by the three orders (**Doric, Ionic, Corinthian**). The **Parthenon** in Athens is the iconic example of Doric architecture, built during the peak of Pericles' Golden Age.</li>
-                            <li>**Science:** Significant advancements in **Geometry** (Euclid) and **Physics** (Archimedes). They created the foundations of modern Western medicine (Hippocrates).</li>
-                            <li>**Hellenism:** Following the conquests of **Alexander the Great**, Greek culture, language, and thought spread across Egypt, the Near East, and India, creating the diverse and cosmopolitan Hellenistic era.</li>
-                        </ul>
-
-                        <!-- KEY FIGURES SECTION (Richer Detail) -->
-                        <div class="mt-6 pt-4 border-t border-gray-300">
-                            <h5 class="text-lg font-bold text-greece mb-3">Key Figures & Contributions</h5>
-                            <ul class="list-disc list-inside space-y-2 text-sm text-gray-700 font-courier">
-                                <li>**Socrates:** Classical Athenian philosopher credited as one of the founders of Western philosophy, known for the Socratic method.</li>
-                                <li>**Plato:** Student of Socrates and founder of the Academy in Athens, known for the *Theory of Forms* and writing *The Republic*.</li>
-                                <li>**Aristotle:** Student of Plato, tutor to Alexander the Great, and a key figure in logic, biology, physics, and ethics.</li>
-                                <li>**Alexander the Great:** Macedonian King who created one of the largest empires in the ancient world, stretching Hellenic culture across the Near East.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- 4. Roman Empire (CONTEXT EXPANDED HERE) -->
-                <section id="rome" class="bg-white rounded-xl civ-card overflow-hidden shadow-lg ring-rome transition-all duration-300 group">
-                    <div onclick="toggleCivilization('rome')" class="relative h-48 overflow-hidden transition-all duration-300" style="background-color: var(--color-rome);">
-                        <img src="CivilizationIMG/Colosseum.jpg" alt="Roman Empire" class="absolute inset-0 w-full h-full object-cover opacity-70" onerror="this.style.display='none';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
-                            <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-red-200">The Mediterranean</span>
-                                <h4 class="text-3xl font-extrabold font-rome drop-shadow-md">Roman Empire</h4>
-                            </div>
-                            <svg id="chevron-rome" class="w-8 h-8 text-red-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </div>
-                    </div>
-                    <div id="details-rome" class="details-content px-6">
-                        <hr class="border-gray-200">
-                        <div class="space-y-3 p-4 bg-red-50/70 rounded-lg border border-red-200 border-l-4 mt-6">
-                            <!-- Expanded Detail Description (Courier) -->
-                            <p class="text-sm font-bold text-rome font-courier">Time: <span class="text-gray-700 font-normal">c. 753 BCE – 476 CE (Western Empire)</span></p>
-                            <p class="text-sm font-bold text-rome font-courier">Location: <span class="text-gray-700 font-normal">Italian Peninsula & Mediterranean World</span></p>
-                            <p class="text-sm font-bold text-rome font-courier">Capital City: <span class="text-gray-700 font-normal">Rome, Constantinople (later Eastern Empire)</span></p>
-                            <p class="text-sm font-bold text-rome font-courier">Key Figures: <span class="text-gray-700 font-normal">Julius Caesar, Augustus, Trajan, Constantine the Great</span></p>
-                            <p class="text-sm font-bold text-rome font-courier">Known For: <span class="text-gray-700 font-normal">Legions, Concrete, Aqueducts, Roman Law, Latin, Extensive Road Network.</span></p>
-                        </div>
-                        
-                        <!-- NEW DETAILED CONTEXT CONTENT STARTS HERE -->
-                        <h5 class="text-base font-bold text-rome mt-6 mb-2">I. Political Evolution and Military Might</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">Rome evolved from a Monarchy (753 BCE) to a Republic (509 BCE), characterized by elected officials (Consuls, Senate) and complex checks and balances, and finally into an Empire (27 BCE) under the leadership of **Augustus**. The foundation of its expansion was the **Roman Legions**, a highly organized and disciplined fighting force capable of integrating conquered peoples. The period of the *Pax Romana* (Roman Peace, 27 BCE – 180 CE) marked the empire's greatest stability and prosperity.</p>
-
-                        <h5 class="text-base font-bold text-rome mt-6 mb-2">II. Engineering and Infrastructure</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">Roman engineers were masters of civil construction. They perfected the use of **concrete** and the **arch**, allowing them to build immense structures like the **Colosseum** and the **Pantheon**. Their network of **aqueducts** brought fresh water into cities, and their extensive **road system** (connecting over 50,000 miles of territory) facilitated rapid communication, trade, and military movement.</p>
-                            <img src="CivilizationIMG/RomanAqueductEngineering.jpg" alt="">
-                        <h5 class="text-base font-bold text-rome mt-6 mb-2">III. Law, Language, and Decline</h5>
-                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 font-courier ml-4">
-                            <li>**Roman Law:** The basis of jurisprudence for many Western nations, introducing concepts like natural law, civil law, and the presumption of innocence.</li>
-                            <li>**Latin:** The official language, which evolved into the Romance languages (French, Spanish, Italian, etc.) and deeply influenced English vocabulary.</li>
-                            <li>**Decline:** The Western Roman Empire collapsed in 476 CE due to internal factors (economic decline, political corruption, over-extension) and external pressure from Germanic tribes, while the Eastern Roman Empire (Byzantium) survived for another thousand years.</li>
-                        </ul>
-
-                        <!-- KEY FIGURES SECTION (Richer Detail) -->
-                        <div class="mt-6 pt-4 border-t border-gray-300">
-                            <h5 class="text-lg font-bold text-rome mb-3">Key Figures & Contributions</h5>
-                            <ul class="list-disc list-inside space-y-2 text-sm text-gray-700 font-courier">
-                                <li>**Julius Caesar:** Roman General and statesman whose campaigns led to the conquest of Gaul and whose dictatorship ultimately led to the fall of the Republic.</li>
-                                <li>**Augustus:** Founder of the Roman Principate and considered the first Roman Emperor, initiating the *Pax Romana* (Roman Peace).</li>
-                                <li>**Trajan:** Emperor under whom the Roman Empire reached its greatest territorial extent (117 CE).</li>
-                                <li>**Constantine the Great:** The first Roman Emperor to convert to Christianity, who moved the capital to Byzantium (Constantinople).</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- 5. Indus Valley (CONTEXT EXPANDED HERE) -->
-                <section id="indus" class="bg-white rounded-xl civ-card overflow-hidden shadow-lg ring-indus transition-all duration-300 group">
-                    <div onclick="toggleCivilization('indus')" class="relative h-48 overflow-hidden transition-all duration-300" style="background-color: var(--color-indus);">
-                        <img src="CivilizationIMG/Mohenjo-Daro.avif" alt="Indus Valley" class="absolute inset-0 w-full h-full object-cover opacity-70" onerror="this.style.display='none';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
-                            <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-emerald-200">South Asia</span>
-                                <h4 class="text-3xl font-extrabold font-indus drop-shadow-md">Indus Valley</h4>
-                            </div>
-                            <svg id="chevron-indus" class="w-8 h-8 text-emerald-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </div>
-                    </div>
-                    <div id="details-indus" class="details-content px-6">
-                        <hr class="border-gray-200">
-                        <div class="space-y-3 p-4 bg-emerald-50/70 rounded-lg border border-emerald-200 border-l-4 mt-6">
-                            <!-- Expanded Detail Description (Courier) -->
-                            <p class="text-sm font-bold text-indus font-courier">Time: <span class="text-gray-700 font-normal">c. 3300 BCE – 1300 BCE (Mature Period: 2600–1900 BCE)</span></p>
-                            <p class="text-sm font-bold text-indus font-courier">Location: <span class="text-gray-700 font-normal">Indus River Basin (Modern Pakistan & Northwest India)</span></p>
-                            <p class="text-sm font-bold text-indus font-courier">Capital City: <span class="text-gray-700 font-normal">Mohenjo-daro, Harappa (major centers)</span></p>
-                            <p class="text-sm font-bold text-indus font-courier">Key Figures: <span class="text-gray-700 font-normal">Unknown (Non-monumental leadership)</span></p>
-                            <p class="text-sm font-bold text-indus font-courier">Known For: <span class="text-gray-700 font-normal">Urban Planning (Grids), Drainage Systems, Standardized Weights, Undeciphered Script.</span></p>
-                        </div>
-                        
-                        <!-- NEW DETAILED CONTEXT CONTENT STARTS HERE -->
-                        <h5 class="text-base font-bold text-indus mt-6 mb-2">I. Unmatched Urban Planning</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">The Indus Valley Civilization (IVC), or Harappan Civilization, stretched over a million square kilometers, making it larger than contemporary Egypt or Mesopotamia. Its defining characteristic was its remarkable urban sophistication. Major cities like **Mohenjo-daro** and **Harappa** were built on planned grid systems using standardized, fired bricks. They featured a citadel (raised area) and a lower town.</p>
-                        
-                        <h5 class="text-base font-bold text-indus mt-6 mb-2">II. Engineering and Governance</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">The IVC cities had unparalleled hygiene infrastructure: every house had a bathroom, and private homes connected to an extensive underground **drainage system**. The presence of standardized weights and measures across the region indicates a powerful, centralized economic or administrative control, though this control was non-monumental, as large palaces or warrior depictions are conspicuously absent. They were prolific traders, with seals found as far away as Mesopotamia.</p>
-                        
-                        <h5 class="text-base font-bold text-indus mt-6 mb-2">III. Script and Decline</h5>
-                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 font-courier ml-4">
-                            <li>**Undeciphered Script:** The Harappan script, found mainly on square steatite seals, remains **undeciphered**. This means much of their political, social, and religious life is inferred, not read. </li>
-                            <li>**Decline:** The civilization began to decline around 1900 BCE. The leading theories for the de-urbanization involve environmental changes, such as shifts in the course of the Indus River and periods of intense drought, which destabilized the agricultural base.</li>
-                        </ul>
-
-                        <!-- KEY FIGURES SECTION (Richer Detail) -->
-                        <div class="mt-6 pt-4 border-t border-gray-300">
-                            <h5 class="text-lg font-bold text-indus mb-3">Key Figures & Contributions</h5>
-                            <ul class="list-disc list-inside space-y-2 text-sm text-gray-700 font-courier">
-                                <li>**Unknown:** Due to the undeciphered script and a focus on collective planning rather than individual rule, no specific rulers or key figures are definitively known. The structure suggests decentralized or perhaps theocratic leadership.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 6. Ancient China (CONTEXT EXPANDED HERE) -->
-                <section id="china" class="bg-white rounded-xl civ-card overflow-hidden shadow-lg ring-china transition-all duration-300 group">
-                    <div onclick="toggleCivilization('china')" class="relative h-48 overflow-hidden transition-all duration-300" style="background-color: var(--color-china);">
-                        <img src="CivilizationIMG/GreatWallOfChina.webp" alt="Ancient China" class="absolute inset-0 w-full h-full object-cover opacity-70" onerror="this.style.display='none';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
-                            <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-red-200">Yellow River</span>
-                                <h4 class="text-3xl font-extrabold font-china drop-shadow-md">Ancient China</h4>
-                            </div>
-                            <svg id="chevron-china" class="w-8 h-8 text-red-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </div>
-                    </div>
-                    <div id="details-china" class="details-content px-6">
-                        <hr class="border-gray-200">
-                        <div class="space-y-3 p-4 bg-red-50/70 rounded-lg border border-red-200 border-l-4 mt-6">
-                            <!-- Expanded Detail Description (Courier) -->
-                            <p class="text-sm font-bold text-china font-courier">Time: <span class="text-gray-700 font-normal">c. 1600 BCE – 256 BCE (Dynastic period begins)</span></p>
-                            <p class="text-sm font-bold text-china font-courier">Location: <span class="text-gray-700 font-normal">Yellow River Valley</span></p>
-                            <p class="text-sm font-bold text-china font-courier">Capital City: <span class="text-gray-700 font-normal">Anyang, Luoyang, Chang'an</span></p>
-                            <p class="text-sm font-bold text-china font-courier">Key Figures: <span class="text-gray-700 font-normal">Qin Shi Huang, Confucius, Laozi</span></p>
-                            <p class="text-sm font-bold text-china font-courier">Known For: <span class="text-gray-700 font-normal">Mandate of Heaven, Oracle Bones, Bronze Casting, Silk Production, Great Wall construction.</span></p>
-                        </div>
-                        
-                        <!-- NEW DETAILED CONTEXT CONTENT STARTS HERE -->
-                        <h5 class="text-base font-bold text-china mt-6 mb-2">I. Dynastic Rule and Political Ideology</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">Ancient China's history is defined by its long-term imperial structure, beginning with the Shang and Zhou dynasties. The fundamental political principle was the **Mandate of Heaven** (*Tianming*), which held that the emperor had divine approval to rule, but only if he governed justly. Loss of the Mandate was evidenced by natural disasters or successful rebellions, justifying a change in dynasty (the Dynastic Cycle). The Zhou period gave rise to the feudal system (*fengjian*).</p>
-
-                        <h5 class="text-base font-bold text-china mt-6 mb-2">II. Philosophical Foundations</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">The chaotic Warring States Period (c. 475–221 BCE) led to the "Hundred Schools of Thought." **Confucianism** emphasized ethical conduct, social harmony, and respect for elders (*Filial Piety*), becoming the basis for imperial bureaucracy. **Taoism** (Daoism) advocated living in harmony with the natural flow of the universe (*Tao*). **Legalism** (promoted by the Qin Dynasty) stressed strict laws and harsh punishments to maintain order.</p>
-
-                        <h5 class="text-base font-bold text-china mt-6 mb-2">III. Technological and Unification Achievements</h5>
-                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 font-courier ml-4">
-                            <li>**Writing and Record:** Early writing is found on **Oracle Bones** from the Shang Dynasty, used for divination. This script is the direct ancestor of modern Chinese characters.</li>
-                            <li>**Qin Unification:** **Qin Shi Huang** (the first emperor) unified China in 221 BCE, standardizing currency, weights, measures, and the axle width of carts. He began connecting existing fortifications into what would become the **Great Wall**. [Image of Qin Shi Huang's Terracotta Army]</li>
-                            <li>**Technology:** Known for mastering complex **bronze casting** and, later, the invention of silk, paper, and gunpowder.</li>
-                        </ul>
-
-                        <!-- KEY FIGURES SECTION (Richer Detail) -->
-                        <div class="mt-6 pt-4 border-t border-gray-300">
-                            <h5 class="text-lg font-bold text-china mb-3">Key Figures & Contributions</h5>
-                            <ul class="list-disc list-inside space-y-2 text-sm text-gray-700 font-courier">
-                                <li>**Qin Shi Huang:** The founder of the Qin Dynasty and the first emperor of a unified China (221 BCE), known for standardizing systems and connecting the Great Wall.</li>
-                                <li>**Confucius:** Highly influential philosopher whose teachings (Confucianism) emphasize morality, proper social relationships, and justice.</li>
-                                <li>**Laozi:** Semi-legendary figure credited with writing the *Tao Te Ching* and founding philosophical Taoism, emphasizing living in harmony with the *Dao* (the Way).</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- 7. Persian Empire (CONTEXT EXPANDED HERE) -->
-                <section id="persia" class="bg-white rounded-xl civ-card overflow-hidden shadow-lg ring-persia transition-all duration-300 group">
-                    <div onclick="toggleCivilization('persia')" class="relative h-48 overflow-hidden transition-all duration-300" style="background-color: var(--color-persia);">
-                        <img src="CivilizationIMG/Persepolis.jpg" alt="Persian Empire" class="absolute inset-0 w-full h-full object-cover opacity-70" onerror="this.style.display='none';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
-                            <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-orange-200">Western Asia</span>
-                                <h4 class="text-3xl font-extrabold font-persia drop-shadow-md">Persian Empire</h4>
-                            </div>
-                            <svg id="chevron-persia" class="w-8 h-8 text-orange-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </div>
-                    </div>
-                    <div id="details-persia" class="details-content px-6">
-                        <hr class="border-gray-200">
-                        <div class="space-y-3 p-4 bg-orange-50/70 rounded-lg border border-orange-200 border-l-4 mt-6">
-                            <!-- Expanded Detail Description (Courier) -->
-                            <p class="text-sm font-bold text-persia font-courier">Time: <span class="text-gray-700 font-normal">c. 550 BCE – 330 BCE (Achaemenid Empire)</span></p>
-                            <p class="text-sm font-bold text-persia font-courier">Location: <span class="text-gray-700 font-normal">Iran & Three Continents (largest empire of its time)</span></p>
-                            <p class="text-sm font-bold text-persia font-courier">Capital City: <span class="text-gray-700 font-normal">Persepolis, Susa, Ecbatana</span></p>
-                            <p class="text-sm font-bold text-persia font-courier">Key Figures: <span class="text-gray-700 font-normal">Cyrus the Great, Darius I, Xerxes I</span></p>
-                            <p class="text-sm font-bold text-persia font-courier">Known For: <span class="text-gray-700 font-normal">Royal Road, Satrapies (Provinces), Coinage, Zoroastrianism, Tolerance.</span></p>
-                        </div>
-                        
-                        <!-- NEW DETAILED CONTEXT CONTENT STARTS HERE -->
-                        <h5 class="text-base font-bold text-persia mt-6 mb-2">I. The First World Empire</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">The Achaemenid (Persian) Empire was established by **Cyrus the Great** and became the largest empire the world had yet seen, stretching from the Balkans to the Indus Valley. What set the Persians apart was their method of rule: instead of brutal subjugation, Cyrus implemented a policy of remarkable **tolerance**, allowing conquered peoples to retain their religions and customs (e.g., freeing the Jews from Babylonian captivity).</p>
-
-                        <h5 class="text-base font-bold text-persia mt-6 mb-2">II. Advanced Administration and Infrastructure</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">Darius I organized the vast territory into twenty provinces called **satrapies**, each governed by a local official (*satrap*) but overseen by royal officials to prevent rebellion. This vast administrative system was held together by the **Royal Road**, a paved network extending over 1,600 miles, which allowed for rapid communication via the *chapar* (postal) service. Darius also introduced a standardized coinage system, greatly simplifying trade. </p>
-
-                        <h5 class="text-base font-bold text-persia mt-6 mb-2">III. Religion and Culture</h5>
-                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 font-courier ml-4">
-                            <li>**Zoroastrianism:** The primary state religion, founded by the prophet Zoroaster. It is an early monotheistic/dualistic faith emphasizing the choice between the benevolent god Ahura Mazda (good) and Angra Mainyu (evil). It influenced Judaism, Christianity, and Islam.</li>
-                            <li>**Architecture:** The ceremonial capital of **Persepolis** showcased unique Persian architectural features, blending Babylonian, Egyptian, and Greek styles, marked by grand staircases and massive carved columns.</li>
-                        </ul>
-
-                        <!-- KEY FIGURES SECTION (Richer Detail) -->
-                        <div class="mt-6 pt-4 border-t border-gray-300">
-                            <h5 class="text-lg font-bold text-persia mb-3">Key Figures & Contributions</h5>
-                            <ul class="list-disc list-inside space-y-2 text-sm text-gray-700 font-courier">
-                                <li>**Cyrus the Great:** Founder of the Achaemenid Empire, famous for his policy of religious and cultural tolerance towards his conquered subjects.</li>
-                                <li>**Darius I:** Expanded the empire to its peak, established the Satrapy administrative system, standardized currency, and built the Royal Road.</li>
-                                <li>**Xerxes I:** Son of Darius I, known primarily for his massive, though ultimately unsuccessful, invasion of Greece.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-            </div>
+        <h1 class="text-5xl sm:text-6xl font-extrabold text-center mb-4 text-gray-900 font-serif tracking-tight" style="font-family: 'Playfair Display', serif;">
+            Seven Wonders of the World
+        </h1>
+        <p class="text-center text-gray-600 text-lg mb-6 max-w-2xl mx-auto">
+            Explore the greatest architectural and engineering achievements of ancient and modern times
+        </p>
+        <div id="about" class="mb-8 max-w-2xl mx-auto text-center text-gray-700">
+            <h2 class="text-xl font-bold mb-2 text-gray-800">About the Seven Wonders</h2>
+            <p class="text-sm mb-2">The ancient Seven Wonders were extraordinary constructions of antiquity celebrated for their scale, artistry, and engineering. Examples include the Great Pyramid of Giza, the Hanging Gardens of Babylon, and the Colossus of Rhodes. These sites symbolize the technological and cultural achievements of ancient civilizations across the Mediterranean and Near East.</p>
+            <p class="text-sm">The modern wonders featured below — such as the Great Wall of China, the Taj Mahal, and Machu Picchu — are admired for their architectural brilliance and cultural significance. Each card on this page includes a facts panel (location, date, builders) and a short description; click any card to expand and read the full details.</p>
         </div>
         
-        <!-- SECTION 2: NEW WORLD CIVILIZATIONS -->
-        <div class="mb-16">
-            <!-- H4 using standard Inter/Arial font -->
-            <h4 class="text-2xl font-bold text-gray-700 border-b-2 border-gray-300 pb-2 mb-8 uppercase tracking-widest font-sans">
-                New World Civilizations
-            </h4>
-            
-            <!-- STACKED COLUMN LAYOUT -->
-            <div class="flex flex-col space-y-8">
-
-                <!-- 8. Maya Civilization (CONTEXT EXPANDED HERE) -->
-                <section id="maya" class="bg-white rounded-xl civ-card overflow-hidden shadow-lg ring-maya transition-all duration-300 group">
-                    <div onclick="toggleCivilization('maya')" class="relative h-48 overflow-hidden transition-all duration-300" style="background-color: var(--color-maya);">
-                        <img src="CivilizationIMG/PyramidTempleInMaya.jpg" alt="Maya Civilization" class="absolute inset-0 w-full h-full object-cover opacity-70" onerror="this.style.display='none';">
+        <!-- ANCIENT WONDERS -->
+        <div id="ancient" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">Ancient Wonders</h2>
+            <div class="flex flex-col space-y-6">
+                <!-- Great Pyramid of Giza -->
+                <section id="pyramid" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('pyramid')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="7WonderIMG/Great-Pyramid-of-Giza.jpg" alt="Great Pyramid" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-indigo-200">Mesoamerica</span>
-                                <h4 class="text-3xl font-extrabold font-maya drop-shadow-md">Maya Civilization</h4>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Egypt</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Great Pyramid of Giza</h3>
                             </div>
-                            <svg id="chevron-maya" class="w-8 h-8 text-indigo-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg id="chevron-pyramid" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
-                    <div id="details-maya" class="details-content px-6">
+                    <div id="details-pyramid" class="details-content px-6">
                         <hr class="border-gray-200">
-                        <div class="space-y-3 p-4 bg-indigo-50/70 rounded-lg border border-indigo-200 border-l-4 mt-6">
-                            <!-- Expanded Detail Description (Courier) -->
-                            <p class="text-sm font-bold text-maya font-courier">Time: <span class="text-gray-700 font-normal">c. 2000 BCE – 1500 CE (Classic Period c. 250–900 CE)</span></p>
-                            <p class="text-sm font-bold text-maya font-courier">Location: <span class="text-gray-700 font-normal">Yucatán Peninsula & Central America</span></p>
-                            <p class="text-sm font-bold text-maya font-courier">Capital City: <span class="text-gray-700 font-normal">Tikal, Chichen Itza, Copán (Independent City-States)</span></p>
-                            <p class="text-sm font-bold text-maya font-courier">Key Figures: <span class="text-gray-700 font-normal">K'inich Janaab' Pakal (Pacal the Great)</span></p>
-                            <p class="text-sm font-bold text-maya font-courier">Known For: <span class="text-gray-700 font-normal">Concept of Zero, Highly Accurate Calendars, Hieroglyphs, Step Pyramids, Astronomy.</span></p>
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Giza, Egypt</p>
+                            <p><span class="font-bold text-amber-900">Built:</span> c. 2589–2566 BCE</p>
+                            <p><span class="font-bold text-amber-900">Built For:</span> Pharaoh Khufu</p>
+                            <p><span class="font-bold text-amber-900">Original Height:</span> 146.5 meters</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> The only surviving wonder of the ancient world constructed with 2.3 million limestone blocks.</p>
                         </div>
-                        
-                        <!-- NEW DETAILED CONTEXT CONTENT STARTS HERE -->
-                        <h5 class="text-base font-bold text-maya mt-6 mb-2">I. Decentralized Political Landscape</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">The Maya were not a unified empire but a collection of independent city-states, each ruled by an *ajaw* (lord). Despite political fragmentation and frequent warfare (often ritualistic), they shared a common culture, religion, and astronomical system. Their civilization was sustained by intensive agriculture in a dense tropical environment.</p>
-
-                        <h5 class="text-base font-bold text-maya mt-6 mb-2">II. Astronomical and Mathematical Genius</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">The Maya developed one of the most sophisticated intellectual traditions in the pre-Columbian world. They independently invented the concept of **zero** in their base-20 (vigesimal) numbering system. This, combined with meticulous observation of the stars, allowed them to create multiple, interlocking calendars, including the 260-day Sacred Round and the 365-day Solar Calendar, with such accuracy that they could predict celestial events hundreds of years in advance. [Image of Maya calendar systems]</p>
-
-                        <h5 class="text-base font-bold text-maya mt-6 mb-2">III. Culture and Collapse</h5>
-                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 font-courier ml-4">
-                            <li>**Writing:** Developed the only fully developed, complex phonetic-logographic writing system in the Americas, recorded on stone monuments (*stelae*) and fragile bark-paper books (*codices*).</li>
-                            <li>**Architecture:** Built massive ceremonial centers dominated by elaborately decorated stepped stone pyramids (e.g., Tikal, Chichen Itza).</li>
-                            <li>**Classic Collapse:** Between 800 and 1000 CE, most of the southern Maya centers were abruptly abandoned due to a confluence of factors, likely including long-term drought, environmental pressure from overpopulation, and political warfare.</li>
-                        </ul>
-
-                        <!-- KEY FIGURES SECTION (Richer Detail) -->
-                        <div class="mt-6 pt-4 border-t border-gray-300">
-                            <h5 class="text-lg font-bold text-maya mb-3">Key Figures & Contributions</h5>
-                            <ul class="list-disc list-inside space-y-2 text-sm text-gray-700 font-courier">
-                                <li>**K'inich Janaab' Pakal (Pacal the Great):** The *ajaw* (ruler) of the powerful Maya city-state of Palenque who presided over its golden age of construction and intellectual achievement in the 7th century CE.</li>
-                            </ul>
-                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Built as an elaborate tomb for Pharaoh Khufu of the Fourth Dynasty, the Great Pyramid represents one of humanity's greatest architectural achievements. Originally standing at 146.5 meters tall and covered in smooth white limestone, it reflects the remarkable precision and engineering capabilities of ancient Egypt. It remains the only surviving wonder of the ancient world.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Archaeologists continue to study its internal chambers and construction methods; the precise alignment and massive transport of stone blocks remain subjects of research and admiration. Visitors today can explore nearby funerary complexes and view the pyramid from several vantage points along the Giza plateau.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Today the Great Pyramid continues to inspire research into ancient logistics, labor organization, and astronomical alignments. Conservationists work to balance public access with preservation, managing tourism impact while using non-invasive techniques to probe the monument's hidden spaces. Its cultural resonance endures in literature, archaeology, and popular imagination as a touchstone of human ambition.</p>
                     </div>
                 </section>
 
-                <!-- 9. Inca Empire (CONTEXT EXPANDED HERE) -->
-                <section id="inca" class="bg-white rounded-xl civ-card overflow-hidden shadow-lg ring-primary transition-all duration-300 group">
-                    <div onclick="toggleCivilization('inca')" class="relative h-48 overflow-hidden transition-all duration-300" style="background-color: var(--color-inca);">
-                        <img src="CivilizationIMG/MachuPicchu.webp" alt="Inca Empire" class="absolute inset-0 w-full h-full object-cover opacity-70" onerror="this.style.display='none';">
+                <!-- Hanging Gardens of Babylon -->
+                <section id="gardens" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('gardens')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="7WonderIMG/Hanging-Gardens-of-Babylon.jpg" alt="Hanging Gardens" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">The Andes</span>
-                                <h4 class="text-3xl font-extrabold font-inca drop-shadow-md">Inca Empire</h4>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Babylon</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Hanging Gardens</h3>
                             </div>
-                            <svg id="chevron-inca" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg id="chevron-gardens" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
-                    <div id="details-inca" class="details-content px-6">
+                    <div id="details-gardens" class="details-content px-6">
                         <hr class="border-gray-200">
-                        <div class="space-y-3 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6">
-                            <!-- Expanded Detail Description (Courier) -->
-                            <p class="text-sm font-bold text-inca font-courier">Time: <span class="text-gray-700 font-normal">c. 1438 – 1533 CE</span></p>
-                            <p class="text-sm font-bold text-inca font-courier">Location: <span class="text-gray-700 font-normal">Andean Region (Peru, Ecuador, Bolivia, Chile, Argentina)</span></p>
-                            <p class="text-sm font-bold text-inca font-courier">Capital City: <span class="text-gray-700 font-normal">Cusco</span></p>
-                            <p class="text-sm font-bold text-inca font-courier">Key Figures: <span class="text-gray-700 font-normal">Pachacuti, Túpac Inca Yupanqui, Atahualpa</span></p>
-                            <p class="text-sm font-bold text-inca font-courier">Known For: <span class="text-gray-700 font-normal">Machu Picchu, Extensive Road Network, Quipu (Record Keeping), Master Stonework.</span></p>
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Babylon, Iraq</p>
+                            <p><span class="font-bold text-amber-900">Built:</span> c. 610–562 BCE</p>
+                            <p><span class="font-bold text-amber-900">Built By:</span> King Nebuchadnezzar II</p>
+                            <p><span class="font-bold text-amber-900">Status:</span> Legendary; no conclusive archaeological evidence</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> Terraced gardens with exotic plants and innovative irrigation systems.</p>
                         </div>
-                        
-                        <!-- NEW DETAILED CONTEXT CONTENT STARTS HERE -->
-                        <h5 class="text-base font-bold text-inca mt-6 mb-2">I. The Empire of the Andes (*Tawantinsuyu*)</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">The Inca Empire, known as *Tawantinsuyu* ("The Four Quarters"), expanded rapidly in the 15th century, becoming the largest empire in the Americas. Their vast territory, ruled from the capital **Cusco**, spanned deserts, coasts, and the high Andes mountains. The **Sapa Inca** (the sole ruler) was considered the son of the Sun god Inti, giving his rule a divine mandate.</p>
-
-                        <h5 class="text-base font-bold text-inca mt-6 mb-2">II. Administration Without Writing</h5>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-2">The Inca achieved centralized management without a conventional writing system. They relied on the **Quipu**, a system of knotted, colored strings used by specialists (*quipucamayocs*) to record complex decimal data on census, taxes, and state resources. Their economy was based on collective labor known as the *mita* system, a form of mandatory public service used for massive state projects like road building and farming terraces. </p>
-
-                        <h5 class="text-base font-bold text-inca mt-6 mb-2">III. Engineering and Architecture</h5>
-                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 font-courier ml-4">
-                            <li>**Road System (Qhapaq Ñan):** The Incas built the **Great Inca Road**, an estimated 25,000-mile network of trails traversing the entire empire, linked by runners (*chasquis*) who carried messages.</li>
-                            <li>**Stonework:** Their masterful dry-stone masonry, visible at sites like **Machu Picchu** and Cusco's core temples, involved cutting and fitting massive stones so precisely that mortar was unnecessary, creating earthquake-resistant structures.</li>
-                            <li>**Agriculture:** Developed sophisticated high-altitude agriculture using extensive terrace farming and advanced irrigation techniques to manage the mountainous terrain.</li>
-                        </ul>
-
-                        <!-- KEY FIGURES SECTION (Richer Detail) -->
-                        <div class="mt-6 pt-4 border-t border-gray-300">
-                            <h5 class="text-lg font-bold text-inca mb-3">Key Figures & Contributions</h5>
-                            <ul class="list-disc list-inside space-y-2 text-sm text-gray-700 font-courier">
-                                <li>**Pachacuti:** The ninth *Sapa Inca* (Great Inca), credited with transforming the small Kingdom of Cusco into the vast Inca Empire (*Tawantinsuyu*) through military conquest and centralized reorganization.</li>
-                                <li>**Túpac Inca Yupanqui:** Son of Pachacuti, who continued the expansion, conquering much of modern-day Ecuador and northern Chile.</li>
-                                <li>**Atahualpa:** The last true Inca Emperor, whose victory in a devastating civil war against his brother Huáscar coincided with the arrival of Spanish conquistadors, leading to the empire's rapid demise.</li>
-                            </ul>
-                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Hanging Gardens of Babylon are renowned in ancient literature as a marvel of engineering and horticulture. According to legend, they were built by King Nebuchadnezzar II to comfort his wife, Amytis, who missed the green hills of her homeland. The gardens featured multiple terraced levels filled with exotic plants, connected by vaulted arches.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Because physical evidence is scarce, historians debate whether the gardens were located in Babylon or were a conflation of several royal gardens in Mesopotamia and Assyria. Descriptions emphasize sophisticated irrigation and terracing techniques that would have been remarkable for the period.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Modern scholarship treats the Hanging Gardens as a combination of textual memory and possible garden-building traditions—an emblem of how landscape architecture could signify political power and imperial prestige. The debate over their historicity highlights how ancient texts, archaeology, and environmental studies must be combined to reconstruct vanished landscapes.</p>
                     </div>
                 </section>
 
+                <!-- Temple of Artemis -->
+                <section id="artemis" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('artemis')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="7WonderIMG/Temple-of-Artemis.jpg" alt="Temple of Artemis" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Greece</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Temple of Artemis</h3>
+                            </div>
+                            <svg id="chevron-artemis" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-artemis" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Ephesus, Turkey</p>
+                            <p><span class="font-bold text-amber-900">Built:</span> c. 550 BCE</p>
+                            <p><span class="font-bold text-amber-900">Architect:</span> Chersiphron and Metagenes</p>
+                            <p><span class="font-bold text-amber-900">Dimensions:</span> 115 meters long, 55 meters wide</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> Magnificent Ionic temple with 127 marble columns and sculptural decorations.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Temple of Artemis in Ephesus was one of the largest structures of the ancient world. Dedicated to the Greek goddess of the hunt, this magnificent temple featured 127 marble columns arranged in a double row. The temple was renowned for its intricate sculptures and artistic decorations.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Repeatedly rebuilt after fire and destruction, the temple became a major pilgrimage and artistic center, attracting sculptors whose work influenced Classical art. Only fragments of its foundations and scattered sculptures remain at the archaeological site today.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Temple of Artemis influenced the development of monumental Greek architecture and sculptural programs, shaping ideas of sacred space and civic display. Even in ruin, the temple's legacy endures through surviving sculptures and written descriptions that inform reconstructions and museum exhibits worldwide.</p>
+                    </div>
+                </section>
+
+                <!-- Statue of Zeus -->
+                <section id="zeus" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('zeus')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="7WonderIMG/Statue-of-Zeus.jpg" alt="Statue of Zeus" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Greece</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Statue of Zeus</h3>
+                            </div>
+                            <svg id="chevron-zeus" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-zeus" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Olympia, Greece</p>
+                            <p><span class="font-bold text-amber-900">Created:</span> c. 435 BCE</p>
+                            <p><span class="font-bold text-amber-900">Sculptor:</span> Phidias</p>
+                            <p><span class="font-bold text-amber-900">Height:</span> 12 meters (40 feet)</p>
+                            <p><span class="font-bold text-amber-900">Materials:</span> Ivory, gold, ebony, and precious stones</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Statue of Zeus at Olympia was a monumental chryselephantine (gold and ivory) sculpture created by the renowned sculptor Phidias around 435 BCE. Standing approximately 12 meters tall, the statue was one of the most celebrated works of art in the ancient world. It depicted the king of the gods seated on a magnificent throne adorned with jewels and carvings.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The statue's materials and size made it a symbol of wealth and religious devotion; it was housed in the Temple of Zeus and complemented the Olympic sanctuary's cultural importance. The original was lost in late antiquity, but many literary descriptions and small-scale reproductions preserve its visual legacy.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Although the original is lost, its fame influenced Hellenistic monumental sculpture and the conception of divine imagery in public sanctuaries. Artistic copies and literary accounts preserved aspects of its appearance and scale, offering modern historians clues about the aesthetics and religious meanings of large-scale cult statues.</p>
+                    </div>
+                </section>
+
+                <!-- Mausoleum at Halicarnassus -->
+                <section id="mausoleum" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('mausoleum')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="7WonderIMG/Mausoleum-of-Maussollos.jpg" alt="Mausoleum" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Turkey</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Mausoleum</h3>
+                            </div>
+                            <svg id="chevron-mausoleum" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-mausoleum" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Halicarnassus, Turkey</p>
+                            <p><span class="font-bold text-amber-900">Built:</span> c. 353 BCE</p>
+                            <p><span class="font-bold text-amber-900">Built For:</span> Mausolus, governor of Caria</p>
+                            <p><span class="font-bold text-amber-900">Height:</span> Approximately 45 meters</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> Ornate marble tomb that gave the world the term "mausoleum".</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Mausoleum at Halicarnassus was an elaborate marble tomb built around 353 BCE to honor Mausolus, the governor of Caria. Designed by the Greek architects Satyros and Pythius, this monumental structure stood approximately 45 meters tall and featured intricate sculptural decorations. The term "mausoleum" itself derives from this magnificent tomb.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Sculptural reliefs and a stepped pyramidal roof combined Greek, Egyptian, and Lycian elements, reflecting a fusion of cultures in the Hellenistic world. Although much was dismantled by later earthquakes and quarrying, surviving fragments are exhibited in museums and inform reconstructions.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Mausoleum's hybrid architectural vocabulary demonstrates the cosmopolitan tastes of Hellenistic elites and the mobility of artistic ideas across the Mediterranean. Its remains, dispersed by time, remain a critical source for studying sculptural workshops and burial monument design in the ancient world.</p>
+                    </div>
+                </section>
+
+                <!-- Colossus of Rhodes -->
+                <section id="colossus" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('colossus')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="7WonderIMG/The-Colossus-of-Rhodes.jpg" alt="Colossus" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Greece</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Colossus of Rhodes</h3>
+                            </div>
+                            <svg id="chevron-colossus" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-colossus" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Rhodes, Greece</p>
+                            <p><span class="font-bold text-amber-900">Built:</span> c. 292–280 BCE</p>
+                            <p><span class="font-bold text-amber-900">Sculptor:</span> Chares of Lindos</p>
+                            <p><span class="font-bold text-amber-900">Height:</span> Approximately 33 meters (108 feet)</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> Massive bronze statue of sun god Helios, symbol of freedom and protection.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Colossus of Rhodes was a towering bronze statue of the sun god Helios, erected around 280 BCE to celebrate Rhodes' victory over a besieging army. Created by sculptor Chares of Lindos, this monumental statue stood approximately 33 meters tall and was crafted from bronze plates riveted together. It was one of the tallest statues of the ancient world.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Ancient writers described how the statue stood near the harbor as a symbol of civic pride; an earthquake toppled it after about 60 years. Its remains were said to have been left in place for centuries and later sold by invaders, though exact archaeological confirmation is limited.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Colossus exemplifies how public monuments serve as anchors of urban identity and collective memory; accounts of its fall and later fate shaped medieval and Renaissance imaginings of lost wonders. Its story underscores the fragility of monumental bronze works and the dramatic effects of natural disasters on cultural heritage.</p>
+                    </div>
+                </section>
+
+                <!-- Lighthouse of Alexandria -->
+                <section id="lighthouse" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('lighthouse')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="7WonderIMG/Lighthouse-of-Alexandria.jpg" alt="Lighthouse" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Egypt</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Lighthouse of Alexandria</h3>
+                            </div>
+                            <svg id="chevron-lighthouse" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-lighthouse" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Alexandria, Egypt</p>
+                            <p><span class="font-bold text-amber-900">Built:</span> c. 280 BCE</p>
+                            <p><span class="font-bold text-amber-900">Built For:</span> Ptolemy II</p>
+                            <p><span class="font-bold text-amber-900">Height:</span> Approximately 100 meters (330 feet)</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> Ancient lighthouse (Pharos) that guided ships and was visible up to 50 kilometers away.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Lighthouse of Alexandria, also known as the Pharos, was one of the tallest man-made structures of the ancient world. Built around 280 BCE during the reign of Ptolemy II, this magnificent lighthouse stood on the island of Pharos and used mirrors and fire to guide ships safely into the harbor. It remained operational for nearly 1,500 years.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Pharos combined practical maritime function with monumental architecture; accounts emphasize its multi-story design and durable masonry. Earthquakes gradually damaged the structure, and its remains were eventually used as a medieval fort's foundation; underwater archaeology has revealed substantial ruins in Alexandria's harbor.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Archaeological surveys of the harbor have recovered architectural fragments that help reconstruct its scale and engineering. The lighthouse's combined civic, religious, and navigational roles illustrate how technological solutions can achieve enduring symbolic power in coastal cities.</p>
+                    </div>
+                </section>
             </div>
         </div>
 
+        <!-- MODERN WONDERS -->
+        <div id="modern">
+            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">Modern Wonders</h2>
+            
+            <div class="flex flex-col space-y-6">
+                <!-- Great Wall of China -->
+                <section id="wall" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('wall')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Great-Wall-of-China.jpg" alt="Great Wall" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern China</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Great Wall of China</h3>
+                            </div>
+                            <svg id="chevron-wall" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-wall" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> China</p>
+                            <p><span class="font-bold text-blue-900">Length:</span> Approximately 21,196 kilometers</p>
+                            <p><span class="font-bold text-blue-900">Built Over:</span> More than 2,000 years (multiple dynasties)</p>
+                            <p><span class="font-bold text-blue-900">Purpose:</span> Military defense and border control</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> One of the most impressive architectural feats, visible from space.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Great Wall of China is one of the most iconic structures in the world, stretching across northern China. Built over more than 2,000 years by multiple dynasties, it served as a military defense system and border control mechanism. The wall was constructed to protect against invasions from northern tribes and to control trade along the Silk Road.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">What survives today is a patchwork of walls from different periods, prominently restored sections from the Ming dynasty; the wall's length and character vary regionally. It also served as a cultural symbol and facilitated troop movements, signaling, and patrols rather than a continuous, impregnable barrier.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Great Wall's modern iconic status owes as much to nineteenth- and twentieth-century restoration and romanticization as to ancient construction; conservationists now grapple with balancing tourism, restoration authenticity, and local community concerns. Its fragmented nature offers a layered archaeological record of frontier policies across centuries.</p>
+                    </div>
+                </section>
+
+                <!-- Taj Mahal -->
+                <section id="taj" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('taj')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Taj-Mahal.jpg" alt="Taj Mahal" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern India</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Taj Mahal</h3>
+                            </div>
+                            <svg id="chevron-taj" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-taj" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Agra, India</p>
+                            <p><span class="font-bold text-blue-900">Built:</span> 1632–1653</p>
+                            <p><span class="font-bold text-blue-900">Built By:</span> Emperor Shah Jahan</p>
+                            <p><span class="font-bold text-blue-900">Built For:</span> His wife Mumtaz Mahal</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Monument to eternal love, featuring exquisite white marble and intricate inlay work.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Taj Mahal is widely regarded as one of the most beautiful buildings in the world. Built between 1632 and 1653 by Emperor Shah Jahan as a mausoleum for his beloved wife, Mumtaz Mahal, this magnificent structure is a masterpiece of Mughal architecture. The Taj Mahal features exquisite white marble inlaid with semi-precious stones.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Its garden layout, symmetry, and decorative calligraphy reflect Persian and Indian design influences; conservation efforts focus on pollution control and structural preservation. The site continues to draw millions of visitors yearly and remains a powerful symbol of Mughal-era artistry.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Scholars emphasize the Taj's role as both a funerary monument and a statement of imperial aesthetics, where technical ingenuity in marble carving and inlay contributes to its visual impact. Preservation work addresses environmental threats and the challenges of mass tourism while sustaining the site's living cultural context.</p>
+                    </div>
+                </section>
+
+                <!-- Christ the Redeemer -->
+                <section id="christ" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('christ')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Christ-the-Redeemer.jpg" alt="Christ the Redeemer" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Brazil</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Christ the Redeemer</h3>
+                            </div>
+                            <svg id="chevron-christ" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-christ" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Rio de Janeiro, Brazil</p>
+                            <p><span class="font-bold text-blue-900">Built:</span> 1922–1931</p>
+                            <p><span class="font-bold text-blue-900">Height:</span> 38 meters (125 feet)</p>
+                            <p><span class="font-bold text-blue-900">Design:</span> Art Deco style</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Iconic symbol of Rio, overlooking from atop Corcovado Mountain.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Christ the Redeemer is a colossal Art Deco statue overlooking Rio de Janeiro from Corcovado Mountain. Built between 1922 and 1931, this iconic monument stands 38 meters tall and has become a symbol of Brazilian culture. The statue depicts Jesus Christ with arms outstretched in blessing and protection over the city.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Constructed of reinforced concrete and soapstone, the statue's location offers panoramic views and has become both a religious pilgrimage site and tourist landmark. It has undergone regular conservation to address weathering and lightning damage.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The statue highlights how modern national identity can be expressed through monumental art; its prominence in Rio's skyline and cultural imagery demonstrates how 20th-century engineering and modern materials shaped new iconic landscapes. Conservation combines structural reinforcement with community stewardship to protect the landmark.</p>
+                    </div>
+                </section>
+
+                <!-- Machu Picchu -->
+                <section id="machu" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('machu')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Machu-Picchu.jpg" alt="Machu Picchu" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Peru</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Machu Picchu</h3>
+                            </div>
+                            <svg id="chevron-machu" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-machu" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Cusco Region, Peru</p>
+                            <p><span class="font-bold text-blue-900">Built:</span> c. 1450</p>
+                            <p><span class="font-bold text-blue-900">Built By:</span> Inca Empire</p>
+                            <p><span class="font-bold text-blue-900">Altitude:</span> 2,430 meters above sea level</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Ancient Incan citadel showcasing remarkable engineering and stone masonry.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Machu Picchu is an ancient Incan citadel situated on a mountain ridge high in the Andes. Built around 1450, this remarkable site showcases incredible engineering and architectural prowess. The structures were built without mortar, using precisely cut stones that fit together perfectly.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Rediscovered by Hiram Bingham in 1911, Machu Picchu provides insight into Incan urban planning, agricultural terraces, and religious spaces. Preservation efforts balance visitor access with erosion control and protection of the surrounding cloud-forest ecosystem.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Machu Picchu's rediscovery reshaped global views of pre-Columbian civilizations and raised questions about tourism's environmental footprint. Current efforts integrate local Quechua communities in stewardship plans and emphasize landscape-scale conservation to maintain both archaeological features and biodiversity.</p>
+                    </div>
+                </section>
+
+                <!-- Chichen Itza -->
+                <section id="chichen" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('chichen')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Chichen-Itza.jpg" alt="Chichen Itza" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Mexico</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Chichen Itza</h3>
+                            </div>
+                            <svg id="chevron-chichen" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-chichen" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Yucatan, Mexico</p>
+                            <p><span class="font-bold text-blue-900">Founded:</span> c. 600 CE</p>
+                            <p><span class="font-bold text-blue-900">Period:</span> Mayan and Toltec</p>
+                            <p><span class="font-bold text-blue-900">Famous Structure:</span> El Castillo (The Castle pyramid)</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Blending Mayan and Toltec architectural styles.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Chichen Itza is one of the largest pre-Columbian archaeological sites in Mexico. Founded around 600 CE, this site represents a fascinating blend of Mayan and Toltec architectural styles. The most iconic structure is El Castillo (The Castle), a large pyramid that serves as the centerpiece of the complex.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Archaeological work at Chichen Itza has revealed ball courts, observatories, and a rich record of art and ritual practice, including carved stelae and cenotes (natural sinkholes) used for offerings. The site's seasonal light-and-shadow effects on El Castillo demonstrate advanced astronomical knowledge.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Chichen Itza's blend of architectural forms and ritual spaces reflects political shifts and cultural exchange across Mesoamerica. Protecting its structures and iconography involves both archaeological stabilization and community-engaged tourism strategies that respect local heritage values.</p>
+                    </div>
+                </section>
+
+                <!-- Roman Colosseum -->
+                <section id="colosseum" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('colosseum')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Roman-Colosseum.jpg" alt="Roman Colosseum" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Italy</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Roman Colosseum</h3>
+                            </div>
+                            <svg id="chevron-colosseum" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-colosseum" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Rome, Italy</p>
+                            <p><span class="font-bold text-blue-900">Built:</span> 72–80 CE</p>
+                            <p><span class="font-bold text-blue-900">Built By:</span> Roman Emperors Vespasian and Titus</p>
+                            <p><span class="font-bold text-blue-900">Capacity:</span> Approximately 50,000–80,000 spectators</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Ancient amphitheater hosting gladiatorial contests and public spectacles.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Roman Colosseum is an iconic symbol of Imperial Rome and one of the most impressive surviving structures from the ancient world. Built between 72 and 80 CE, this massive amphitheater could hold up to 80,000 spectators. It was used for gladiatorial contests, animal hunts, and public spectacles.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Colosseum's complex system of corridors, trapdoors, and seating tiers made large-scale spectacles possible; it also reflects Roman engineering with vaulted construction and precise use of concrete. Conservation projects have stabilized the monument and opened parts of its interior to visitors while studying its layered history.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">As an urban amphitheater, the Colosseum offers insight into Roman social performance and the politics of spectacle; modern conservation emphasizes structural reinforcement and interpretive programs that contextualize the site's social history, including the lives of performers and animals within its arenas.</p>
+                    </div>
+                </section>
+
+                <!-- Petra -->
+                <section id="petra" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('petra')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Petra.jpg" alt="Petra" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Jordan</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Petra</h3>
+                            </div>
+                            <svg id="chevron-petra" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-petra" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Ma'an Governorate, Jordan</p>
+                            <p><span class="font-bold text-blue-900">Carved:</span> c. 100 BCE – 100 CE</p>
+                            <p><span class="font-bold text-blue-900">Built By:</span> Nabataean Kingdom</p>
+                            <p><span class="font-bold text-blue-900">Stone:</span> Rose-red sandstone</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Ancient city carved into rock cliffs, major trading hub.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Petra is a magnificent ancient city carved into rose-red sandstone cliffs in Jordan. Established by the Nabataean Kingdom around 100 BCE, it served as a major trading hub. The city is famous for its intricate rock-cut architecture and sophisticated water management system.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Petra's facades, tombs, and water channels demonstrate impressive hydraulic engineering adapted to an arid environment; the site's narrow gorge, the Siq, leads visitors into the dramatic Treasury and central areas. Preservation focuses on erosion control and managing tourism impact on fragile stone surfaces.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Petra's value lies in its integration of landscape and urban planning, where natural rock becomes civic architecture. Researchers and conservators work to mitigate wind and water erosion while developing sustainable visitation models that protect its fragile surfaces and local livelihoods.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <nav class="mt-16 pt-8 border-t border-gray-300 text-center">
+            <a href="index.html" class="inline-block px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors">
+                ← Back to Home
+            </a>
+        </nav>
     </div>
-
 </body>
 </html>
