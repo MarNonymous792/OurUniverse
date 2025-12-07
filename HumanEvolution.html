@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Evolution of Man</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght[400;600;800]&family=Courier+Prime:wght[400;700]&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Retained color scheme for land/ancient (brown) */
+            --color-land: #92400e; 
+            --color-sea: #1e40af;   
+            --page-bg: #f7f7f7;
+            /* New variable for the evolution theme */
+            --color-evolution: #065f46; /* A deep green for life/origins */
+        }
+        
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: Arial, Helvetica, 'Inter', sans-serif;
+            background: var(--page-bg);
+        }
+        
+        section { scroll-margin-top: 6rem; }
+        
+        .card-shadow {
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+        .card-shadow:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .details-content {
+            max-height: 0;
+            opacity: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-bottom: 0;
+            transition: max-height 0.7s ease-in-out, opacity 0.5s ease-in-out, padding 0.5s ease-in-out;
+            will-change: max-height, opacity;
+        }
+        .details-content.expanded {
+            max-height: 1500px;
+            opacity: 1;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+    </style>
+    <script>
+        function toggleCard(id) {
+            const detailsElement = document.getElementById('details-' + id);
+            const chevronElement = document.getElementById('chevron-' + id);
+            
+            if (detailsElement) {
+                detailsElement.classList.toggle('expanded');
+                if (chevronElement) {
+                    chevronElement.style.transform = detailsElement.classList.contains('expanded') 
+                        ? 'rotate(180deg)' 
+                        : 'rotate(0deg)';
+                }
+                
+                setTimeout(() => {
+                    const targetCard = document.getElementById(id);
+                    if (targetCard) {
+                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 50);
+            }
+        }
+    </script>
+</head>
+ <body class="antialiased">
+
+<header class="bg-white shadow-sm sticky top-0 z-30">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <a href="#" class="text-lg font-semibold text-gray-800">Paleo-Path</a>
+        <nav class="space-x-3">
+            <a href="#main-list" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">Home</a>
+            <a href="#overview" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">Overview</a>
+            <a href="#stages" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">7 Stages</a>
+            <a href="#factors" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">Factors</a>
+        </nav>
+    </div>
+</header>
+
+    <div id="main-list" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <h1 class="text-5xl sm:text-6xl font-extrabold text-center mb-4 text-gray-900 font-serif tracking-tight" style="font-family: 'Playfair Display', serif;">
+            The Evolution of Man
+        </h1>
+        <p class="text-center text-gray-600 text-lg mb-6 max-w-2xl mx-auto">
+            The long biological and cultural journey of "Homo sapiens"
+        </p>
+        
+        <div id="overview" class="mb-8 max-w-2xl mx-auto text-center text-gray-700">
+            <h2 class="text-xl font-bold mb-2 text-gray-800">What is Human Evolution?</h2>
+            <p class="text-sm mb-2">Human evolution refers to the long biological and cultural journey through which modern humans, "Homo sapiens", emerged from earlier primate ancestors. Our species originated in "Africa" roughly 315,000 years ago and is the only surviving member of the human tribe Hominini.</p>
+            <p class="text-sm">The evolutionary path is better imagined as a "branching "family bush" rather than a straight, linear "family tree," reflecting the many species that emerged, overlapped, and disappeared over time.</p>
+        </div>
+        
+        <div id="stages" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">Seven Stages of Human Evolution</h2>
+            <div class="flex flex-col space-y-6">
+                
+                <section id="dryopithecus" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('dryopithecus')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-evolution);">
+                        <img src="ManEvo/1.jpg" class="absolute inset-0 w-full h-full object-contain opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-emerald-200">Early Hominoid</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Dryopithecus</h3>
+                            </div>
+                            <svg id="chevron-dryopithecus" class="w-8 h-8 text-emerald-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-dryopithecus" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-emerald-50/70 rounded-lg border border-emerald-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-emerald-900">Time Period:</span> 12.5–11.1 million years ago (Miocene)</p>
+                            <p><span class="font-bold text-emerald-900">First Discovery:</span> 1856 in France</p>
+                            <p><span class="font-bold text-emerald-900">Key Trait:</span> Resembled modern gibbons</p>
+                            <p><span class="font-bold text-emerald-900">Posture:</span> Lived in trees but had a more upright posture</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">This species is considered an ancestor or close relative of modern apes and possibly humans. It helped scientists understand early ape evolution and potential origins of hominins.</p>
+                    </div>
+                </section>
+
+                <section id="ramapithecus" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('ramapithecus')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-evolution);">
+                        <img src="ManEvo/2.jpg" alt="Ramapithecus" class="absolute inset-0 w-full h-full object-contain opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-emerald-200">Orangutan Relative</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Ramapithecus</h3>
+                            </div>
+                            <svg id="chevron-ramapithecus" class="w-8 h-8 text-emerald-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-ramapithecus" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-emerald-50/70 rounded-lg border border-emerald-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-emerald-900">Time Period:</span> 14–9 million years ago (Miocene)</p>
+                            <p><span class="font-bold text-emerald-900">First Discovery:</span> 1932 in the Siwālik Hills, India</p>
+                            <p><span class="font-bold text-emerald-900">Classification:</span> Later reclassified as more closely related to modern orangutans</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Although not a direct ancestor, Ramapithecus (Synonym: Sivapithecus) provided insights into primate divergence and hominoid evolution.</p>
+                    </div>
+                </section>
+
+                <section id="australopithecus" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('australopithecus')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-evolution);">
+                        <img src="ManEvo/3.jpg" alt="Australopithecus" class="absolute inset-0 w-full h-full object-contain opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-emerald-200">Southern Apes</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Australopithecus</h3>
+                            </div>
+                            <svg id="chevron-australopithecus" class="w-8 h-8 text-emerald-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-australopithecus" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-emerald-50/70 rounded-lg border border-emerald-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-emerald-900">Time Period:</span> 4–2 million years ago (Pliocene–Pleistocene)</p>
+                            <p><span class="font-bold text-emerald-900">Key Trait:</span> Fully bipedal with a small brain</p>
+                            <p><span class="font-bold text-emerald-900">Famous Fossil:</span> “Lucy” (Australopithecus afarensis)</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">This was a crucial transitional group showing the early stages of upright walking and human anatomy, displaying a mix of ape-like and human-like features.</p>
+                    </div>
+                </section>
+
+                <section id="homohabilis" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('homohabilis')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-evolution);">
+                        <img src="ManEvo/4.jpg" alt="Homo habilis" class="absolute inset-0 w-full h-full object-contain opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-emerald-200">Handy Man</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Homo habilis</h3>
+                            </div>
+                            <svg id="chevron-homohabilis" class="w-8 h-8 text-emerald-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-homohabilis" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-emerald-50/70 rounded-lg border border-emerald-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-emerald-900">Time Period:</span> 2.4–1.4 million years ago (Early Pleistocene)</p>
+                            <p><span class="font-bold text-emerald-900">Key Trait:</span> Made and used simple stone tools</p>
+                            <p><span class="font-bold text-emerald-900">Brain Size:</span> Larger brain compared to earlier hominins</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">As one of the earliest members of the *Homo* genus, it showed major advances in cognition and tool making, marking a transition toward more human-like movement.</p>
+                    </div>
+                </section>
+
+                <section id="homoerectus" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('homoerectus')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-evolution);">
+                        <img src="ManEvo/5.jpg" alt="Homo erectus" class="absolute inset-0 w-full h-full object-contain opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-emerald-200">Upright Man</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Homo erectus</h3>
+                            </div>
+                            <svg id="chevron-homoerectus" class="w-8 h-8 text-emerald-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-homoerectus" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-emerald-50/70 rounded-lg border border-emerald-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-emerald-900">Time Period:</span> 1.9 million–143,000 years ago</p>
+                            <p><span class="font-bold text-emerald-900">Key Trait:</span> First hominin species to leave Africa</p>
+                            <p><span class="font-bold text-emerald-900">Technology:</span> First strong evidence of controlled fire and cooking</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">A highly successful and widespread species that was fully upright, possessing long legs, shorter arms, and advanced Acheulean handaxes. It gave rise to later human groups.</p>
+                    </div>
+                </section>
+
+                <section id="neanderthalensis" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('neanderthalensis')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-evolution);">
+                        <img src="ManEvo/6.jpg" alt="Neanderthals" class="absolute inset-0 w-full h-full object-contain opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-emerald-200">Close Relative</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">H. s. neanderthalensis (Neanderthals)</h3>
+                            </div>
+                            <svg id="chevron-neanderthalensis" class="w-8 h-8 text-emerald-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-neanderthalensis" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-emerald-50/70 rounded-lg border border-emerald-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-emerald-900">Time Period:</span> 400,000–40,000 years ago</p>
+                            <p><span class="font-bold text-emerald-900">Key Trait:</span> Adapted to cold climates; strong and robust build</p>
+                            <p><span class="font-bold text-emerald-900">Interaction:</span>         Interbred with early modern humans</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Neanderthals were skilled hunters and toolmakers who created symbolic art. They are close relatives of *Homo sapiens*, contributing genetically to modern non-African populations.</p>
+                    </div>
+                </section>
+
+                <section id="homosapiens" class="bg-white rounded-xl card-shadow overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleCard('homosapiens')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-evolution);">
+                        <img src="ManEvo/7.jpg" alt="Homo sapiens" class="absolute inset-0 w-full h-full object-contain opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-emerald-200">Wise Man</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Homo sapiens (Modern Humans)</h3>
+                            </div>
+                            <svg id="chevron-homosapiens" class="w-8 h-8 text-emerald-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-homosapiens" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-emerald-50/70 rounded-lg border border-emerald-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-emerald-900">Time Period:</span> Oldest fossils ~315,000 years old (Morocco)</p>
+                            <p><span class="font-bold text-emerald-900">Key Trait:</span> Highly advanced brain and cognitive abilities</p>
+                            <p><span class="font-bold text-emerald-900">Culture:</span> Capable of abstract thinking, language, and complex culture</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">As the only surviving Homo species, modern humans developed agriculture, technology, art, and science, transforming the planet through innovation and adaptation.</p>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+        <div id="factors">
+            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">Factors That Impacted Human Evolution</h2>
+            
+            <div class="bg-gray-100 p-6 rounded-xl shadow-inner border-l-4 border-gray-500">
+                <p class="text-lg font-semibold text-gray-800 mb-4">Ten Major Developments for the Homo Lineage:</p>
+                <ul class="space-y-3 text-gray-700 text-sm list-disc list-inside ml-4">
+                    <li>Bipedalism: Walking on two legs freed the hands for tool use and improved mobility.</li>
+                    <li>Increased Brain Size: Allowed for advanced thinking, planning, and problem-solving.</li>
+                    <li>Tool Use: Early tools improved survival by helping with hunting, cutting, and building.</li>
+                    <li>Complex Social Structures: Living in groups encouraged cooperation and the transfer of knowledge.</li>
+                    <li>Language and Communication: Early communication systems supported coordination, teaching, and culture.</li>
+                    <li>Cooperative Hunting: Shared hunting strategies increased food supply and strengthened group bonds.</li>
+                    <li>Fire Control: Fire allowed cooking, warmth, protection, and social gatherings.</li>
+                    <li>Long Childhood Development: A longer childhood supported learning and brain development.</li>
+                    <li>Adaptability to Environments: Humans survived in diverse climates through clothing, shelter, and innovation.</li>
+                    <li>Symbolic Thinking: Art, rituals, and symbolic behavior reflect advanced cognitive abilities.</li>
+                </ul>
+            </div>
+        </div>
+
+        <nav class="mt-16 pt-8 border-t border-gray-300 text-center">
+            <a href="#" class="inline-block px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors">
+                ← Back to Top
+            </a>
+        </nav>
+    </div>
+</body>
+</html>
