@@ -86,30 +86,31 @@
     <div id="wonders-list" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
         <h1 class="text-5xl sm:text-6xl font-extrabold text-center mb-4 text-gray-900 font-serif tracking-tight" style="font-family: 'Playfair Display', serif;">
-            Seven Wonders of the World
+            Our Solar System
         </h1>
         <p class="text-center text-gray-600 text-lg mb-6 max-w-2xl mx-auto">
-            Explore the greatest architectural and engineering achievements of ancient and modern times
+            Explore the remarkable celestial bodies and dynamic interactions that make up our cosmic neighborhood.
         </p>
         <div id="about" class="mb-8 max-w-2xl mx-auto text-center text-gray-700">
-            <h2 class="text-xl font-bold mb-2 text-gray-800">About the Seven Wonders</h2>
-            <p class="text-sm mb-2">The ancient Seven Wonders were extraordinary constructions of antiquity celebrated for their scale, artistry, and engineering. Examples include the Great Pyramid of Giza, the Hanging Gardens of Babylon, and the Colossus of Rhodes. These sites symbolize the technological and cultural achievements of ancient civilizations across the Mediterranean and Near East.</p>
-            <p class="text-sm">The modern wonders featured below — such as the Great Wall of China, the Taj Mahal, and Machu Picchu — are admired for their architectural brilliance and cultural significance. Each card on this page includes a facts panel (location, date, builders) and a short description; click any card to expand and read the full details.</p>
+            <h2 class="text-xl font-bold mb-2 text-gray-800">About the Solar System</h2>
+            <p class="text-sm mb-2">The Solar System is a vast and complex collection of celestial objects bound together by the gravitational pull of the Sun, a massive star at its center. It includes eight major planets, their moons, dwarf planets like Pluto, and countless smaller bodies such as asteroids, comets, and meteoroids. These objects vary greatly in size, composition, and behavior, offering insights into the formation and evolution of planetary systems.</p>
+            <p class="text-sm mb-2">From the rocky inner planets — Mercury, Venus, Earth, and Mars — to the gas and ice giants — Jupiter, Saturn, Uranus, and Neptune — each world presents unique characteristics shaped by billions of years of cosmic processes. Surrounding them is the Kuiper Belt, home to icy bodies and dwarf planets, and further out lies the distant Oort Cloud, a theoretical sphere of ancient comets.</p>
+            <p class="text-sm">The cards below feature major Solar System objects — including planets, dwarf planets, and notable moons — admired for their scientific significance and stunning natural features. Each card contains key facts (type, size, distance from the Sun, and composition) along with a short description; click any card to learn more about the wonders of our Solar System.</p>
         </div>
         
         <!-- ANCIENT WONDERS -->
         <div id="ancient" class="mb-16">
-            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">Ancient Wonders</h2>
+            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">INNER PLANETS</h2>
             <div class="flex flex-col space-y-6">
                 <!-- Great Pyramid of Giza -->
                 <section id="pyramid" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
                     <div onclick="toggleWonder('pyramid')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
-                        <img src="7WonderIMG/Great-Pyramid-of-Giza.jpg" alt="Great Pyramid" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <img src="planetsImg/mercury.jpg" alt="Great Pyramid" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Egypt</span>
-                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Great Pyramid of Giza</h3>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">The Swift Planet</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Mercury</h3>
                             </div>
                             <svg id="chevron-pyramid" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
@@ -132,12 +133,12 @@
                 <!-- Hanging Gardens of Babylon -->
                 <section id="gardens" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
                     <div onclick="toggleWonder('gardens')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
-                        <img src="7WonderIMG/Hanging-Gardens-of-Babylon.jpg" alt="Hanging Gardens" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <img src="planetsImg/venus.jpg" alt="Hanging Gardens" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Babylon</span>
-                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Hanging Gardens</h3>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">The Evening Star</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Venus</h3>
                             </div>
                             <svg id="chevron-gardens" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
@@ -160,12 +161,12 @@
                 <!-- Temple of Artemis -->
                 <section id="artemis" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
                     <div onclick="toggleWonder('artemis')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
-                        <img src="7WonderIMG/Temple-of-Artemis.jpg" alt="Temple of Artemis" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <img src="planetsImg/earth.webp" alt="Temple of Artemis" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Greece</span>
-                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Temple of Artemis</h3>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">The Blue Planet</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Earth</h3>
                             </div>
                             <svg id="chevron-artemis" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
@@ -188,12 +189,12 @@
                 <!-- Statue of Zeus -->
                 <section id="zeus" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
                     <div onclick="toggleWonder('zeus')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
-                        <img src="7WonderIMG/Statue-of-Zeus.jpg" alt="Statue of Zeus" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <img src="planetsImg/mars.jpg" alt="Statue of Zeus" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Greece</span>
-                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Statue of Zeus</h3>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">The Red Planet</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Mars</h3>
                             </div>
                             <svg id="chevron-zeus" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
@@ -213,91 +214,6 @@
                     </div>
                 </section>
 
-                <!-- Mausoleum at Halicarnassus -->
-                <section id="mausoleum" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
-                    <div onclick="toggleWonder('mausoleum')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
-                        <img src="7WonderIMG/Mausoleum-of-Maussollos.jpg" alt="Mausoleum" class="absolute inset-0 w-full h-full object-cover opacity-70">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
-                            <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Turkey</span>
-                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Mausoleum</h3>
-                            </div>
-                            <svg id="chevron-mausoleum" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </div>
-                    </div>
-                    <div id="details-mausoleum" class="details-content px-6">
-                        <hr class="border-gray-200">
-                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
-                            <p><span class="font-bold text-amber-900">Location:</span> Halicarnassus, Turkey</p>
-                            <p><span class="font-bold text-amber-900">Built:</span> c. 353 BCE</p>
-                            <p><span class="font-bold text-amber-900">Built For:</span> Mausolus, governor of Caria</p>
-                            <p><span class="font-bold text-amber-900">Height:</span> Approximately 45 meters</p>
-                            <p><span class="font-bold text-amber-900">Known For:</span> Ornate marble tomb that gave the world the term "mausoleum".</p>
-                        </div>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Mausoleum at Halicarnassus was an elaborate marble tomb built around 353 BCE to honor Mausolus, the governor of Caria. Designed by the Greek architects Satyros and Pythius, this monumental structure stood approximately 45 meters tall and featured intricate sculptural decorations. The term "mausoleum" itself derives from this magnificent tomb.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Sculptural reliefs and a stepped pyramidal roof combined Greek, Egyptian, and Lycian elements, reflecting a fusion of cultures in the Hellenistic world. Although much was dismantled by later earthquakes and quarrying, surviving fragments are exhibited in museums and inform reconstructions.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Mausoleum's hybrid architectural vocabulary demonstrates the cosmopolitan tastes of Hellenistic elites and the mobility of artistic ideas across the Mediterranean. Its remains, dispersed by time, remain a critical source for studying sculptural workshops and burial monument design in the ancient world.</p>
-                    </div>
-                </section>
-
-                <!-- Colossus of Rhodes -->
-                <section id="colossus" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
-                    <div onclick="toggleWonder('colossus')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
-                        <img src="7WonderIMG/The-Colossus-of-Rhodes.jpg" alt="Colossus" class="absolute inset-0 w-full h-full object-cover opacity-70">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
-                            <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Greece</span>
-                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Colossus of Rhodes</h3>
-                            </div>
-                            <svg id="chevron-colossus" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </div>
-                    </div>
-                    <div id="details-colossus" class="details-content px-6">
-                        <hr class="border-gray-200">
-                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
-                            <p><span class="font-bold text-amber-900">Location:</span> Rhodes, Greece</p>
-                            <p><span class="font-bold text-amber-900">Built:</span> c. 292–280 BCE</p>
-                            <p><span class="font-bold text-amber-900">Sculptor:</span> Chares of Lindos</p>
-                            <p><span class="font-bold text-amber-900">Height:</span> Approximately 33 meters (108 feet)</p>
-                            <p><span class="font-bold text-amber-900">Known For:</span> Massive bronze statue of sun god Helios, symbol of freedom and protection.</p>
-                        </div>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Colossus of Rhodes was a towering bronze statue of the sun god Helios, erected around 280 BCE to celebrate Rhodes' victory over a besieging army. Created by sculptor Chares of Lindos, this monumental statue stood approximately 33 meters tall and was crafted from bronze plates riveted together. It was one of the tallest statues of the ancient world.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Ancient writers described how the statue stood near the harbor as a symbol of civic pride; an earthquake toppled it after about 60 years. Its remains were said to have been left in place for centuries and later sold by invaders, though exact archaeological confirmation is limited.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Colossus exemplifies how public monuments serve as anchors of urban identity and collective memory; accounts of its fall and later fate shaped medieval and Renaissance imaginings of lost wonders. Its story underscores the fragility of monumental bronze works and the dramatic effects of natural disasters on cultural heritage.</p>
-                    </div>
-                </section>
-
-                <!-- Lighthouse of Alexandria -->
-                <section id="lighthouse" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
-                    <div onclick="toggleWonder('lighthouse')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
-                        <img src="7WonderIMG/Lighthouse-of-Alexandria.jpg" alt="Lighthouse" class="absolute inset-0 w-full h-full object-cover opacity-70">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
-                            <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Egypt</span>
-                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Lighthouse of Alexandria</h3>
-                            </div>
-                            <svg id="chevron-lighthouse" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </div>
-                    </div>
-                    <div id="details-lighthouse" class="details-content px-6">
-                        <hr class="border-gray-200">
-                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
-                            <p><span class="font-bold text-amber-900">Location:</span> Alexandria, Egypt</p>
-                            <p><span class="font-bold text-amber-900">Built:</span> c. 280 BCE</p>
-                            <p><span class="font-bold text-amber-900">Built For:</span> Ptolemy II</p>
-                            <p><span class="font-bold text-amber-900">Height:</span> Approximately 100 meters (330 feet)</p>
-                            <p><span class="font-bold text-amber-900">Known For:</span> Ancient lighthouse (Pharos) that guided ships and was visible up to 50 kilometers away.</p>
-                        </div>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Lighthouse of Alexandria, also known as the Pharos, was one of the tallest man-made structures of the ancient world. Built around 280 BCE during the reign of Ptolemy II, this magnificent lighthouse stood on the island of Pharos and used mirrors and fire to guide ships safely into the harbor. It remained operational for nearly 1,500 years.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Pharos combined practical maritime function with monumental architecture; accounts emphasize its multi-story design and durable masonry. Earthquakes gradually damaged the structure, and its remains were eventually used as a medieval fort's foundation; underwater archaeology has revealed substantial ruins in Alexandria's harbor.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Archaeological surveys of the harbor have recovered architectural fragments that help reconstruct its scale and engineering. The lighthouse's combined civic, religious, and navigational roles illustrate how technological solutions can achieve enduring symbolic power in coastal cities.</p>
-                    </div>
-                </section>
-            </div>
-        </div>
 
         <!-- MODERN WONDERS -->
         <div id="modern">
