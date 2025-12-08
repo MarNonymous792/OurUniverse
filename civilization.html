@@ -34,8 +34,9 @@
         body {
             /* Updated font stack: Arial is now prioritized */
             font-family: Arial, Helvetica, 'Inter', sans-serif;
-            background: linear-gradient(to bottom right, #fef3c7, #f5f5f4); 
-            background-attachment: fixed;
+            background: #f7f7f7;
+            padding: 0;
+            margin: 0;
         }
         .text-primary { color: var(--primary-color); }
         .bg-primary { background-color: var(--primary-color); }
@@ -69,6 +70,9 @@
 
         section {
             scroll-margin-top: 6rem; 
+        }
+        div#about, div#old-world, div#new-world {
+            scroll-margin-top: 6rem;
         }
 
         /* Base Card Styling (Clickable) */
@@ -158,16 +162,35 @@
 </head>
 <body class="antialiased">
 
+    <!-- Sticky Navigation Bar -->
+    <header class="bg-white shadow-sm sticky top-0 z-30">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <a href="index.html" class="text-lg font-semibold text-gray-800">Home</a>
+            <nav class="space-x-3">
+                <a href="#about" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">About</a>
+                <a href="#old-world" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">Old World</a>
+                <a href="#new-world" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">New World</a>
+            </nav>
+        </div>
+    </header>
+
     <!-- Main Content Container (Max width 4xl for column focus) -->
     <div id="civilization-list" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
         <!-- Main title remains thematic (Playfair Display, via .font-greece) -->
-        <h3 class="text-4xl sm:text-5xl font-extrabold text-center mb-16 text-gray-900 font-greece tracking-tight">
+        <h3 class="text-4xl sm:text-5xl font-extrabold text-center mb-8 text-gray-900 font-greece tracking-tight">
             The Dawn of History
         </h3>
         
+        <!-- ABOUT SECTION -->
+        <div id="about" class="mb-12 max-w-2xl mx-auto text-center text-gray-700">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">About Ancient Civilizations</h2>
+            <p class="text-sm mb-4 leading-relaxed">The ancient world witnessed the rise of remarkable civilizations that fundamentally shaped human history. From the Nile Valley to the Indus River, from Mesopotamia to the coasts of the Mediterranean, these societies developed sophisticated systems of governance, agriculture, writing, and architecture. Their innovations in mathematics, astronomy, law, and art continue to influence our world today.</p>
+            <p class="text-sm leading-relaxed">Explore the great civilizations that laid the foundations of human culture. Each civilization developed unique characteristics, from Egyptian hieroglyphs and the Code of Hammurabi to Roman governance and the Great Wall of China. Click any civilization card below to discover their fascinating histories, achievements, and lasting legacies.</p>
+        </div>
+        
         <!-- SECTION 1: OLD WORLD CIVILIZATIONS -->
-        <div class="mb-16">
+        <div id="old-world" class="mb-16">
             <!-- H4 using standard Inter/Arial font -->
             <h4 class="text-2xl font-bold text-gray-700 border-b-2 border-gray-300 pb-2 mb-8 uppercase tracking-widest font-sans">
                 Old World Civilizations
@@ -547,7 +570,7 @@
         </div>
         
         <!-- SECTION 2: NEW WORLD CIVILIZATIONS -->
-        <div class="mb-16">
+        <div id="new-world" class="mb-16">
             <!-- H4 using standard Inter/Arial font -->
             <h4 class="text-2xl font-bold text-gray-700 border-b-2 border-gray-300 pb-2 mb-8 uppercase tracking-widest font-sans">
                 New World Civilizations
