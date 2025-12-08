@@ -8,9 +8,12 @@
 </head>
 <body>
 
-    <header>
-        <h1>Evolution of Human Discoveries</h1>
-        <p>Explore the major milestones that shaped our understanding of the world</p>
+    <header style="background: #fff; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 30; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <h1>Evolution of Human Discoveries</h1>
+            <p>Explore the major milestones that shaped our understanding of the world</p>
+        </div>
+        <input type="text" id="searchInput" placeholder="Search cards..." style="padding: 8px 12px; border-radius: 4px; border: 1px solid #ddd; font-size: 14px; width: 180px;" />
     </header>
 
     <section class="cards">
@@ -64,6 +67,30 @@
         </a>
 
     </section>
+
+    <script>
+        // Search functionality for index.html
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('keyup', function(e) {
+                    const query = e.target.value.toLowerCase();
+                    const cards = document.querySelectorAll('.card');
+                    
+                    cards.forEach(card => {
+                        const text = card.textContent.toLowerCase();
+                        const title = card.querySelector('h2')?.textContent.toLowerCase() || '';
+                        
+                        if (query === '' || title.includes(query) || text.includes(query)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            }
+        });
+    </script>
 
     <script src="script.js"></script>
 

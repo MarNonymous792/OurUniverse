@@ -69,6 +69,28 @@
                 }, 50);
             }
         }
+
+        // Search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('keyup', function(e) {
+                    const query = e.target.value.toLowerCase();
+                    const sections = document.querySelectorAll('section[id]');
+                    
+                    sections.forEach(section => {
+                        const text = section.textContent.toLowerCase();
+                        const title = section.querySelector('h3')?.textContent.toLowerCase() || '';
+                        
+                        if (query === '' || title.includes(query) || text.includes(query)) {
+                            section.style.display = 'block';
+                        } else {
+                            section.style.display = 'none';
+                        }
+                    });
+                });
+            }
+        });
     </script>
 </head>
  <body class="antialiased">
@@ -76,11 +98,12 @@
     <header class="bg-white shadow-sm sticky top-0 z-30">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
             <a href="index.html" class="text-lg font-semibold text-gray-800">Home</a>
-            <nav class="space-x-3">
+            <nav class="space-x-3 flex-1 flex justify-center">
                 <a href="#about" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">About</a>
                 <a href="#ancient" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">Ancient</a>
                 <a href="#modern" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">Modern</a>
             </nav>
+            <input type="text" id="searchInput" placeholder="Search..." class="px-3 py-2 rounded-md text-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" style="width: 150px;">
         </div>
     </header>
 
