@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seven Wonders of the World</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-ancient: #92400e;
+            --color-modern: #1e40af;
+            --page-bg: #f7f7f7; /* match index palette */
+        }
+        
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: Arial, Helvetica, 'Inter', sans-serif;
+            background: var(--page-bg);
+        }
+        
+        section { scroll-margin-top: 6rem; }
+        
+        .wonder-card {
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+        .wonder-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .details-content {
+            max-height: 0;
+            opacity: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-bottom: 0;
+            transition: max-height 0.7s ease-in-out, opacity 0.5s ease-in-out, padding 0.5s ease-in-out;
+            will-change: max-height, opacity;
+        }
+        .details-content.expanded {
+            max-height: 1500px;
+            opacity: 1;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+    </style>
+    <script>
+        function toggleWonder(id) {
+            const detailsElement = document.getElementById('details-' + id);
+            const chevronElement = document.getElementById('chevron-' + id);
+            
+            if (detailsElement) {
+                detailsElement.classList.toggle('expanded');
+                if (chevronElement) {
+                    chevronElement.style.transform = detailsElement.classList.contains('expanded') 
+                        ? 'rotate(180deg)' 
+                        : 'rotate(0deg)';
+                }
+                
+                setTimeout(() => {
+                    const targetCard = document.getElementById(id);
+                    if (targetCard) {
+                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 50);
+            }
+        }
+    </script>
+</head>
+ <body class="antialiased">
+
+    <header class="bg-white shadow-sm sticky top-0 z-30">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <a href="index.html" class="text-lg font-semibold text-gray-800">Home</a>
+            <nav class="space-x-3">
+                <a href="#about" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">About</a>
+                <a href="#ancient" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">Ancient</a>
+                <a href="#modern" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">Modern</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="wonders-list" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <h1 class="text-5xl sm:text-6xl font-extrabold text-center mb-4 text-gray-900 font-serif tracking-tight" style="font-family: 'Playfair Display', serif;">
+            Human Inventions
+        </h1>
+        <p class="text-center text-gray-600 text-lg mb-6 max-w-2xl mx-auto">
+            Explore the remarkable creations, technologies, and innovations that have shaped societies, transformed daily life, and fueled human progress throughout history.
+        </p>
+        <div id="about" class="mb-8 max-w-2xl mx-auto text-center text-gray-700">
+            <h2 class="text-xl font-bold mb-2 text-gray-800">About Human Inventions</h2>
+            <p class="text-sm mb-2"> Human inventions are the products of creativity, curiosity, and the continuous pursuit of solving problems and improving life. From simple tools crafted in ancient times to advanced digital systems of the modern era, inventions reflect humanity’s evolving knowledge, ingenuity, and ambition. These innovations span countless fields such as communication, transportation, medicine, engineering, and everyday convenience.</p>
+            <p class="text-sm mb-2">From early breakthroughs — like the wheel, writing systems, and agricultural tools — to transformative modern technologies such as electricity, computers, and the internet, each invention has contributed uniquely to the development of human civilization. These creations have reshaped how people live, work, travel, exchange information, and understand the world around them.</p>
+            <p class="text-sm">The cards below highlight some of the most influential human inventions — from foundational tools to modern technological marvels — admired for their impact on society, science, and global progress. Each card contains key facts (purpose, inventor, year, and category) along with a brief description; click any card to explore how these inventions have changed the world.</p>
+        </div>
+        
+        <!-- ANCIENT WONDERS -->
+        <div id="ancient" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">Stone Age</h2>
+            <div class="flex flex-col space-y-6">
+                <!-- Great Pyramid of Giza -->
+                <section id="pyramid" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('pyramid')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="inventionsImg/stone_tools.jpg" alt="Great Pyramid" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Acheulean</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Stone Tools</h3>
+                            </div>
+                            <svg id="chevron-pyramid" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-pyramid" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Worldwide (Found in Africa, Europe, Asia, the Americas, and Australia)</p>
+                            <p><span class="font-bold text-amber-900">Created:</span> c. 2.6 million years ago – 2,000 BCE</p>
+                            <p><span class="font-bold text-amber-900">Crafted By:</span> Early Hominins (e.g., Homo erectus) and Early Humans    </p>
+                            <p><span class="font-bold text-amber-900">Typical Size:</span> Varies (commonly 5–30 cm in length)</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> The "Swiss Army knife" of prehistory; a fundamental tool for survival, hunting, and shaping the environment.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The stone axe is one of the most enduring symbols of human technological evolution. Ranging from the chipped bifacial hand axes of the Paleolithic era to the finely polished, hafted tools of the Neolithic, these implements were essential for survival. Whether knapped from flint or ground from tough basalt or jade, the stone axe allowed our ancestors to butcher meat, process plants, and defend themselves against predators.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Archaeologists trace the development of the stone axe to understand cognitive leaps in early humans. The transition from rough, percussion-flaked tools to smooth, ground-stone edges marked a significant advancement in craftsmanship and foresight. By attaching (hafting) these stone heads to wooden handles, early humans dramatically increased the tool's leverage, enabling them to clear forests for agriculture and build permanent settlements.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Today, stone axes are discovered in archaeological sites across the globe, often serving as key indicators of trade and migration. Because high-quality stone was often transported over long distances, these artifacts reveal complex prehistoric exchange networks. They remain a testament to human ingenuity and the ability to manipulate the natural world long before the discovery of metalworking.</p>
+                    </div>
+                </section>
+
+                <!-- Hanging Gardens of Babylon -->
+                <section id="gardens" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('gardens')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="inventionsImg/fire.jpg" alt="Hanging Gardens" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Paleolithic</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Control of Fire</h3>
+                            </div>
+                            <svg id="chevron-gardens" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-gardens" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Worldwide (Found on every continent except Antarctica)</p>
+                            <p><span class="font-bold text-amber-900">First Developed:</span> c. 400,000 BCE (Simple spears) / c. 30,000 BCE (Atlats)</p>
+                            <p><span class="font-bold text-amber-900">Developed By:</span> Archaic Humans, Neanderthals, and Early Modern Humans</p>
+                            <p><span class="font-bold text-amber-900">Typical Materials:</span> Wood, chert, obsidian, flint, bone, antler</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> Revolutionizing prehistoric hunting and warfare by dramatically increasing range, velocity, and striking power.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The spear is one of the oldest and most enduring weapons in human history, representing a critical leap in our ancestors' ability to secure food and defend themselves. The earliest spears were simple wooden poles sharpened at one end, sometimes fire-hardened. Over millennia, toolmakers began attaching sharp points made of carefully knapped stone, bone, or antler, creating a much more effective and lethal implement for thrusting or throwing.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Around 30,000 years ago, a significant innovation appeared: the atlatl, or spear-thrower. This device effectively acts as an extension of the user's arm, using leverage to hurl a flexible dart or spear with vastly greater force and velocity than could be achieved by hand alone. This technological advancement allowed hunters to strike large, dangerous game from a safer distance, significantly improving their chances of survival and success.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4"> The combination of the spear and the atlatl represents a pinnacle of Stone Age engineering. These tools were essential for the survival of early human populations across the globe, enabling them to adapt to diverse environments and hunt a wide range of prey. Archaeologists continue to unearth these artifacts, providing crucial insights into the ingenuity, hunting strategies, and daily lives of our prehistoric forebears.</p>
+                    </div>
+                </section>
+
+                <!-- Temple of Artemis -->
+                <section id="artemis" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('artemis')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="inventionsImg/agriculture.jpg" alt="Temple of Artemis" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Neolithic Revolution</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Agriculture</h3>
+                            </div>
+                            <svg id="chevron-artemis" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-artemis" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Worldwide (Earliest evidence found in South Africa)</p>
+                            <p><span class="font-bold text-amber-900">First Developed:</span> c. 60,000 – 70,000 years ago</p>
+                            <p><span class="font-bold text-amber-900">Developed By:</span> Early Modern Humans (Homo sapiens)</p>
+                            <p><span class="font-bold text-amber-900">Typical Materials:</span> Flexible wood (e.g., yew, elm), animal sinew, bone, flint, reeds</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> Revolutionizing prehistoric hunting by allowing safe distance strikes; a defining technology of human survival and early warfare.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The invention of the bow and arrow represents one of the most significant cognitive and technological leaps in human history. While simple spears had existed for hundreds of thousands of years, the bow required a complex understanding of stored energy and "technological symbiosis"—the ability to combine separate parts (the stave, string, and projectile) into a single functional unit. The earliest evidence of this technology comes from South Africa, where small stone points dating back over 60,000 years suggest the first use of arrowheads by early Homo sapiens.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">This weapon fundamentally altered the relationship between humans and their environment. unlike the spear, which often required getting dangerously close to prey, the bow allowed hunters to strike from a safe distance with high precision. This advantage reduced the risk of injury during the hunt and allowed early humans to target faster, smaller game, significantly diversifying their diet. The technology likely gave modern humans a distinct survival advantage over other hominids, such as Neanderthals, who relied primarily on close-range thrusting spears.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">As humans migrated out of Africa, they carried this technology with them, adapting it to every continent except Australia. Over millennia, the simple wooden "self bow" evolved into complex composite bows made of horn, wood, and sinew, capable of immense power. From the armies of ancient Egypt to the mounted archers of the Eurasian steppes, the bow and arrow dominated warfare and hunting for thousands of years, enduring as a primary weapon until the widespread adoption of gunpowder.</p>
+                    </div>
+                </section>
+
+
+
+        <!-- MODERN WONDERS -->
+        <div id="modern">
+            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">Modern Wonders</h2>
+            
+            <div class="flex flex-col space-y-6">
+                <!-- Great Wall of China -->
+                <section id="wall" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('wall')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Great-Wall-of-China.jpg" alt="Great Wall" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern China</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Great Wall of China</h3>
+                            </div>
+                            <svg id="chevron-wall" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-wall" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> China</p>
+                            <p><span class="font-bold text-blue-900">Length:</span> Approximately 21,196 kilometers</p>
+                            <p><span class="font-bold text-blue-900">Built Over:</span> More than 2,000 years (multiple dynasties)</p>
+                            <p><span class="font-bold text-blue-900">Purpose:</span> Military defense and border control</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> One of the most impressive architectural feats, visible from space.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Great Wall of China is one of the most iconic structures in the world, stretching across northern China. Built over more than 2,000 years by multiple dynasties, it served as a military defense system and border control mechanism. The wall was constructed to protect against invasions from northern tribes and to control trade along the Silk Road.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">What survives today is a patchwork of walls from different periods, prominently restored sections from the Ming dynasty; the wall's length and character vary regionally. It also served as a cultural symbol and facilitated troop movements, signaling, and patrols rather than a continuous, impregnable barrier.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Great Wall's modern iconic status owes as much to nineteenth- and twentieth-century restoration and romanticization as to ancient construction; conservationists now grapple with balancing tourism, restoration authenticity, and local community concerns. Its fragmented nature offers a layered archaeological record of frontier policies across centuries.</p>
+                    </div>
+                </section>
+
+                <!-- Taj Mahal -->
+                <section id="taj" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('taj')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Taj-Mahal.jpg" alt="Taj Mahal" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern India</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Taj Mahal</h3>
+                            </div>
+                            <svg id="chevron-taj" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-taj" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Agra, India</p>
+                            <p><span class="font-bold text-blue-900">Built:</span> 1632–1653</p>
+                            <p><span class="font-bold text-blue-900">Built By:</span> Emperor Shah Jahan</p>
+                            <p><span class="font-bold text-blue-900">Built For:</span> His wife Mumtaz Mahal</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Monument to eternal love, featuring exquisite white marble and intricate inlay work.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Taj Mahal is widely regarded as one of the most beautiful buildings in the world. Built between 1632 and 1653 by Emperor Shah Jahan as a mausoleum for his beloved wife, Mumtaz Mahal, this magnificent structure is a masterpiece of Mughal architecture. The Taj Mahal features exquisite white marble inlaid with semi-precious stones.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Its garden layout, symmetry, and decorative calligraphy reflect Persian and Indian design influences; conservation efforts focus on pollution control and structural preservation. The site continues to draw millions of visitors yearly and remains a powerful symbol of Mughal-era artistry.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Scholars emphasize the Taj's role as both a funerary monument and a statement of imperial aesthetics, where technical ingenuity in marble carving and inlay contributes to its visual impact. Preservation work addresses environmental threats and the challenges of mass tourism while sustaining the site's living cultural context.</p>
+                    </div>
+                </section>
+
+                <!-- Christ the Redeemer -->
+                <section id="christ" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('christ')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Christ-the-Redeemer.jpg" alt="Christ the Redeemer" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Brazil</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Christ the Redeemer</h3>
+                            </div>
+                            <svg id="chevron-christ" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-christ" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Rio de Janeiro, Brazil</p>
+                            <p><span class="font-bold text-blue-900">Built:</span> 1922–1931</p>
+                            <p><span class="font-bold text-blue-900">Height:</span> 38 meters (125 feet)</p>
+                            <p><span class="font-bold text-blue-900">Design:</span> Art Deco style</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Iconic symbol of Rio, overlooking from atop Corcovado Mountain.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Christ the Redeemer is a colossal Art Deco statue overlooking Rio de Janeiro from Corcovado Mountain. Built between 1922 and 1931, this iconic monument stands 38 meters tall and has become a symbol of Brazilian culture. The statue depicts Jesus Christ with arms outstretched in blessing and protection over the city.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Constructed of reinforced concrete and soapstone, the statue's location offers panoramic views and has become both a religious pilgrimage site and tourist landmark. It has undergone regular conservation to address weathering and lightning damage.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The statue highlights how modern national identity can be expressed through monumental art; its prominence in Rio's skyline and cultural imagery demonstrates how 20th-century engineering and modern materials shaped new iconic landscapes. Conservation combines structural reinforcement with community stewardship to protect the landmark.</p>
+                    </div>
+                </section>
+
+                <!-- Machu Picchu -->
+                <section id="machu" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('machu')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Machu-Picchu.jpg" alt="Machu Picchu" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Peru</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Machu Picchu</h3>
+                            </div>
+                            <svg id="chevron-machu" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-machu" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Cusco Region, Peru</p>
+                            <p><span class="font-bold text-blue-900">Built:</span> c. 1450</p>
+                            <p><span class="font-bold text-blue-900">Built By:</span> Inca Empire</p>
+                            <p><span class="font-bold text-blue-900">Altitude:</span> 2,430 meters above sea level</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Ancient Incan citadel showcasing remarkable engineering and stone masonry.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Machu Picchu is an ancient Incan citadel situated on a mountain ridge high in the Andes. Built around 1450, this remarkable site showcases incredible engineering and architectural prowess. The structures were built without mortar, using precisely cut stones that fit together perfectly.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Rediscovered by Hiram Bingham in 1911, Machu Picchu provides insight into Incan urban planning, agricultural terraces, and religious spaces. Preservation efforts balance visitor access with erosion control and protection of the surrounding cloud-forest ecosystem.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Machu Picchu's rediscovery reshaped global views of pre-Columbian civilizations and raised questions about tourism's environmental footprint. Current efforts integrate local Quechua communities in stewardship plans and emphasize landscape-scale conservation to maintain both archaeological features and biodiversity.</p>
+                    </div>
+                </section>
+
+                <!-- Chichen Itza -->
+                <section id="chichen" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('chichen')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Chichen-Itza.jpg" alt="Chichen Itza" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Mexico</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Chichen Itza</h3>
+                            </div>
+                            <svg id="chevron-chichen" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-chichen" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Yucatan, Mexico</p>
+                            <p><span class="font-bold text-blue-900">Founded:</span> c. 600 CE</p>
+                            <p><span class="font-bold text-blue-900">Period:</span> Mayan and Toltec</p>
+                            <p><span class="font-bold text-blue-900">Famous Structure:</span> El Castillo (The Castle pyramid)</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Blending Mayan and Toltec architectural styles.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Chichen Itza is one of the largest pre-Columbian archaeological sites in Mexico. Founded around 600 CE, this site represents a fascinating blend of Mayan and Toltec architectural styles. The most iconic structure is El Castillo (The Castle), a large pyramid that serves as the centerpiece of the complex.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Archaeological work at Chichen Itza has revealed ball courts, observatories, and a rich record of art and ritual practice, including carved stelae and cenotes (natural sinkholes) used for offerings. The site's seasonal light-and-shadow effects on El Castillo demonstrate advanced astronomical knowledge.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Chichen Itza's blend of architectural forms and ritual spaces reflects political shifts and cultural exchange across Mesoamerica. Protecting its structures and iconography involves both archaeological stabilization and community-engaged tourism strategies that respect local heritage values.</p>
+                    </div>
+                </section>
+
+                <!-- Roman Colosseum -->
+                <section id="colosseum" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('colosseum')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Roman-Colosseum.jpg" alt="Roman Colosseum" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Italy</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Roman Colosseum</h3>
+                            </div>
+                            <svg id="chevron-colosseum" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-colosseum" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Rome, Italy</p>
+                            <p><span class="font-bold text-blue-900">Built:</span> 72–80 CE</p>
+                            <p><span class="font-bold text-blue-900">Built By:</span> Roman Emperors Vespasian and Titus</p>
+                            <p><span class="font-bold text-blue-900">Capacity:</span> Approximately 50,000–80,000 spectators</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Ancient amphitheater hosting gladiatorial contests and public spectacles.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Roman Colosseum is an iconic symbol of Imperial Rome and one of the most impressive surviving structures from the ancient world. Built between 72 and 80 CE, this massive amphitheater could hold up to 80,000 spectators. It was used for gladiatorial contests, animal hunts, and public spectacles.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Colosseum's complex system of corridors, trapdoors, and seating tiers made large-scale spectacles possible; it also reflects Roman engineering with vaulted construction and precise use of concrete. Conservation projects have stabilized the monument and opened parts of its interior to visitors while studying its layered history.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">As an urban amphitheater, the Colosseum offers insight into Roman social performance and the politics of spectacle; modern conservation emphasizes structural reinforcement and interpretive programs that contextualize the site's social history, including the lives of performers and animals within its arenas.</p>
+                    </div>
+                </section>
+
+                <!-- Petra -->
+                <section id="petra" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('petra')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="7WonderIMG/Petra.jpg" alt="Petra" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Jordan</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Petra</h3>
+                            </div>
+                            <svg id="chevron-petra" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-petra" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Ma'an Governorate, Jordan</p>
+                            <p><span class="font-bold text-blue-900">Carved:</span> c. 100 BCE – 100 CE</p>
+                            <p><span class="font-bold text-blue-900">Built By:</span> Nabataean Kingdom</p>
+                            <p><span class="font-bold text-blue-900">Stone:</span> Rose-red sandstone</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> Ancient city carved into rock cliffs, major trading hub.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Petra is a magnificent ancient city carved into rose-red sandstone cliffs in Jordan. Established by the Nabataean Kingdom around 100 BCE, it served as a major trading hub. The city is famous for its intricate rock-cut architecture and sophisticated water management system.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Petra's facades, tombs, and water channels demonstrate impressive hydraulic engineering adapted to an arid environment; the site's narrow gorge, the Siq, leads visitors into the dramatic Treasury and central areas. Preservation focuses on erosion control and managing tourism impact on fragile stone surfaces.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Petra's value lies in its integration of landscape and urban planning, where natural rock becomes civic architecture. Researchers and conservators work to mitigate wind and water erosion while developing sustainable visitation models that protect its fragile surfaces and local livelihoods.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <nav class="mt-16 pt-8 border-t border-gray-300 text-center">
+            <a href="index.html" class="inline-block px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors">
+                ← Back to Home
+            </a>
+        </nav>
+    </div>
+</body>
+</html>
