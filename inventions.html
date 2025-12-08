@@ -98,13 +98,14 @@
             <p class="text-sm">The cards below highlight some of the most influential human inventions — from foundational tools to modern technological marvels — admired for their impact on society, science, and global progress. Each card contains key facts (purpose, inventor, year, and category) along with a brief description; click any card to explore how these inventions have changed the world.</p>
         </div>
         
-        <!-- ANCIENT WONDERS -->
-        <div id="ancient" class="mb-16">
-            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">Stone Age</h2>
+        <!-- Stone Age -->
+        <div id="Stone" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">The Stone Age</h2>
             <div class="flex flex-col space-y-6">
-                <!-- Great Pyramid of Giza -->
-                <section id="pyramid" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
-                    <div onclick="toggleWonder('pyramid')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+
+                <!-- Stone Tools -->
+                <section id="stone_tools" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('stone_tools')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
                         <img src="inventionsImg/stone_tools.jpg" alt="Great Pyramid" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
@@ -112,27 +113,27 @@
                                 <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Acheulean</span>
                                 <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Stone Tools</h3>
                             </div>
-                            <svg id="chevron-pyramid" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg id="chevron-stone_tools" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
-                    <div id="details-pyramid" class="details-content px-6">
+                    <div id="details-stone_tools" class="details-content px-6">
                         <hr class="border-gray-200">
                         <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
-                            <p><span class="font-bold text-amber-900">Location:</span> Worldwide (Found in Africa, Europe, Asia, the Americas, and Australia)</p>
-                            <p><span class="font-bold text-amber-900">Created:</span> c. 2.6 million years ago – 2,000 BCE</p>
-                            <p><span class="font-bold text-amber-900">Crafted By:</span> Early Hominins (e.g., Homo erectus) and Early Humans    </p>
-                            <p><span class="font-bold text-amber-900">Typical Size:</span> Varies (commonly 5–30 cm in length)</p>
-                            <p><span class="font-bold text-amber-900">Known For:</span> The "Swiss Army knife" of prehistory; a fundamental tool for survival, hunting, and shaping the environment.</p>
+                            <p><span class="font-bold text-amber-900">Location:</span> Africa, Europe, and Asia (West and South)</p>
+                            <p><span class="font-bold text-amber-900">Created:</span> c. 1.76 million – 100,000 years ago</p>
+                            <p><span class="font-bold text-amber-900">Crafted By:</span> Homo erectus and Homo heidelbergensis</p>
+                            <p><span class="font-bold text-amber-900">Typical Size:</span> 12–20 cm (Length)</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> The "Swiss Army knife" of the Paleolithic; the first standardized tool made to a mental pattern.</p>
                         </div>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The stone axe is one of the most enduring symbols of human technological evolution. Ranging from the chipped bifacial hand axes of the Paleolithic era to the finely polished, hafted tools of the Neolithic, these implements were essential for survival. Whether knapped from flint or ground from tough basalt or jade, the stone axe allowed our ancestors to butcher meat, process plants, and defend themselves against predators.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Archaeologists trace the development of the stone axe to understand cognitive leaps in early humans. The transition from rough, percussion-flaked tools to smooth, ground-stone edges marked a significant advancement in craftsmanship and foresight. By attaching (hafting) these stone heads to wooden handles, early humans dramatically increased the tool's leverage, enabling them to clear forests for agriculture and build permanent settlements.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Today, stone axes are discovered in archaeological sites across the globe, often serving as key indicators of trade and migration. Because high-quality stone was often transported over long distances, these artifacts reveal complex prehistoric exchange networks. They remain a testament to human ingenuity and the ability to manipulate the natural world long before the discovery of metalworking.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Acheulean handaxe represents a pivotal leap in human cognitive evolution. Unlike the earlier, simple pebble tools (Oldowan) which were struck randomly to get a sharp edge, the Acheulean handaxe was carefully crafted to a specific "mental template". This required the maker to visualize the final teardrop shape before striking the stone, demonstrating a new level of foresight and planning.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">These bifacial tools (flaked on both sides) were incredibly versatile, earning them the nickname "the Swiss Army knife of the Stone Age". Their sharp, symmetrical edges were ideal for butchering large game like mammoths, scraping hides, digging for tubers, and chopping wood. The symmetry and craftsmanship of later handaxes were so precise that some archaeologists believe they may have also served as social signals or status symbols among early humans.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Originating in East Africa, this technology spread across Eurasia with the migration of Homo erectus. It remained the dominant technology for over a million years—the longest-lasting tool tradition in human history—uniting early human populations across three continents in a shared technological practice.</p>
                     </div>
                 </section>
 
-                <!-- Hanging Gardens of Babylon -->
-                <section id="gardens" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
-                    <div onclick="toggleWonder('gardens')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                <!-- Control of Fire -->
+                <section id="fire" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('fire')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
                         <img src="inventionsImg/fire.jpg" alt="Hanging Gardens" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
@@ -140,27 +141,27 @@
                                 <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Paleolithic</span>
                                 <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Control of Fire</h3>
                             </div>
-                            <svg id="chevron-gardens" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg id="chevron-fire" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
-                    <div id="details-gardens" class="details-content px-6">
+                    <div id="details-fire" class="details-content px-6">
                         <hr class="border-gray-200">
                         <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
-                            <p><span class="font-bold text-amber-900">Location:</span> Worldwide (Found on every continent except Antarctica)</p>
-                            <p><span class="font-bold text-amber-900">First Developed:</span> c. 400,000 BCE (Simple spears) / c. 30,000 BCE (Atlats)</p>
-                            <p><span class="font-bold text-amber-900">Developed By:</span> Archaic Humans, Neanderthals, and Early Modern Humans</p>
-                            <p><span class="font-bold text-amber-900">Typical Materials:</span> Wood, chert, obsidian, flint, bone, antler</p>
-                            <p><span class="font-bold text-amber-900">Known For:</span> Revolutionizing prehistoric hunting and warfare by dramatically increasing range, velocity, and striking power.</p>
+                            <p><span class="font-bold text-amber-900">Location:</span> Worldwide (Earliest evidence in South Africa, Israel, and China)</p>
+                            <p><span class="font-bold text-amber-900">First Controlled:</span> c. 1 million – 400,000 years ago</p>
+                            <p><span class="font-bold text-amber-900">Mastered By:</span> Homo erectus (earliest), Homo heidelbergensis, and Neanderthals</p>
+                            <p><span class="font-bold text-amber-900">Primary Fuels:</span> Wood, dry grass, animal dung, and bone</p>
+                            <p><span class="font-bold text-amber-900">Known For: </span>The "spark" of civilization; enabled cooking (brain growth), migration to cold climates, and protection from predators.</p>
                         </div>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The spear is one of the oldest and most enduring weapons in human history, representing a critical leap in our ancestors' ability to secure food and defend themselves. The earliest spears were simple wooden poles sharpened at one end, sometimes fire-hardened. Over millennia, toolmakers began attaching sharp points made of carefully knapped stone, bone, or antler, creating a much more effective and lethal implement for thrusting or throwing.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Around 30,000 years ago, a significant innovation appeared: the atlatl, or spear-thrower. This device effectively acts as an extension of the user's arm, using leverage to hurl a flexible dart or spear with vastly greater force and velocity than could be achieved by hand alone. This technological advancement allowed hunters to strike large, dangerous game from a safer distance, significantly improving their chances of survival and success.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4"> The combination of the spear and the atlatl represents a pinnacle of Stone Age engineering. These tools were essential for the survival of early human populations across the globe, enabling them to adapt to diverse environments and hunt a wide range of prey. Archaeologists continue to unearth these artifacts, providing crucial insights into the ingenuity, hunting strategies, and daily lives of our prehistoric forebears.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The control of fire is widely considered the single most profound technological discovery in human evolution. While early hominids likely took advantage of natural wildfires for millions of years, the ability to deliberately start and maintain a fire marked a cognitive turning point. Earliest evidence, such as microscopic ash found deep inside Wonderwerk Cave in South Africa (c. 1 million years ago), suggests that Homo erectus was the first species to bring this powerful force into their homes.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">This mastery fundamentally changed human biology. The "Cooking Hypothesis" posits that by cooking meat and tubers, our ancestors made food easier to digest and unlocked vastly more calories than a raw diet could provide. This surplus energy allowed for the reduction of the digestive tract and fueled the rapid expansion of the human brain. Fire also served as a critical tool for survival, providing the warmth necessary to migrate out of tropical Africa into the colder environments of Europe and Asia.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Beyond biology, fire created the first social hubs. The hearth became the center of daily life, extending the day into the night and offering protection from nocturnal predators. This "campfire time" likely spurred the development of language, storytelling, and complex social bonds, distinguishing humans from all other primates. Later, this same technology would be adapted to harden wooden spears, create glue from birch bark, and eventually smelt metal.</p>
                     </div>
                 </section>
 
-                <!-- Temple of Artemis -->
-                <section id="artemis" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
-                    <div onclick="toggleWonder('artemis')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                <!-- Agriculture -->
+                <section id="agriculture" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('agriculture')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
                         <img src="inventionsImg/agriculture.jpg" alt="Temple of Artemis" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
@@ -168,228 +169,291 @@
                                 <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Neolithic Revolution</span>
                                 <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Agriculture</h3>
                             </div>
-                            <svg id="chevron-artemis" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg id="chevron-agriculture" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
-                    <div id="details-artemis" class="details-content px-6">
+                    <div id="details-agriculture" class="details-content px-6">
                         <hr class="border-gray-200">
                         <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
-                            <p><span class="font-bold text-amber-900">Location:</span> Worldwide (Earliest evidence found in South Africa)</p>
-                            <p><span class="font-bold text-amber-900">First Developed:</span> c. 60,000 – 70,000 years ago</p>
-                            <p><span class="font-bold text-amber-900">Developed By:</span> Early Modern Humans (Homo sapiens)</p>
-                            <p><span class="font-bold text-amber-900">Typical Materials:</span> Flexible wood (e.g., yew, elm), animal sinew, bone, flint, reeds</p>
-                            <p><span class="font-bold text-amber-900">Known For:</span> Revolutionizing prehistoric hunting by allowing safe distance strikes; a defining technology of human survival and early warfare.</p>
-                        </div>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The invention of the bow and arrow represents one of the most significant cognitive and technological leaps in human history. While simple spears had existed for hundreds of thousands of years, the bow required a complex understanding of stored energy and "technological symbiosis"—the ability to combine separate parts (the stave, string, and projectile) into a single functional unit. The earliest evidence of this technology comes from South Africa, where small stone points dating back over 60,000 years suggest the first use of arrowheads by early Homo sapiens.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">This weapon fundamentally altered the relationship between humans and their environment. unlike the spear, which often required getting dangerously close to prey, the bow allowed hunters to strike from a safe distance with high precision. This advantage reduced the risk of injury during the hunt and allowed early humans to target faster, smaller game, significantly diversifying their diet. The technology likely gave modern humans a distinct survival advantage over other hominids, such as Neanderthals, who relied primarily on close-range thrusting spears.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">As humans migrated out of Africa, they carried this technology with them, adapting it to every continent except Australia. Over millennia, the simple wooden "self bow" evolved into complex composite bows made of horn, wood, and sinew, capable of immense power. From the armies of ancient Egypt to the mounted archers of the Eurasian steppes, the bow and arrow dominated warfare and hunting for thousands of years, enduring as a primary weapon until the widespread adoption of gunpowder.</p>
+                            <p><span class="font-bold text-amber-900">Location:</span> Worldwide (Independent centers in the Fertile Crescent, China, Mesoamerica, and Andes)</p>
+                            <p><span class="font-bold text-amber-900">Period:</span> c. 10,000 BCE – 2,000 BCE</p>
+                            <p><span class="font-bold text-amber-900">Developed By:</span> Neolithic Humans (e.g., Natufians, early farmers)</p>
+                            <p><span class="font-bold text-amber-900">Key Crops:</span> Wheat, barley, rice, millet, maize, potatoes</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> The "Agricultural Revolution"; the fundamental shift from nomadic foraging to settled farming that birthed modern civilization.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Neolithic Revolution is widely considered the most profound turning point in human history, marking the transition from a lifestyle of hunting and gathering to one of food production. Starting around 10,000 BCE in the "Fertile Crescent" of the Middle East, humans began to selectively breed wild grasses like wheat and barley and domesticate animals such as sheep and goats. This shift was not a single event but a gradual process that occurred independently in several regions, including the cultivation of rice in China and maize in the Americas.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">This mastery over nature fundamentally altered human society. The ability to produce a reliable surplus of food meant that populations could settle in one place permanently, leading to the construction of the first villages and cities. Tools evolved to meet these new needs; simple chipped stones were replaced by polished ground-stone adzes for clearing forests, and composite tools like sickles and plows were invented to harvest and till the land.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The legacy of this revolution is the foundation of the modern world. The surplus food produced by agriculture allowed for the specialization of labor—freeing some individuals to become artisans, priests, and rulers rather than full-time foragers. This social stratification led to the rise of complex civilizations, writing systems, and the state structures that continue to govern human interaction today.</p>
                     </div>
                 </section>
 
 
 
-        <!-- MODERN WONDERS -->
-        <div id="modern">
-            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">Modern Wonders</h2>
+        <!-- The Bronze Age -->
+        <div id="bronze">
+            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">The Bronze Age</h2>
             
             <div class="flex flex-col space-y-6">
-                <!-- Great Wall of China -->
-                <section id="wall" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
-                    <div onclick="toggleWonder('wall')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
-                        <img src="7WonderIMG/Great-Wall-of-China.jpg" alt="Great Wall" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                <!-- The Wheel -->
+                <section id="wheel" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('wheel')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="inventionsImg/wheel.jpg" alt="Great Wall" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern China</span>
-                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Great Wall of China</h3>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Copper Age</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">The Wheel</h3>
                             </div>
-                            <svg id="chevron-wall" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg id="chevron-wheel" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
-                    <div id="details-wall" class="details-content px-6">
+                    <div id="details-wheel" class="details-content px-6">
                         <hr class="border-gray-200">
                         <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
-                            <p><span class="font-bold text-blue-900">Location:</span> China</p>
-                            <p><span class="font-bold text-blue-900">Length:</span> Approximately 21,196 kilometers</p>
-                            <p><span class="font-bold text-blue-900">Built Over:</span> More than 2,000 years (multiple dynasties)</p>
-                            <p><span class="font-bold text-blue-900">Purpose:</span> Military defense and border control</p>
-                            <p><span class="font-bold text-blue-900">Known For:</span> One of the most impressive architectural feats, visible from space.</p>
+                            <p><span class="font-bold text-blue-900">Location:</span> Mesopotamia and Central Europe (e.g., Carpathian Basin)</p>
+                            <p><span class="font-bold text-blue-900">Invented:</span> c. 4500 BCE (Potter's Wheel) / c. 3500 BCE (Transport)</p>
+                            <p><span class="font-bold text-blue-900">Invented by:</span> Sumerians, Late Neolithic/Chalcolithic Farmers & Miners</p>
+                            <p><span class="font-bold text-blue-900">Materials:</span> Solid wood (planks of ash/oak), leather, animal fat (lubricant)</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> The most critical mechanical invention of antiquity; revolutionized ceramics, transportation, and warfare.</p>
                         </div>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Great Wall of China is one of the most iconic structures in the world, stretching across northern China. Built over more than 2,000 years by multiple dynasties, it served as a military defense system and border control mechanism. The wall was constructed to protect against invasions from northern tribes and to control trade along the Silk Road.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">What survives today is a patchwork of walls from different periods, prominently restored sections from the Ming dynasty; the wall's length and character vary regionally. It also served as a cultural symbol and facilitated troop movements, signaling, and patrols rather than a continuous, impregnable barrier.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Great Wall's modern iconic status owes as much to nineteenth- and twentieth-century restoration and romanticization as to ancient construction; conservationists now grapple with balancing tourism, restoration authenticity, and local community concerns. Its fragmented nature offers a layered archaeological record of frontier policies across centuries.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The invention of the wheel is defined by two distinct phases that occurred during the Copper Age (Chalcolithic). Contrary to popular belief, the first wheels were not used for transportation. Around 4500 BCE, in the region of Mesopotamia, potters developed the rotating wheel to help coil and shape clay more efficiently. It took nearly another millennium of "technological symbiosis"—the realization that a wheel could be connected to a stable axle—before this concept was applied to movement.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">By 3500 BCE, solid wooden wheels began appearing on carts and wagons in both Mesopotamia and Central Europe. Recent archaeological finds in the Carpathian Mountains suggest that copper miners may have been among the first to use wheeled baskets to transport heavy ore, solving a critical logistics problem of the Copper Age. These early wheels were not spoked but were made of massive wooden planks joined together, often fixed to a rotating axle that turned along with them.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">This innovation fundamentally reshaped human society. The wheel allowed for the domestication of the "beast of burden" (oxen and horses) to be fully exploited, enabling the transport of crops and copper over long distances. This created the first true trade networks, connected distant settlements, and eventually led to the development of the war chariot, which would dominate the battlefields of the subsequent Bronze Age.</p>
                     </div>
                 </section>
 
-                <!-- Taj Mahal -->
-                <section id="taj" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
-                    <div onclick="toggleWonder('taj')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
-                        <img src="7WonderIMG/Taj-Mahal.jpg" alt="Taj Mahal" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                <!-- Cuneiform -->
+                <section id="cuneiform" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('cuneiform')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="inventionsImg/cuneiform.jpg" alt="Taj Mahal" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern India</span>
-                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Taj Mahal</h3>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Writing System</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Cuneiform</h3>
                             </div>
-                            <svg id="chevron-taj" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg id="chevron-cuneiform" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
-                    <div id="details-taj" class="details-content px-6">
+                    <div id="details-cuneiform" class="details-content px-6">
                         <hr class="border-gray-200">
                         <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
-                            <p><span class="font-bold text-blue-900">Location:</span> Agra, India</p>
-                            <p><span class="font-bold text-blue-900">Built:</span> 1632–1653</p>
-                            <p><span class="font-bold text-blue-900">Built By:</span> Emperor Shah Jahan</p>
-                            <p><span class="font-bold text-blue-900">Built For:</span> His wife Mumtaz Mahal</p>
-                            <p><span class="font-bold text-blue-900">Known For:</span> Monument to eternal love, featuring exquisite white marble and intricate inlay work.</p>
+                            <p><span class="font-bold text-blue-900">Location:</span> Mesopotamia (Modern-day Iraq)</p>
+                            <p><span class="font-bold text-blue-900">First Developed:</span> c. 3400 – 3200 BCE</p>
+                            <p><span class="font-bold text-blue-900">Developed By:</span> The Sumerians</p>
+                            <p><span class="font-bold text-blue-900">Writing Medium:</span> Wet clay tablets and reed styluses</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> The world's first fully developed writing system, characterized by distinctive wedge-shaped impressions.</p>
                         </div>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Taj Mahal is widely regarded as one of the most beautiful buildings in the world. Built between 1632 and 1653 by Emperor Shah Jahan as a mausoleum for his beloved wife, Mumtaz Mahal, this magnificent structure is a masterpiece of Mughal architecture. The Taj Mahal features exquisite white marble inlaid with semi-precious stones.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Its garden layout, symmetry, and decorative calligraphy reflect Persian and Indian design influences; conservation efforts focus on pollution control and structural preservation. The site continues to draw millions of visitors yearly and remains a powerful symbol of Mughal-era artistry.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Scholars emphasize the Taj's role as both a funerary monument and a statement of imperial aesthetics, where technical ingenuity in marble carving and inlay contributes to its visual impact. Preservation work addresses environmental threats and the challenges of mass tourism while sustaining the site's living cultural context.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Cuneiform is widely recognized as the most significant intellectual leap in ancient history, marking the transition from prehistory to recorded history. Originating in the fertile valleys of Sumer, the script began not as poetry or law, but as a system of pictographs used by temple officials to track grain, livestock, and beer. Over several centuries, these simple pictures evolved into abstract, wedge-shaped signs (Latin: cuneus) pressed into soft clay using a cut reed stylus.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">This durability of clay meant that records could survive for millennia, preserving the thoughts, laws, and daily lives of ancient peoples. While originally designed for the Sumerian language, the script was so effective that it was adapted by the Akkadians, Babylonians, Assyrians, and Hittites to write their own distinct languages. It remained in use for over 3,000 years, documenting everything from the movement of the planets to the Epic of Gilgamesh—literature’s first great masterpiece.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The legacy of cuneiform is the democratization of information. It allowed for the codification of laws, such as the famous Code of Hammurabi, which established public standards of justice. Although it eventually gave way to the simpler Phoenician alphabet around the 1st century CE, the decipherment of cuneiform in the 19th century unlocked the secrets of the ancient Near East, revealing a civilization as complex and emotional as our own.</p>
                     </div>
                 </section>
 
-                <!-- Christ the Redeemer -->
-                <section id="christ" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
-                    <div onclick="toggleWonder('christ')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
-                        <img src="7WonderIMG/Christ-the-Redeemer.jpg" alt="Christ the Redeemer" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                <!-- Metallurgy -->
+                <section id="metallurgy" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('metallurgy')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="inventionsImg/metallurgy.jpg" alt="Christ the Redeemer" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Brazil</span>
-                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Christ the Redeemer</h3>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Bronze Age</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Metallurgy</h3>
                             </div>
-                            <svg id="chevron-christ" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg id="chevron-metallurgy" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
-                    <div id="details-christ" class="details-content px-6">
+                    <div id="details-metallurgy" class="details-content px-6">
                         <hr class="border-gray-200">
                         <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
-                            <p><span class="font-bold text-blue-900">Location:</span> Rio de Janeiro, Brazil</p>
-                            <p><span class="font-bold text-blue-900">Built:</span> 1922–1931</p>
-                            <p><span class="font-bold text-blue-900">Height:</span> 38 meters (125 feet)</p>
-                            <p><span class="font-bold text-blue-900">Design:</span> Art Deco style</p>
-                            <p><span class="font-bold text-blue-900">Known For:</span> Iconic symbol of Rio, overlooking from atop Corcovado Mountain.</p>
+                            <p><span class="font-bold text-blue-900">Location:</span> Worldwide (Earliest smelting evidence in Serbia/Balkans and the Near East)</p>
+                            <p><span class="font-bold text-blue-900">First Smelted:</span> c. 5000 BCE (Copper) / c. 3300 BCE (Bronze)</p>
+                            <p><span class="font-bold text-blue-900">Developed By:</span> Vinča Culture, Sumerians, and Early Andeans</p>
+                            <p><span class="font-bold text-blue-900">Key Materials:</span> Malachite (ore), Charcoal, Copper, Tin, Arsenic</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> The "Pyrotechnological Revolution"; transforming rock into metal to create superior, recyclable tools and weapons.</p>
                         </div>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Christ the Redeemer is a colossal Art Deco statue overlooking Rio de Janeiro from Corcovado Mountain. Built between 1922 and 1931, this iconic monument stands 38 meters tall and has become a symbol of Brazilian culture. The statue depicts Jesus Christ with arms outstretched in blessing and protection over the city.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Constructed of reinforced concrete and soapstone, the statue's location offers panoramic views and has become both a religious pilgrimage site and tourist landmark. It has undergone regular conservation to address weathering and lightning damage.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The statue highlights how modern national identity can be expressed through monumental art; its prominence in Rio's skyline and cultural imagery demonstrates how 20th-century engineering and modern materials shaped new iconic landscapes. Conservation combines structural reinforcement with community stewardship to protect the landmark.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The invention of metallurgy represents one of humanity's greatest chemical achievements: the realization that fire could transform solid rock into malleable metal. While early humans had used "native" (naturally occurring) copper for beads and pins as early as 9000 BCE, true metallurgy began around 5000 BCE in the Balkans. Here, the Vinča culture discovered that heating malachite ore to high temperatures (smelting) released pure copper, allowing for the casting of complex axes and chisels.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">However, copper was soft and dulled easily. The true breakthrough came around 3300 BCE with the invention of bronze, an alloy made by mixing copper with small amounts of tin or arsenic. This mixture created a metal significantly harder than iron's early forms and far more durable than stone. This "technological symbiosis" drove the creation of vast trade networks, as tin was rare and often had to be imported from thousands of miles away (e.g., from Afghanistan or Cornwall to Mesopotamia).</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The impact of this technology was total. Metal plows allowed farmers to till harder soils, increasing food production, while bronze weapons (swords, helmets, and armor) revolutionized warfare, leading to the rise of the first professional armies and empires. The complexity of mining, smelting, and casting also gave rise to a new class of specialized artisans and elites, fundamentally restructuring ancient society into the hierarchies we recognize today.</p>
+                    </div>
+                </section>
+ 
+                <!-- The Iron Age -->
+        <div id="iron" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">The Iron Age</h2>
+            <div class="flex flex-col space-y-6">
+
+                <!-- Great Pyramid of Giza -->
+                <section id="furnace" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('furnace')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="inventionsImg/furnace.jpg" alt="Great Pyramid" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Han Dynasty China </span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Blast Furnace</h3>
+                            </div>
+                            <svg id="chevron-furnace" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-furnace" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Africa, Europe, and Asia (West and South)</p>
+                            <p><span class="font-bold text-amber-900">Created:</span> c. 1.76 million – 100,000 years ago</p>
+                            <p><span class="font-bold text-amber-900">Crafted By:</span> Homo erectus and Homo heidelbergensis</p>
+                            <p><span class="font-bold text-amber-900">Typical Size:</span> 12–20 cm (Length)</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> The "Swiss Army knife" of the Paleolithic; the first standardized tool made to a mental pattern.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Acheulean handaxe represents a pivotal leap in human cognitive evolution. Unlike the earlier, simple pebble tools (Oldowan) which were struck randomly to get a sharp edge, the Acheulean handaxe was carefully crafted to a specific "mental template". This required the maker to visualize the final teardrop shape before striking the stone, demonstrating a new level of foresight and planning.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">These bifacial tools (flaked on both sides) were incredibly versatile, earning them the nickname "the Swiss Army knife of the Stone Age". Their sharp, symmetrical edges were ideal for butchering large game like mammoths, scraping hides, digging for tubers, and chopping wood. The symmetry and craftsmanship of later handaxes were so precise that some archaeologists believe they may have also served as social signals or status symbols among early humans.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Originating in East Africa, this technology spread across Eurasia with the migration of Homo erectus. It remained the dominant technology for over a million years—the longest-lasting tool tradition in human history—uniting early human populations across three continents in a shared technological practice.</p>
                     </div>
                 </section>
 
-                <!-- Machu Picchu -->
-                <section id="machu" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
-                    <div onclick="toggleWonder('machu')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
-                        <img src="7WonderIMG/Machu-Picchu.jpg" alt="Machu Picchu" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                <!-- Alphabet -->
+                <section id="alphabet" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('alphabet')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="inventionsImg/alphabet.jpg" alt="Alphabet" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Peru</span>
-                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Machu Picchu</h3>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Ancient Egypt and Greek</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Alphabet</h3>
                             </div>
-                            <svg id="chevron-machu" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg id="chevron-alphabet" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
-                    <div id="details-machu" class="details-content px-6">
+                    <div id="details-alphabet" class="details-content px-6">
                         <hr class="border-gray-200">
-                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
-                            <p><span class="font-bold text-blue-900">Location:</span> Cusco Region, Peru</p>
-                            <p><span class="font-bold text-blue-900">Built:</span> c. 1450</p>
-                            <p><span class="font-bold text-blue-900">Built By:</span> Inca Empire</p>
-                            <p><span class="font-bold text-blue-900">Altitude:</span> 2,430 meters above sea level</p>
-                            <p><span class="font-bold text-blue-900">Known For:</span> Ancient Incan citadel showcasing remarkable engineering and stone masonry.</p>
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Worldwide (Earliest evidence in South Africa, Israel, and China)</p>
+                            <p><span class="font-bold text-amber-900">First Controlled:</span> c. 1 million – 400,000 years ago</p>
+                            <p><span class="font-bold text-amber-900">Mastered By:</span> Homo erectus (earliest), Homo heidelbergensis, and Neanderthals</p>
+                            <p><span class="font-bold text-amber-900">Primary Fuels:</span> Wood, dry grass, animal dung, and bone</p>
+                            <p><span class="font-bold text-amber-900">Known For: </span>The "spark" of civilization; enabled cooking (brain growth), migration to cold climates, and protection from predators.</p>
                         </div>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Machu Picchu is an ancient Incan citadel situated on a mountain ridge high in the Andes. Built around 1450, this remarkable site showcases incredible engineering and architectural prowess. The structures were built without mortar, using precisely cut stones that fit together perfectly.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Rediscovered by Hiram Bingham in 1911, Machu Picchu provides insight into Incan urban planning, agricultural terraces, and religious spaces. Preservation efforts balance visitor access with erosion control and protection of the surrounding cloud-forest ecosystem.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Machu Picchu's rediscovery reshaped global views of pre-Columbian civilizations and raised questions about tourism's environmental footprint. Current efforts integrate local Quechua communities in stewardship plans and emphasize landscape-scale conservation to maintain both archaeological features and biodiversity.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The control of fire is widely considered the single most profound technological discovery in human evolution. While early hominids likely took advantage of natural wildfires for millions of years, the ability to deliberately start and maintain a fire marked a cognitive turning point. Earliest evidence, such as microscopic ash found deep inside Wonderwerk Cave in South Africa (c. 1 million years ago), suggests that Homo erectus was the first species to bring this powerful force into their homes.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">This mastery fundamentally changed human biology. The "Cooking Hypothesis" posits that by cooking meat and tubers, our ancestors made food easier to digest and unlocked vastly more calories than a raw diet could provide. This surplus energy allowed for the reduction of the digestive tract and fueled the rapid expansion of the human brain. Fire also served as a critical tool for survival, providing the warmth necessary to migrate out of tropical Africa into the colder environments of Europe and Asia.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Beyond biology, fire created the first social hubs. The hearth became the center of daily life, extending the day into the night and offering protection from nocturnal predators. This "campfire time" likely spurred the development of language, storytelling, and complex social bonds, distinguishing humans from all other primates. Later, this same technology would be adapted to harden wooden spears, create glue from birch bark, and eventually smelt metal.</p>
                     </div>
                 </section>
 
-                <!-- Chichen Itza -->
-                <section id="chichen" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
-                    <div onclick="toggleWonder('chichen')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
-                        <img src="7WonderIMG/Chichen-Itza.jpg" alt="Chichen Itza" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                <!-- Coinage -->
+                <section id="coinage" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('coinage')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="inventionsImg/coinage.jpg" alt="Temple of Artemis" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Mexico</span>
-                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Chichen Itza</h3>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Lydian Lion</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Coinage</h3>
                             </div>
-                            <svg id="chevron-chichen" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg id="chevron-coinage" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
-                    <div id="details-chichen" class="details-content px-6">
+                    <div id="details-coinage" class="details-content px-6">
                         <hr class="border-gray-200">
-                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
-                            <p><span class="font-bold text-blue-900">Location:</span> Yucatan, Mexico</p>
-                            <p><span class="font-bold text-blue-900">Founded:</span> c. 600 CE</p>
-                            <p><span class="font-bold text-blue-900">Period:</span> Mayan and Toltec</p>
-                            <p><span class="font-bold text-blue-900">Famous Structure:</span> El Castillo (The Castle pyramid)</p>
-                            <p><span class="font-bold text-blue-900">Known For:</span> Blending Mayan and Toltec architectural styles.</p>
-                        </div>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Chichen Itza is one of the largest pre-Columbian archaeological sites in Mexico. Founded around 600 CE, this site represents a fascinating blend of Mayan and Toltec architectural styles. The most iconic structure is El Castillo (The Castle), a large pyramid that serves as the centerpiece of the complex.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Archaeological work at Chichen Itza has revealed ball courts, observatories, and a rich record of art and ritual practice, including carved stelae and cenotes (natural sinkholes) used for offerings. The site's seasonal light-and-shadow effects on El Castillo demonstrate advanced astronomical knowledge.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Chichen Itza's blend of architectural forms and ritual spaces reflects political shifts and cultural exchange across Mesoamerica. Protecting its structures and iconography involves both archaeological stabilization and community-engaged tourism strategies that respect local heritage values.</p>
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Worldwide (Independent centers in the Fertile Crescent, China, Mesoamerica, and Andes)</p>
+                            <p><span class="font-bold text-amber-900">Period:</span> c. 10,000 BCE – 2,000 BCE</p>
+                            <p><span class="font-bold text-amber-900">Developed By:</span> Neolithic Humans (e.g., Natufians, early farmers)</p>
+                            <p><span class="font-bold text-amber-900">Key Crops:</span> Wheat, barley, rice, millet, maize, potatoes</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> The "Agricultural Revolution"; the fundamental shift from nomadic foraging to settled farming that birthed modern civilization.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Neolithic Revolution is widely considered the most profound turning point in human history, marking the transition from a lifestyle of hunting and gathering to one of food production. Starting around 10,000 BCE in the "Fertile Crescent" of the Middle East, humans began to selectively breed wild grasses like wheat and barley and domesticate animals such as sheep and goats. This shift was not a single event but a gradual process that occurred independently in several regions, including the cultivation of rice in China and maize in the Americas.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">This mastery over nature fundamentally altered human society. The ability to produce a reliable surplus of food meant that populations could settle in one place permanently, leading to the construction of the first villages and cities. Tools evolved to meet these new needs; simple chipped stones were replaced by polished ground-stone adzes for clearing forests, and composite tools like sickles and plows were invented to harvest and till the land.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The legacy of this revolution is the foundation of the modern world. The surplus food produced by agriculture allowed for the specialization of labor—freeing some individuals to become artisans, priests, and rulers rather than full-time foragers. This social stratification led to the rise of complex civilizations, writing systems, and the state structures that continue to govern human interaction today.</p>
                     </div>
                 </section>
 
-                <!-- Roman Colosseum -->
-                <section id="colosseum" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
-                    <div onclick="toggleWonder('colosseum')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
-                        <img src="7WonderIMG/Roman-Colosseum.jpg" alt="Roman Colosseum" class="absolute inset-0 w-full h-full object-cover opacity-70">
+
+        <div id="middle">
+            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">The Middle Ages</h2>
+            
+            <div class="flex flex-col space-y-6">
+                <!--Gunpowder -->
+                <section id="gunpowder" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('gunpowder')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="inventionsImg/gunpowder.jpg" alt="Great Wall" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Italy</span>
-                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Roman Colosseum</h3>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Ancient China</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Gunpowder</h3>
                             </div>
-                            <svg id="chevron-colosseum" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg id="chevron-gunpowder" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
-                    <div id="details-colosseum" class="details-content px-6">
+                    <div id="details-gunpowder" class="details-content px-6">
                         <hr class="border-gray-200">
                         <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
-                            <p><span class="font-bold text-blue-900">Location:</span> Rome, Italy</p>
-                            <p><span class="font-bold text-blue-900">Built:</span> 72–80 CE</p>
-                            <p><span class="font-bold text-blue-900">Built By:</span> Roman Emperors Vespasian and Titus</p>
-                            <p><span class="font-bold text-blue-900">Capacity:</span> Approximately 50,000–80,000 spectators</p>
-                            <p><span class="font-bold text-blue-900">Known For:</span> Ancient amphitheater hosting gladiatorial contests and public spectacles.</p>
+                            <p><span class="font-bold text-blue-900">Location:</span> Mesopotamia and Central Europe (e.g., Carpathian Basin)</p>
+                            <p><span class="font-bold text-blue-900">Invented:</span> c. 4500 BCE (Potter's Wheel) / c. 3500 BCE (Transport)</p>
+                            <p><span class="font-bold text-blue-900">Invented by:</span> Sumerians, Late Neolithic/Chalcolithic Farmers & Miners</p>
+                            <p><span class="font-bold text-blue-900">Materials:</span> Solid wood (planks of ash/oak), leather, animal fat (lubricant)</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> The most critical mechanical invention of antiquity; revolutionized ceramics, transportation, and warfare.</p>
                         </div>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Roman Colosseum is an iconic symbol of Imperial Rome and one of the most impressive surviving structures from the ancient world. Built between 72 and 80 CE, this massive amphitheater could hold up to 80,000 spectators. It was used for gladiatorial contests, animal hunts, and public spectacles.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The Colosseum's complex system of corridors, trapdoors, and seating tiers made large-scale spectacles possible; it also reflects Roman engineering with vaulted construction and precise use of concrete. Conservation projects have stabilized the monument and opened parts of its interior to visitors while studying its layered history.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">As an urban amphitheater, the Colosseum offers insight into Roman social performance and the politics of spectacle; modern conservation emphasizes structural reinforcement and interpretive programs that contextualize the site's social history, including the lives of performers and animals within its arenas.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The invention of the wheel is defined by two distinct phases that occurred during the Copper Age (Chalcolithic). Contrary to popular belief, the first wheels were not used for transportation. Around 4500 BCE, in the region of Mesopotamia, potters developed the rotating wheel to help coil and shape clay more efficiently. It took nearly another millennium of "technological symbiosis"—the realization that a wheel could be connected to a stable axle—before this concept was applied to movement.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">By 3500 BCE, solid wooden wheels began appearing on carts and wagons in both Mesopotamia and Central Europe. Recent archaeological finds in the Carpathian Mountains suggest that copper miners may have been among the first to use wheeled baskets to transport heavy ore, solving a critical logistics problem of the Copper Age. These early wheels were not spoked but were made of massive wooden planks joined together, often fixed to a rotating axle that turned along with them.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">This innovation fundamentally reshaped human society. The wheel allowed for the domestication of the "beast of burden" (oxen and horses) to be fully exploited, enabling the transport of crops and copper over long distances. This created the first true trade networks, connected distant settlements, and eventually led to the development of the war chariot, which would dominate the battlefields of the subsequent Bronze Age.</p>
                     </div>
                 </section>
 
-                <!-- Petra -->
-                <section id="petra" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
-                    <div onclick="toggleWonder('petra')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
-                        <img src="7WonderIMG/Petra.jpg" alt="Petra" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                <!-- The Mechanical Clock -->
+                <section id="clock" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('clock')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="inventionsImg/clock.jpg" alt="Taj Mahal" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Modern Jordan</span>
-                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Petra</h3>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Late 13th century</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">The Mechanical Clock</h3>
                             </div>
-                            <svg id="chevron-petra" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg id="chevron-clock" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
-                    <div id="details-petra" class="details-content px-6">
+                    <div id="details-clock" class="details-content px-6">
                         <hr class="border-gray-200">
                         <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
-                            <p><span class="font-bold text-blue-900">Location:</span> Ma'an Governorate, Jordan</p>
-                            <p><span class="font-bold text-blue-900">Carved:</span> c. 100 BCE – 100 CE</p>
-                            <p><span class="font-bold text-blue-900">Built By:</span> Nabataean Kingdom</p>
-                            <p><span class="font-bold text-blue-900">Stone:</span> Rose-red sandstone</p>
-                            <p><span class="font-bold text-blue-900">Known For:</span> Ancient city carved into rock cliffs, major trading hub.</p>
+                            <p><span class="font-bold text-blue-900">Location:</span> Mesopotamia (Modern-day Iraq)</p>
+                            <p><span class="font-bold text-blue-900">First Developed:</span> c. 3400 – 3200 BCE</p>
+                            <p><span class="font-bold text-blue-900">Developed By:</span> The Sumerians</p>
+                            <p><span class="font-bold text-blue-900">Writing Medium:</span> Wet clay tablets and reed styluses</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> The world's first fully developed writing system, characterized by distinctive wedge-shaped impressions.</p>
                         </div>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Petra is a magnificent ancient city carved into rose-red sandstone cliffs in Jordan. Established by the Nabataean Kingdom around 100 BCE, it served as a major trading hub. The city is famous for its intricate rock-cut architecture and sophisticated water management system.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Petra's facades, tombs, and water channels demonstrate impressive hydraulic engineering adapted to an arid environment; the site's narrow gorge, the Siq, leads visitors into the dramatic Treasury and central areas. Preservation focuses on erosion control and managing tourism impact on fragile stone surfaces.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Petra's value lies in its integration of landscape and urban planning, where natural rock becomes civic architecture. Researchers and conservators work to mitigate wind and water erosion while developing sustainable visitation models that protect its fragile surfaces and local livelihoods.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Cuneiform is widely recognized as the most significant intellectual leap in ancient history, marking the transition from prehistory to recorded history. Originating in the fertile valleys of Sumer, the script began not as poetry or law, but as a system of pictographs used by temple officials to track grain, livestock, and beer. Over several centuries, these simple pictures evolved into abstract, wedge-shaped signs (Latin: cuneus) pressed into soft clay using a cut reed stylus.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">This durability of clay meant that records could survive for millennia, preserving the thoughts, laws, and daily lives of ancient peoples. While originally designed for the Sumerian language, the script was so effective that it was adapted by the Akkadians, Babylonians, Assyrians, and Hittites to write their own distinct languages. It remained in use for over 3,000 years, documenting everything from the movement of the planets to the Epic of Gilgamesh—literature’s first great masterpiece.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The legacy of cuneiform is the democratization of information. It allowed for the codification of laws, such as the famous Code of Hammurabi, which established public standards of justice. Although it eventually gave way to the simpler Phoenician alphabet around the 1st century CE, the decipherment of cuneiform in the 19th century unlocked the secrets of the ancient Near East, revealing a civilization as complex and emotional as our own.</p>
                     </div>
                 </section>
-            </div>
-        </div>
+
+                <!-- Windmills -->
+                <section id="windmill" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('windmill')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                        <img src="inventionsImg/windmill.jpg" alt="Christ the Redeemer" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Persia</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Windmills</h3>
+                            </div>
+                            <svg id="chevron-windmill" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-windmill" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-blue-900">Location:</span> Worldwide (Earliest smelting evidence in Serbia/Balkans and the Near East)</p>
+                            <p><span class="font-bold text-blue-900">First Smelted:</span> c. 5000 BCE (Copper) / c. 3300 BCE (Bronze)</p>
+                            <p><span class="font-bold text-blue-900">Developed By:</span> Vinča Culture, Sumerians, and Early Andeans</p>
+                            <p><span class="font-bold text-blue-900">Key Materials:</span> Malachite (ore), Charcoal, Copper, Tin, Arsenic</p>
+                            <p><span class="font-bold text-blue-900">Known For:</span> The "Pyrotechnological Revolution"; transforming rock into metal to create superior, recyclable tools and weapons.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The invention of metallurgy represents one of humanity's greatest chemical achievements: the realization that fire could transform solid rock into malleable metal. While early humans had used "native" (naturally occurring) copper for beads and pins as early as 9000 BCE, true metallurgy began around 5000 BCE in the Balkans. Here, the Vinča culture discovered that heating malachite ore to high temperatures (smelting) released pure copper, allowing for the casting of complex axes and chisels.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">However, copper was soft and dulled easily. The true breakthrough came around 3300 BCE with the invention of bronze, an alloy made by mixing copper with small amounts of tin or arsenic. This mixture created a metal significantly harder than iron's early forms and far more durable than stone. This "technological symbiosis" drove the creation of vast trade networks, as tin was rare and often had to be imported from thousands of miles away (e.g., from Afghanistan or Cornwall to Mesopotamia).</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The impact of this technology was total. Metal plows allowed farmers to till harder soils, increasing food production, while bronze weapons (swords, helmets, and armor) revolutionized warfare, leading to the rise of the first professional armies and empires. The complexity of mining, smelting, and casting also gave rise to a new class of specialized artisans and elites, fundamentally restructuring ancient society into the hierarchies we recognize today.</p>
+                    </div>
+                </section>
+ 
 
         <nav class="mt-16 pt-8 border-t border-gray-300 text-center">
             <a href="index.html" class="inline-block px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors">
