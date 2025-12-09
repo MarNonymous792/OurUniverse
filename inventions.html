@@ -364,12 +364,11 @@
                         <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The system was refined under King Croesus (c. 560 BCE), who separated the electrum into pure gold and pure silver coins, creating the world's first bimetallic monetary system. The concept spread rapidly to Greece and Persia, fundamentally altering human economy by allowing for the payment of soldiers, the accumulation of portable wealth, and the rise of complex market economies that transcended local barter.</p>
                     </div>
                 </section>
-
-
+        </div>
+        </div>
         <div id="middle">
             <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">The Middle Ages</h2>
-            
-            <div class="flex flex-col space-y-6">
+                <div   div class="flex flex-col space-y-6">
                 <!--Gunpowder -->
                 <section id="gunpowder" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
                     <div onclick="toggleWonder('gunpowder')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
@@ -427,39 +426,131 @@
                 </section>
 
                 <!-- Windmills -->
-                <section id="windmill" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
-                    <div onclick="toggleWonder('windmill')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
-                        <img src="inventionsImg/windmill.jpg" alt="Christ the Redeemer" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                    <section id="windmill" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                        <div onclick="toggleWonder('windmill')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-modern);">
+                            <img src="inventionsImg/windmill.jpg" alt="Christ the Redeemer" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                                <div>
+                                    <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Persia</span>
+                                    <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Windmills</h3>
+                                </div>
+                                <svg id="chevron-windmill" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                        </div>
+                        <div id="details-windmill" class="details-content px-6">
+                            <hr class="border-gray-200">
+                            <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
+                                <p><span class="font-bold text-blue-900">Location:</span> Persia (Original) and Northern Europe (Developed)</p>
+                                <p><span class="font-bold text-blue-900">First Built:</span> c. 9th Century CE (Persia) / c. 1185 CE (Europe)</p>
+                                <p><span class="font-bold text-blue-900">Built By:</span> Persian Engineers (Sistan) and Medieval Millwrights</p>
+                                <p><span class="font-bold text-blue-900">Key Design:</span> Vertical Axis (Persian Panemone) vs. Horizontal Axis (European Post Mill)</p>
+                                <p><span class="font-bold text-blue-900">Known For:</span>Harnessing renewable energy to grind grain and drain wetlands; the first reliable source of automated mechanical power.</p>
+                            </div>
+                            <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The invention of the windmill marked a critical shift in human history from relying on muscle power to harnessing the forces of nature. The earliest windmills, known as "panemones," appeared in the windy plains of Sistan (modern Iran/Afghanistan) around the 9th century. These machines used vertical sails that rotated like a revolving door to grind grain, a design perfectly adapted to the unidirectional local winds.</p>
+                            <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">However, the technology truly revolutionized industry when it reached Northern Europe in the 12th century. European millwrights adapted the design to a horizontal axis, creating the iconic "post mill" that could be rotated to face the wind coming from any direction. This innovation was crucial for the variable weather of Europe. By the 14th century, massive tower mills were draining the wetlands of the Netherlands, pumping water to create arable land where there was once only sea.</p>
+                            <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">These machines were the heavy industry of the Middle Ages. A single windmill could generate the power of dozens of horses, freeing populations from the drudgery of hand-milling flour and enabling the rapid expansion of cities. They remained the prime movers of the pre-industrial world until the steam engine eventually took their place in the 18th century.</p>
+                        </div>
+            
+                    </section>
+                </div>
+            </div> 
+  
+            <!-- Modern-->
+            <div id="modern" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-700 border-b-2 border-gray-300 pb-3 mb-8 uppercase tracking-widest font-sans">The Modern Age</h2>
+            <div class="flex flex-col space-y-6">
+
+                <!--Blast Furnace -->
+                <section id="press" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('press')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="inventionsImg/press.jpg" alt="Great Pyramid" class="absolute inset-0 w-full h-full object-cover opacity-70">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-blue-200">Persia</span>
-                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Windmills</h3>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Gutendberg</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">The Printing Press</h3>
                             </div>
-                            <svg id="chevron-windmill" class="w-8 h-8 text-blue-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg id="chevron-press" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
-                    <div id="details-windmill" class="details-content px-6">
+                    <div id="details-press" class="details-content px-6">
                         <hr class="border-gray-200">
-                        <div class="space-y-2 p-4 bg-blue-50/70 rounded-lg border border-blue-200 border-l-4 mt-6 font-courier text-sm">
-                            <p><span class="font-bold text-blue-900">Location:</span> Persia (Original) and Northern Europe (Developed)</p>
-                            <p><span class="font-bold text-blue-900">First Built:</span> c. 9th Century CE (Persia) / c. 1185 CE (Europe)</p>
-                            <p><span class="font-bold text-blue-900">Built By:</span> Persian Engineers (Sistan) and Medieval Millwrights</p>
-                            <p><span class="font-bold text-blue-900">Key Design:</span> Vertical Axis (Persian Panemone) vs. Horizontal Axis (European Post Mill)</p>
-                            <p><span class="font-bold text-blue-900">Known For:</span>Harnessing renewable energy to grind grain and drain wetlands; the first reliable source of automated mechanical power.</p>
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Mainz, Holy Roman Empire (Modern-day Germany)</p>
+                            <p><span class="font-bold text-amber-900">First Developed:</span> c. 1440 CE</p>
+                            <p><span class="font-bold text-amber-900">Developed By:</span> Johannes Gutenberg</p>
+                            <p><span class="font-bold text-amber-900">Key Materials:</span> Movable Metal Type (Lead, Tin, Antimony alloy), Oil-Based Ink, Screw Press</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> The "Gutenberg Revolution"; the mechanical mass production of books that sparked the Renaissance, Reformation, and Scientific Revolution.</p>
                         </div>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The invention of the windmill marked a critical shift in human history from relying on muscle power to harnessing the forces of nature. The earliest windmills, known as "panemones," appeared in the windy plains of Sistan (modern Iran/Afghanistan) around the 9th century. These machines used vertical sails that rotated like a revolving door to grind grain, a design perfectly adapted to the unidirectional local winds.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">However, the technology truly revolutionized industry when it reached Northern Europe in the 12th century. European millwrights adapted the design to a horizontal axis, creating the iconic "post mill" that could be rotated to face the wind coming from any direction. This innovation was crucial for the variable weather of Europe. By the 14th century, massive tower mills were draining the wetlands of the Netherlands, pumping water to create arable land where there was once only sea.</p>
-                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">These machines were the heavy industry of the Middle Ages. A single windmill could generate the power of dozens of horses, freeing populations from the drudgery of hand-milling flour and enabling the rapid expansion of cities. They remained the prime movers of the pre-industrial world until the steam engine eventually took their place in the 18th century.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Johannes Gutenberg's invention of the movable type printing press is widely regarded as the most important event of the modern period. While woodblock printing had existed in East Asia for centuries, Gutenberg's genius lay in synthesizing separate technologies: the wine press, oil-based inks, and—crucially—a hand mould for casting infinite numbers of metal letters.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The key to this system was the type itself. Gutenberg created a unique alloy of lead, tin, and antimony that melted at low temperatures but cooled into durable, sharp letters. This allowed a single printer to set a page of text in hours rather than the days required for wood carving. His masterpiece, the "Gutenberg Bible" (c. 1455), proved that a machine could produce work rivaling the beauty of hand-copied manuscripts.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The impact was explosive. By 1500, printing presses were in operation throughout Western Europe, having produced more than twenty million volumes. This flood of cheap texts broke the monopoly of the literate elite, fueling the spread of new ideas that would lead to the Protestant Reformation and the Scientific Revolution.</p>
                     </div>
                 </section>
- 
 
-        <nav class="mt-16 pt-8 border-t border-gray-300 text-center">
+                <!-- Telescope -->
+                <section id="telescope" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('telescope')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="inventionsImg/telescope.jpg" alt="Alphabet" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Optical instruments</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Telescope</h3>
+                            </div>
+                            <svg id="chevron-telescope" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-telescope" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Middelburg, Netherlands</p>
+                            <p><span class="font-bold text-amber-900">First Developed:</span> 1608 CE (Patent filed)</p>
+                            <p><span class="font-bold text-amber-900">Developed By:</span> Hans Lippershey (Inventor) and Galileo Galilei (Scientist)</p>
+                            <p><span class="font-bold text-amber-900">Key Components:</span> Convex Objective Lens, Concave Eyepiece, Tube</p>
+                            <p><span class="font-bold text-amber-900">Known For: </span>The "Instrument that Moved the World"; proving the Earth was not the center of the universe and launching the Scientific Revolution.</p>
+                        </div>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The invention of the telescope began as a novelty but ended as a revolution. In 1608, a Dutch spectacle-maker named Hans Lippershey filed a patent for a "spyglass" that could make distant objects appear near. While the Dutch government saw military potential for spotting enemy ships, the true power of the device was unlocked a year later in Italy.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">Hearing rumors of the Dutch invention, Galileo Galilei constructed his own version without ever seeing the original, significantly improving the magnification from 3x to over 20x. When he turned his "perspicillum" toward the night sky in 1609, he saw things that shattered ancient beliefs: mountains on the Moon, spots on the Sun, and four moons orbiting Jupiter.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">These observations provided the first physical evidence for the Copernican theory—that the Earth revolved around the Sun, and not the other way around. This optical tube did more than magnify vision; it humiliated human ego. It proved that humanity resided on a moving planet in a vast, indifferent universe, fundamentally altering religion, philosophy, and science forever.</p>
+                    </div>
+                </section>
+
+                <!-- Steam Engine -->
+                <section id="steamengine" class="bg-white rounded-xl wonder-card overflow-hidden shadow-lg transition-all duration-300">
+                    <div onclick="toggleWonder('steamengine')" class="relative h-48 overflow-hidden transition-all duration-300 cursor-pointer" style="background-color: var(--color-ancient);">
+                        <img src="inventionsImg/steamengine.jpg" alt="Temple of Artemis" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white w-full flex items-center justify-between z-10">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-200">Newcomen/Watt</span>
+                                <h3 class="text-3xl font-extrabold font-serif drop-shadow-md">Steam Engine</h3>
+                            </div>
+                            <svg id="chevron-steamengine" class="w-8 h-8 text-amber-200 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div id="details-steamengine" class="details-content px-6">
+                        <hr class="border-gray-200">
+                        <div class="space-y-2 p-4 bg-amber-50/70 rounded-lg border border-amber-200 border-l-4 mt-6 font-courier text-sm">
+                            <p><span class="font-bold text-amber-900">Location:</span> Great Britain (Scotland/England)</p>
+                            <p><span class="font-bold text-amber-900">First Developed:</span> c. 1712 (Newcomen) / 1765 (Watt's breakthrough)</p>
+                            <p><span class="font-bold text-amber-900">Developed By:</span> Thomas Newcomen, James Watt, and Matthew Boulton</p>
+                            <p><span class="font-bold text-amber-900">Key Mechanism:</span> Separate Condenser, Piston, and Flywheel</p>
+                            <p><span class="font-bold text-amber-900">Known For:</span> The "Prime Mover" of the Industrial Revolution; the machine that freed humanity from the limitations of muscle and water power.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The steam engine is the defining technology of the industrial age, representing the moment humanity learned to unlock the energy stored in the earth. The story begins not with factories, but with mines. In the early 18th century, British coal mines were flooding, and Thomas Newcomen developed the first "atmospheric engine" (1712) to pump them out. While effective, it was a fuel-hungry giant that wasted 99% of its energy by repeatedly heating and cooling the same cylinder.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">The critical leap occurred in 1765 when a Scottish instrument maker named James Watt was asked to repair a model of a Newcomen engine. He realized that by adding a separate condenser—a chamber where steam could be cooled without cooling the main cylinder—he could triple the engine's efficiency. Partnering with the industrialist Matthew Boulton, Watt not only improved the engine but adapted it to create rotary motion. This meant steam could now power not just pumps, but wheels, gears, and looms.</p>
+                        <p class="text-gray-700 text-sm font-courier leading-relaxed mt-4">This innovation decoupled industry from nature. Factories no longer had to be built next to fast-flowing rivers; they could be built anywhere coal could be delivered. The steam engine soon powered the locomotives and steamships that shrank the globe, creating an interconnected world economy and fundamentally altering the rhythm of human life from the season to the shift.</p>
+                    </div>
+                </section>
+        </div>
+        </div>              
+       
+            <nav class="mt-16 pt-8 border-t border-gray-300 text-center">
             <a href="index.html" class="inline-block px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors">
                 ← Back to Home
             </a>
         </nav>
-    </div>
-</body>
+    
+    </div></body>
 </html>
